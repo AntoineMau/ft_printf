@@ -8,6 +8,7 @@ char	*ft_strrev(char *str)
 	int		j;
 	char	tmp;
 
+	i = 0;
 	while (str[i])
 		i++;
 	j = -1;
@@ -97,4 +98,26 @@ char	*ft_itoa(int nb)
 		str[i++] = '-';
 	str[i] = '\0';
 	return (ft_strrev(str));
+}
+
+int		ft_deci_hexa(int nb)
+{
+	int		i;
+	char	*str;
+
+	if (!(str = (char*)malloc(sizeof(*str) * 9)))
+		return (FALSE);
+	str[8] = '\0';
+	i = 0;
+	while (i < 8)
+	{
+		if (nb % 16 < 10)
+			str[i] = nb % 16 + '0';
+		else
+			str[i] = nb % 16 + 'A' - 10;
+		nb /= 16;
+		i++;
+	}
+	ft_putstr(ft_strrev(str));
+	return (TRUE);
 }
