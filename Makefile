@@ -13,11 +13,20 @@
 SHELL = bash
 
 # Executable name, can be change
-NAME = fillit
+NAME = ft_printf
 
 # Sources names
-SRCS_NAME = ft_verif.c \
-			main.c
+SRCS_NAME = ft_printf.c \
+			ft_atoi.c \
+			ft_itoa.c \
+			ft_putchar.c \
+			ft_puthexa.c \
+			ft_putnbr.c \
+			ft_putoctal.c \
+			ft_putstr.c \
+			ft_strcpy.c \
+			ft_strlen.c \
+			ft_strrev.c \
 
 # Sources, objects and includes path
 SRCS_PATH = ./srcs/
