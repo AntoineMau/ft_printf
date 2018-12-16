@@ -6,11 +6,12 @@
 /*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 19:32:35 by anmauffr          #+#    #+#             */
-/*   Updated: 2018/12/16 19:39:55 by anmauffr         ###   ########.fr       */
+/*   Updated: 2018/12/16 22:42:36 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_header.h>
+#include <stdlib.h>
 
 void	ft_putnbr_int(int nbr, int choix)
 {
@@ -44,6 +45,38 @@ void	ft_putnbr_short(short nbr, int choix)
 	nbr >= 0 ? ft_putchar(nbr % 10 + '0') : nbr;
 }
 
+void	ft_putnbr_long(long nbr, int choix)
+{
+	if (choix == 1)
+	{
+		if (nbr == -2147483648)
+			ft_putstr("-2147483648", -1);
+		else if (nbr < 0)
+		{
+			ft_putchar('-');
+			ft_putnbr_short(-nbr, choix);
+		}
+	}
+	nbr >= 10 ? ft_putnbr_short(nbr / 10, choix) : nbr;
+	nbr >= 0 ? ft_putchar(nbr % 10 + '0') : nbr;
+}
+
+void	ft_putnbr_long_long(long long nbr, int choix)
+{
+	if (choix == 1)
+	{
+		if (nbr == -2147483648)
+			ft_putstr("-2147483648", -1);
+		else if (nbr < 0)
+		{
+			ft_putchar('-');
+			ft_putnbr_short(-nbr, choix);
+		}
+	}
+	nbr >= 10 ? ft_putnbr_short(nbr / 10, choix) : nbr;
+	nbr >= 0 ? ft_putchar(nbr % 10 + '0') : nbr;
+}
+
 void	ft_putnbr_float2(double nbr)
 {
 	if (nbr < 0)
@@ -62,7 +95,8 @@ void	ft_putnbr_float1(double nbr, int arron)
 	char	*str;
 	char	*tmp;
 
-	str = (char*)malloc(sizeof(*str) * 15);
+	if (!(str = (char*)malloc(sizeof(*str) * 15)))
+		return ;
 	tmp = str;
 	str = ft_strcpy(tmp, ft_itoa((long)nbr));
 	i = ft_strlen(str);

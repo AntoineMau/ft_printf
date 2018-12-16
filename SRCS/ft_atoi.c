@@ -6,11 +6,11 @@
 /*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 19:34:41 by anmauffr          #+#    #+#             */
-/*   Updated: 2018/12/16 19:34:43 by anmauffr         ###   ########.fr       */
+/*   Updated: 2018/12/16 22:16:54 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
+#include <ft_header.h>
 
 int		ft_atoi(const char *str)
 {

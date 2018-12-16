@@ -6,11 +6,12 @@
 /*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 19:35:06 by anmauffr          #+#    #+#             */
-/*   Updated: 2018/12/16 19:36:49 by anmauffr         ###   ########.fr       */
+/*   Updated: 2018/12/16 22:16:23 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_header.h>
+#include <stdlib.h>
 
 char	*ft_itoa(int nb)
 {
