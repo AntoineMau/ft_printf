@@ -76,7 +76,7 @@ verif = 0
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@$(CC) $(LDFLAGS)$(LDLIBS) $(OBJS) -o $@
+	@$(CC) $(OBJS) -o $@
 	@echo -en "$(_GREEN)\t [OK]\n\n$(_DEF)"
 
 $(OBJS_PATH)%.o: $(SRCS_PATH)%.c
