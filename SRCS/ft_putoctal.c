@@ -6,14 +6,14 @@
 /*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 19:29:47 by anmauffr          #+#    #+#             */
-/*   Updated: 2018/12/16 22:41:04 by anmauffr         ###   ########.fr       */
+/*   Updated: 2018/12/17 13:48:07 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_header.h>
 #include <stdlib.h>
 
-int		ft_putoct_int(unsigned int nb)
+char	*ft_putoct_int(unsigned int nb)
 {
 	int		i;
 	char	*str;
@@ -28,8 +28,7 @@ int		ft_putoct_int(unsigned int nb)
 		i++;
 	}
 	str[i] = '\0';
-	ft_putstr(ft_strrev(str), -1);
-	return (TRUE);
+	return (ft_strrev(str));
 }
 
 int		ft_putoct_short(unsigned short int nb)
@@ -47,7 +46,7 @@ int		ft_putoct_short(unsigned short int nb)
 		i++;
 	}
 	str[i] = '\0';
-	ft_putstr(ft_strrev(str), -1);
+	ft_putstr(ft_strrev(str), -1, 0);
 	return (TRUE);
 }
 
@@ -66,7 +65,7 @@ int		ft_putoct_long(unsigned long int nb)
 		i++;
 	}
 	str[i] = '\0';
-	ft_putstr(ft_strrev(str), -1);
+	ft_putstr(ft_strrev(str), -1, 0);
 	return (TRUE);
 }
 
@@ -85,6 +84,6 @@ int		ft_putoct_long_long(unsigned long long int nb)
 		i++;
 	}
 	str[i] = '\0';
-	ft_putstr(ft_strrev(str), -1);
+	ft_putstr(ft_strrev(str), -1, 0);
 	return (TRUE);
 }

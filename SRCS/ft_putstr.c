@@ -6,17 +6,20 @@
 /*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 19:34:15 by anmauffr          #+#    #+#             */
-/*   Updated: 2018/12/16 19:40:35 by anmauffr         ###   ########.fr       */
+/*   Updated: 2018/12/17 15:11:00 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_header.h>
 #include <unistd.h>
 
-void	ft_putstr(char *str, int arron)
+void	ft_putstr(char *str, int preci, int champ)
 {
-	if (arron == -1 || arron >= ft_strlen(str))
+	champ++;
+	while (--champ > ft_strlen(str))
+		ft_putchar(' ');
+	if (preci == -1 || preci >= ft_strlen(str))
 		write(1, str, ft_strlen(str));
 	else
-		write(1, str, arron);
+		write(1, str, preci);
 }

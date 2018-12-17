@@ -1,5 +1,5 @@
 #!/bin/bash
 
-rm -f a.exe
+rm -f a.out
 gcc -Wall -Wextra -Werror -I ../includes/. *.c
-./a.exe
+./a.out
