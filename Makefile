@@ -75,12 +75,9 @@ verif = 0
 
 all: $(NAME)
 
-$(NAME): libft/libft.a $(OBJS)
+$(NAME): $(OBJS)
 	@$(CC) $(LDFLAGS)$(LDLIBS) $(OBJS) -o $@
 	@echo -en "$(_GREEN)\t [OK]\n\n$(_DEF)"
-
-libft/libft.a:
-	@make -C $(LDFLAGS)
 
 $(OBJS_PATH)%.o: $(SRCS_PATH)%.c
 	@if [[ $(verif) -eq 0 ]]; then printf "\n$(_GRAS)$(_CYAN)|==========================>  $(NAME) <==========================|$(_DEF)\n";\
@@ -93,23 +90,17 @@ $(OBJS_PATH)%.o: $(SRCS_PATH)%.c
 	@printf "$(_DEF)"
 	@$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ -c $<
 
-clean: lib_clean
+clean:
 	@rm -rf $(OBJS_PATH) 2> /dev/null || true
 	@echo -e "$(_YELLOW)Remove :\t$(_RED)" $(OBJS_PATH)
 	@echo
 
-fclean: lib_fclean
+fclean:
 	@rm -rf $(OBJS_PATH) 2> /dev/null || true
 	@rm -f $(NAME)
 	@echo -e "$(_YELLOW)Remove :\t$(_RED)" $(OBJS_PATH)
 	@echo -e "$(_YELLOW)Remove :\t$(_RED)" $(NAME)
 	@echo
-
-lib_clean:
-	@make -C $(LDFLAGS) clean
-
-lib_fclean:
-	@make -C $(LDFLAGS) fclean
 
 re: fclean all
 
@@ -117,4 +108,4 @@ norme:
 	@norminette $(SRCS_PATH)
 	@norminette $(INCS_PATH)
 
-.PHONY: all lib_clean lib_fclean clean fclean re norme
+.PHONY: all clean fclean re norme
