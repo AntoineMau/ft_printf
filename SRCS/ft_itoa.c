@@ -6,7 +6,11 @@
 /*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 19:35:06 by anmauffr          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2018/12/18 21:20:11 by anmauffr         ###   ########.fr       */
+=======
+/*   Updated: 2018/12/17 15:55:24 by anmauffr         ###   ########.fr       */
+>>>>>>> f83d66bc00c896d3b01b629a7c985576ed543900
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +24,7 @@ char	*ft_itoa(int nb)
 	char	*str;
 
 	if (!(str = (char*)malloc(sizeof(*str) * 12)))
-		return(FALSE);
+		return (FALSE);
 	i = 0;
 	if (nb == 0)
 		str[i++] = '0';
