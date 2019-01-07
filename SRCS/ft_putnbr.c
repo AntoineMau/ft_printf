@@ -6,74 +6,65 @@
 /*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 19:32:35 by anmauffr          #+#    #+#             */
-/*   Updated: 2018/12/16 22:42:36 by anmauffr         ###   ########.fr       */
+/*   Updated: 2018/12/23 18:35:35 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_header.h>
 #include <stdlib.h>
 
-void	ft_putnbr_int(int nbr, int choix)
+void	ft_putnbr_int(int nbr)
 {
-	if (choix == 1)
+	if (nbr == -2147483648)
+		ft_putstr("-2147483648", -1);
+	else if (nbr < 0)
 	{
-		if (nbr == -2147483648)
-			ft_putstr("-2147483648", -1);
-		else if (nbr < 0)
-		{
-			ft_putchar('-');
-			ft_putnbr_int(-nbr, choix);
-		}
+		ft_putchar('-');
+		ft_putnbr_int(-nbr);
 	}
-	nbr >= 10 ? ft_putnbr_int(nbr / 10, choix) : nbr;
+	nbr >= 10 ? ft_putnbr_int(nbr / 10) : nbr;
 	nbr >= 0 ? ft_putchar(nbr % 10 + '0') : nbr;
 }
 
-void	ft_putnbr_short(short nbr, int choix)
+void	ft_putnbr_short(short nbr)
 {
-	if (choix == 1)
+	if (nbr == -32768)
+		ft_putstr("-32768", -1);
+	else if (nbr < 0)
 	{
-		if (nbr == -32768)
-			ft_putstr("-32768", -1);
-		else if (nbr < 0)
-		{
-			ft_putchar('-');
-			ft_putnbr_short(-nbr, choix);
-		}
+		ft_putchar('-');
+		ft_putnbr_short(-nbr);
 	}
-	nbr >= 10 ? ft_putnbr_short(nbr / 10, choix) : nbr;
+	nbr >= 10 ? ft_putnbr_short(nbr / 10) : nbr;
 	nbr >= 0 ? ft_putchar(nbr % 10 + '0') : nbr;
 }
 
-void	ft_putnbr_long(long nbr, int choix)
+void	ft_putnbr_short_unsi(short unsigned int nbr)
 {
-	if (choix == 1)
-	{
-		if (nbr == -2147483648)
-			ft_putstr("-2147483648", -1);
-		else if (nbr < 0)
-		{
-			ft_putchar('-');
-			ft_putnbr_short(-nbr, choix);
-		}
-	}
-	nbr >= 10 ? ft_putnbr_short(nbr / 10, choix) : nbr;
-	nbr >= 0 ? ft_putchar(nbr % 10 + '0') : nbr;
+	nbr >= 10 ? ft_putnbr_unsi(nbr / 10) : nbr;
+	ft_putchar(nbr % 10 + '0');
 }
 
-void	ft_putnbr_long_long(long long nbr, int choix)
+void	ft_putnbr_unsi(unsigned int nbr)
 {
-	if (choix == 1)
+	nbr >= 10 ? ft_putnbr_unsi(nbr / 10) : nbr;
+	ft_putchar(nbr % 10 + '0');
+}
+
+void	ft_putnbr_long_unsi(long long unsigned int nbr)
+{
+	nbr >= 10 ? ft_putnbr_long_unsi(nbr / 10) : nbr;
+	ft_putchar(nbr % 10 + '0');
+}
+
+void	ft_putnbr_long(long long nbr)
+{
+	if (nbr < 0)
 	{
-		if (nbr == -2147483648)
-			ft_putstr("-2147483648", -1);
-		else if (nbr < 0)
-		{
-			ft_putchar('-');
-			ft_putnbr_short(-nbr, choix);
-		}
+		ft_putchar('-');
+		ft_putnbr_long(-nbr);
 	}
-	nbr >= 10 ? ft_putnbr_short(nbr / 10, choix) : nbr;
+	nbr >= 10 ? ft_putnbr_long(nbr / 10) : nbr;
 	nbr >= 0 ? ft_putchar(nbr % 10 + '0') : nbr;
 }
 
@@ -95,7 +86,7 @@ void	ft_putnbr_float1(double nbr, int arron)
 	char	*str;
 	char	*tmp;
 
-	if (!(str = (char*)malloc(sizeof(*str) * 15)))
+	if (!(str = (char*)malloc(sizeof(*str) * 50)))
 		return ;
 	tmp = str;
 	str = ft_strcpy(tmp, ft_itoa((long)nbr));

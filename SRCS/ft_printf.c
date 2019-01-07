@@ -6,7 +6,7 @@
 /*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 19:48:42 by anmauffr          #+#    #+#             */
-/*   Updated: 2018/12/16 22:45:27 by anmauffr         ###   ########.fr       */
+/*   Updated: 2018/12/23 18:59:26 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ int		ft_printf(const char *format, ...)
 			else if (format[i] == 'p')
 				ft_puthex_int_p(va_arg(ap, int));
 			else if (format[i] == 'd' || format[i] == 'i')
-				ft_putnbr_int(va_arg(ap, int), 1);
+				ft_putnbr_int(va_arg(ap, int));
 			else if (format[i] == 'o')
-				ft_putoct_int(va_arg(ap, int));
+				ft_putoct_int(va_arg(ap, int), -1);
 			else if (format[i] == 'u')
-				ft_putnbr_int(va_arg(ap, int), 2);
+				ft_putnbr_unsi(va_arg(ap, unsigned int));
 			else if (format[i] == 'x' || format[i] == 'X')
-				ft_puthex_int(va_arg(ap, int), format[i] - 23);
+				ft_puthex_int(va_arg(ap, unsigned int), format[i] - 23, -1);
 			else if (format[i] == 'f')
 				ft_putnbr_float1(va_arg(ap, double), 6);
 			else if (format[i] == '%')
@@ -53,38 +53,38 @@ int		ft_printf(const char *format, ...)
 				else if (format[i] == 'x' || format[i] == 'X')
 					i++;
 				else
-				return (FALSE);
+					return (FALSE);
 			else if (format[i] == 'h' && i++)
 				if (format[i] == 'd' || format[i] == 'i')
-					ft_putnbr_short(va_arg(ap, int), 1);
+					ft_putnbr_short(va_arg(ap, int));
 				else if (format[i] == 'o')
-					ft_putoct_short(va_arg(ap, int));
+					ft_putoct_short(va_arg(ap, int), arron);
 				else if (format[i] == 'u')
-					ft_putnbr_short(va_arg(ap, int), 2);
+					ft_putnbr_short_unsi(va_arg(ap, int));
 				else if (format[i] == 'x' || format[i] == 'X')
 					ft_puthex_short(va_arg(ap, int), format[i] - 23);
 				else
 					return (FALSE);
 			else if (format[i] == 'l' && format[i + 1] == 'l' && (i += 2))
 				if (format[i] == 'd' || format[i] == 'i')
-					ft_putnbr_long_long(va_arg(ap, int), 1);
+					ft_putnbr_long(va_arg(ap, long long int));
 				else if (format[i] == 'o')
-					ft_putoct_long_long(va_arg(ap, int));
+					ft_putoct_long(va_arg(ap, long long unsigned int));
 				else if (format[i] == 'u')
-					ft_putnbr_long_long(va_arg(ap, int), 2);
+					ft_putnbr_long_unsi(va_arg(ap, long long unsigned int));
 				else if (format[i] == 'x' || format[i] == 'X')
-					ft_puthex_long_long(va_arg(ap, int), format[i] - 23);
+					ft_puthex_long(va_arg(ap, long long unsigned int), format[i] - 23);
 				else
 					return (FALSE);
 			else if (format[i] == 'l' && i++)
 				if (format[i] == 'd' || format[i] == 'i')
-					ft_putnbr_long(va_arg(ap, int), 1);
+					ft_putnbr_int(va_arg(ap, int));
 				else if (format[i] == 'o')
-					ft_putoct_long(va_arg(ap, int));
+					ft_putoct_int(va_arg(ap, long int), -1);
 				else if (format[i] == 'u')
-					ft_putnbr_long(va_arg(ap, int), 2);
+					ft_putnbr_unsi(va_arg(ap, long unsigned int));
 				else if (format[i] == 'x' || format[i] == 'X')
-					ft_puthex_long(va_arg(ap, int), format[i] - 23);
+					ft_puthex_int(va_arg(ap, long unsigned int), format[i] - 23, -1);
 				else if (format[i] == 'f')
 					ft_putnbr_float_ld1(va_arg(ap, long double), 6);
 				else
@@ -96,7 +96,9 @@ int		ft_printf(const char *format, ...)
 				arron = ft_atoi(&format[i]);
 				while (format[i] >= '0' && format[i] <= '9')
 					i++;
-				if (format[i] == 'd' || format[i] == 'i')
+				if (format[i] == 's')
+					ft_putstr(va_arg(ap, char *), arron);
+				else if (format[i] == 'd' || format[i] == 'i')
 				{
 					if (!(str = ft_itoa(va_arg(ap, int))))
 						return(FALSE);
@@ -105,10 +107,39 @@ int		ft_printf(const char *format, ...)
 					ft_putstr(str, -1);
 					free(str);
 				}
+				else if (format[i] == 'o')
+					ft_putoct_int(va_arg(ap, int), arron);
+				else if (format[i] == 'u')
+				{
+					if (!(str = ft_itoa_unsi(va_arg(ap, unsigned int))))
+						return(FALSE);
+					while (arron-- > ft_strlen(str))
+						ft_putchar('0');
+					ft_putstr(str, -1);
+					free(str);
+				}
+				else if (format[i] == 'x' || format[i] == 'X')
+					ft_puthex_int(va_arg(ap, unsigned int), format[i] - 23, arron);
 				else if (format[i] == 'f')
 					ft_putnbr_float1(va_arg(ap, double), arron);
-				else if (format[i] == 's')
-					ft_putstr(va_arg(ap, char *), arron);
+				else if (format[i] == 'h' && i++)
+					if (format[i] == 'd' || format[i] == 'i')
+					{
+						if (!(str = ft_itoa(va_arg(ap, int))))
+							return(FALSE);
+						while (arron-- > ft_strlen(str))
+							ft_putchar('0');
+						ft_putstr(str, -1);
+						free(str);
+					}
+					else if (format[i] == 'o')
+							ft_putoct_short(va_arg(ap, int), arron);
+					else if (format[i] == 'u')
+						;
+					else if (format[i] == 'x' && format[i] == 'X')
+						;
+					else
+						return (FALSE);
 				else
 					return (FALSE);
 			}
@@ -120,12 +151,12 @@ int		ft_printf(const char *format, ...)
 	return (TRUE);
 }
 
-int main(void)
-{
-	long	age = 2147483647;
-	char	nom[] = "Antoine";
+int main(void)	//	int value = -2147483648 / 2147483647
+{				//	unsigned int value = 0 / 4294967295
+	short int	age = 32767;	//	short int value = -32768 / 32767
+	char			nom[] = "Antoine";	//	short unsigned int = 0 / 65535
 
-	printf("Vrai: Je m'appelle %s, j'ai %lX ans \n", nom, age);
-	ft_printf("Mien: Je m'appelle %s, j'ai %lX ans \n", nom, age);
+	printf("Vrai: Je m'appelle %s, j'ai %.10hd ans \n", nom, age);
+	ft_printf("Mien: Je m'appelle %s, j'ai %hd ans \n", nom, age);
 	return (0);
 }
