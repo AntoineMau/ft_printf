@@ -1,11 +1,6 @@
 #!/bin/bash
 
-<<<<<<< HEAD
 gcc -Wall -Wextra -Werror -I ../includes/. *.c
-./a.exe
-rm -f a.exe
-=======
-rm -f a.out
-gcc -Wall -Wextra -Werror -I ../includes/. *.c
+valgrind --leak-check=full ./a.out
 ./a.out
->>>>>>> f83d66bc00c896d3b01b629a7c985576ed543900
+rm -f a.out

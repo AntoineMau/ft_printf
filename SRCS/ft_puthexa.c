@@ -6,11 +6,7 @@
 /*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 19:31:29 by anmauffr          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2018/12/18 21:28:09 by anmauffr         ###   ########.fr       */
-=======
-/*   Updated: 2018/12/17 15:11:00 by anmauffr         ###   ########.fr       */
->>>>>>> f83d66bc00c896d3b01b629a7c985576ed543900
+/*   Updated: 2019/01/08 17:17:23 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +38,11 @@ int		ft_puthex_int_p(int nb, int champ)
 	str[i++] = '0';
 	str[i] = '\0';
 	ft_putstr(ft_strrev(str), -1, champ);
+	free(str);
 	return (TRUE);
 }
 
-<<<<<<< HEAD
-int		ft_puthex_int(unsigned int nb, int letter, int arron)
-=======
-char	*ft_puthex_int(int nb, int letter)
->>>>>>> f83d66bc00c896d3b01b629a7c985576ed543900
+int		ft_puthex_int(unsigned int nb, int letter, int preci)
 {
 	int		i;
 	char	*str;
@@ -69,14 +62,10 @@ char	*ft_puthex_int(int nb, int letter)
 		i++;
 	}
 	str[i] = '\0';
-<<<<<<< HEAD
-	while (arron-- > ft_strlen(str))
+	while (preci-- > ft_strlen(str))
 		ft_putchar('0');
-	ft_putstr(ft_strrev(str), -1);
+	ft_putstr(ft_strrev(str), -1, 0);
 	return (TRUE);
-=======
-	return (ft_strrev(str));
->>>>>>> f83d66bc00c896d3b01b629a7c985576ed543900
 }
 
 int		ft_puthex_short(short unsigned int nb, int letter)
@@ -108,33 +97,7 @@ int		ft_puthex_long(long long int nb, int letter)
 	int		i;
 	char	*str;
 
-<<<<<<< HEAD
 	if (!(str = (char*)malloc(sizeof(*str) * 100)))
-=======
-	if (!(str = (char*)malloc(sizeof(*str) * 20)))
-		return (FALSE);
-	i = 0;
-	while (nb > 0)
-	{
-		if (nb % 16 < 10)
-			str[i] = nb % 16 + '0';
-		else
-			str[i] = nb % 16 + letter - 10;
-		nb /= 16;
-		i++;
-	}
-	str[i] = '\0';
-	ft_putstr(ft_strrev(str), -1, 0);
-	return (TRUE);
-}
-
-int		ft_puthex_long_long(long long nb, int letter)
-{
-	int		i;
-	char	*str;
-
-	if (!(str = (char*)malloc(sizeof(*str) * 20)))
->>>>>>> f83d66bc00c896d3b01b629a7c985576ed543900
 		return (FALSE);
 	i = 0;
 	if (nb == 0)
