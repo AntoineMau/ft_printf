@@ -6,14 +6,14 @@
 /*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 19:29:47 by anmauffr          #+#    #+#             */
-/*   Updated: 2019/01/08 14:55:06 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/01/09 10:44:38 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_header.h>
 #include <stdlib.h>
 
-int		ft_putoct_int(unsigned int nb, int preci)
+int		ft_putoct_int(unsigned int nb, int preci, int champ)
 {
 	int		i;
 	char	*str;
@@ -30,9 +30,11 @@ int		ft_putoct_int(unsigned int nb, int preci)
 		i++;
 	}
 	str[i] = '\0';
-	while (preci-- > ft_strlen(str))
-		ft_putchar('0');
-	ft_putstr(ft_strrev(str), -1, 0);
+	preci = preci <= ft_strlen(str) ? ft_strlen(str) : preci - ft_strlen(str);
+	if (preci != ft_strlen(str))
+		while (preci-- > 0)
+			str = ft_preci_int("0\0", str);
+	ft_putstr(ft_strrev(str), -1, champ);
 	free(str);
 	return (TRUE);
 }

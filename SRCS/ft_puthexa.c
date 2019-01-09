@@ -6,7 +6,7 @@
 /*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 19:31:29 by anmauffr          #+#    #+#             */
-/*   Updated: 2019/01/08 17:17:23 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/01/09 11:24:56 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int		ft_puthex_int_p(int nb, int champ)
 	return (TRUE);
 }
 
-int		ft_puthex_int(unsigned int nb, int letter, int preci)
+int		ft_puthex_int(unsigned int nb, int letter, int preci, int champ)
 {
 	int		i;
 	char	*str;
@@ -62,9 +62,12 @@ int		ft_puthex_int(unsigned int nb, int letter, int preci)
 		i++;
 	}
 	str[i] = '\0';
-	while (preci-- > ft_strlen(str))
-		ft_putchar('0');
-	ft_putstr(ft_strrev(str), -1, 0);
+	preci = preci <= ft_strlen(str) ? ft_strlen(str) : preci - ft_strlen(str);
+	if (preci != ft_strlen(str))
+		while (preci-- > 0)
+			str = ft_preci_int("0\0", str);
+	ft_putstr(ft_strrev(str), -1, champ);
+	free(str);
 	return (TRUE);
 }
 

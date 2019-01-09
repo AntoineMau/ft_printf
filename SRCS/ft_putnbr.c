@@ -6,7 +6,7 @@
 /*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 19:32:35 by anmauffr          #+#    #+#             */
-/*   Updated: 2019/01/08 16:36:51 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/01/09 11:19:15 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	ft_putnbr_short(short nbr)
 
 void	ft_putnbr_short_unsi(short unsigned int nbr)
 {
-	nbr >= 10 ? ft_putnbr_unsi(nbr / 10) : nbr;
+	nbr >= 10 ? ft_putnbr_short_unsi(nbr / 10) : nbr;
 	ft_putchar(nbr % 10 + '0');
 }
 

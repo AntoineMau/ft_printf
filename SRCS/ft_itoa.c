@@ -6,7 +6,7 @@
 /*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 19:35:06 by anmauffr          #+#    #+#             */
-/*   Updated: 2019/01/08 17:46:08 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/01/09 10:53:36 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,9 @@ char	*ft_itoa_float(__int64_t nb, char *str)
 	return (ft_strrev(str));
 }
 
-char	*ft_itoa_unsi(unsigned int nb)
+char	*ft_itoa_unsi(unsigned int nb, char *str)
 {
 	int		i;
-	char	*str;
 
 	if (!(str = (char*)malloc(sizeof(*str) * 12)))
 		return (FALSE);

@@ -6,28 +6,13 @@
 /*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 19:48:42 by anmauffr          #+#    #+#             */
-/*   Updated: 2019/01/09 09:50:53 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/01/09 11:48:32 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_header.h>
 #include <stdarg.h>
 #include <stdlib.h>
-
-char	*test_int(const char *str, char c)
-{
-	int		i;
-	char	*new_str;
-
-	if (!(new_str = (char*)malloc(sizeof(*new_str) * (ft_strlen((char*)str) + 2))))
-		return (FALSE);
-	i = 0;
-	new_str[i--] = c;
-	while (str[++i])
-		new_str[i + 1] = str[i];
-	new_str[i + 1] = '\0';
-	return (new_str);
-}
 
 int		ft_printf(const char * restrict format, ...)
 {
@@ -47,17 +32,14 @@ int		ft_printf(const char * restrict format, ...)
 		if (format[i] == '%')
 		{
 			i++;
-			if ((champ = (format[i] >= '0' && format[i] <= '9' ? ft_atoi(&format[i]) : 1)) < 1)
+			if ((champ = format[i] >= '0' && format[i] <= '9' ? ft_atoi(&format[i]) : 1) < 1)
 				;
 			while (format[i] >= '0' && format[i] <= '9')
 				i++;
 			if (format[i] == 'c')
 			{
-				while (champ - 1 > 0)
-				{
+				while (champ-- - 1 > 0)
 					ft_putchar(' ');
-					champ--;
-				}
 				ft_putchar(va_arg(ap, int));
 			}
 			else if (format[i] == 's')
@@ -75,15 +57,23 @@ int		ft_printf(const char * restrict format, ...)
 				str = NULL;
 			}
 			else if (format[i] == 'o')
-				ft_putoct_int(va_arg(ap, int), -1);
+				ft_putoct_int(va_arg(ap, int), -1, champ);
 			else if (format[i] == 'u')
-				ft_putnbr_unsi(va_arg(ap, unsigned int));
+			{
+				tmp = NULL;
+				if (!(str = ft_itoa_unsi(va_arg(ap, int), tmp)))
+					return (FALSE);
+				free(tmp);
+				ft_putstr(str, -1, champ);
+				free(str);
+				str = NULL;
+			}
 			else if (format[i] == 'x' || format[i] == 'X')
-				ft_puthex_int(va_arg(ap, unsigned int), format[i] - 23, -1);
+				ft_puthex_int(va_arg(ap, unsigned int), format[i] - 23, -1, champ);
 			else if (format[i] == 'f')
 				ft_putnbr_float1(va_arg(ap, double), 6, champ);
 			else if (format[i] == '%')
-				ft_putchar('%');
+				ft_putstr("%", -1, champ);
 			else if (format[i] == 'h' && format[i + 1] == 'h' && (i += 2))
 				if (format[i] == 'd' || format[i] == 'i')
 					i++;
@@ -121,11 +111,11 @@ int		ft_printf(const char * restrict format, ...)
 				if (format[i] == 'd' || format[i] == 'i')
 					ft_putnbr_int(va_arg(ap, int));
 				else if (format[i] == 'o')
-					ft_putoct_int(va_arg(ap, long int), -1);
+					ft_putoct_int(va_arg(ap, long int), -1, champ);
 				else if (format[i] == 'u')
 					ft_putnbr_unsi(va_arg(ap, long unsigned int));
 				else if (format[i] == 'x' || format[i] == 'X')
-					ft_puthex_int(va_arg(ap, long unsigned int), format[i] - 23, -1);
+					ft_puthex_int(va_arg(ap, long unsigned int), format[i] - 23, -1, champ);
 				else if (format[i] == 'f')
 					ft_putnbr_float1(va_arg(ap, double), 6, champ);
 				else
@@ -145,70 +135,42 @@ int		ft_printf(const char * restrict format, ...)
 					if (!(str = ft_itoa(va_arg(ap, int), tmp)))
 						return (FALSE);
 					free(tmp);
-					preci = (preci <= ft_strlen(str) ? ft_strlen(str) : preci - ft_strlen(str));
-					if (preci != ft_strlen(str))
+					preci = str[0] == '-' ? preci + 1 : preci;
+					if (preci > ft_strlen(str))
+					{
+						preci = preci - ft_strlen(str);
 						while (preci > 0)
 						{
-							str = test_int(str, '0');
+							str = ft_preci_int(str, "0\0");
 							preci--;
 						}
+					}
 					ft_putstr(str, -1, champ);
 					free(str);
 					str = NULL;
 				}
-				/*else if (format[i] == 'o')
-				{
-					champ++;
-					while (--champ > preci)
-						ft_putchar(' ');
-					if (!(str = ft_putoct_int(va_arg(ap, int), 0)))
-						return (FALSE);
-					while (preci-- > ft_strlen(str))
-						ft_putchar('0');
-					ft_putstr(str, -1, 0);
-					free(str);
-					str = NULL;
-				}*/
-				else if (format[i] == 'u')
-				{
-					champ++;
-					while (--champ > preci)
-						ft_putchar(' ');
-					if (!ft_itoa(va_arg(ap, int), str))
-						return (FALSE);
-					while (preci-- > ft_strlen(str))
-						ft_putchar('0');
-					ft_putstr(str, -1, 0);
-					free(str);
-					str = NULL;
-				}
-				/*else if (format[i] == 'x' || format[i] == 'X')
-				{
-					champ++;
-					while (--champ > preci)
-						ft_putchar(' ');
-					if (!(str = ft_puthex_int(va_arg(ap, int), format[i] - 23, 0)))
-						return (FALSE);
-					while (preci-- > ft_strlen(str))
-						ft_putchar('0');
-					ft_putstr(str, -1, 0);
-					free(str);
-					str = NULL;
-				}*/
 				else if (format[i] == 'o')
-					ft_putoct_int(va_arg(ap, int), preci);
+					ft_putoct_int(va_arg(ap, int), preci, champ);
 				else if (format[i] == 'u')
 				{
-					if (!(str = ft_itoa_unsi(va_arg(ap, unsigned int))))
+					tmp = NULL;
+					if (!(str = ft_itoa_unsi(va_arg(ap, unsigned int), tmp)))
 						return (FALSE);
-					while (preci-- > ft_strlen(str))
-						ft_putchar('0');
-					ft_putstr(str, -1, 0);
+					if (preci > ft_strlen(str))
+					{
+						preci = preci - ft_strlen(str);
+						while (preci > 0)
+						{
+							str = ft_preci_int(str, "0\0");
+							preci--;
+						}
+					}
+					ft_putstr(str, -1, champ);
 					free(str);
 					str = NULL;
 				}
 				else if (format[i] == 'x' || format[i] == 'X')
-					ft_puthex_int(va_arg(ap, unsigned int), format[i] - 23, preci);
+					ft_puthex_int(va_arg(ap, unsigned int), format[i] - 23, preci, champ);
 				else if (format[i] == 'f')
 					ft_putnbr_float1(va_arg(ap, double), preci, 0);
 				else if (format[i] == 'h' && i++)
@@ -230,6 +192,8 @@ int		ft_printf(const char * restrict format, ...)
 						;
 					else
 						return (FALSE);
+				else if (format[i] == '%')
+					ft_putstr("%", -1, champ);
 				else
 					return (FALSE);
 			}
@@ -246,11 +210,11 @@ int		ft_printf(const char * restrict format, ...)
 
 int		main(void)
 {
-	int	age;
+	char	age;
 
-	age = 125;
-	printf(   "Vrai: J'ai %0.10d ans \n", age);
-	ft_printf("Mien: J'ai %0.10d ans \n", age);
+	age = 'c';
+	printf(   "Vrai: J'ai %.10% ans\n");
+	ft_printf("Mien: J'ai %.10% ans\n");
 	return (0);
 }
 
