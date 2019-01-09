@@ -6,23 +6,12 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 19:32:35 by anmauffr          #+#    #+#             */
-/*   Updated: 2019/01/09 13:37:35 by judumay          ###   ########.fr       */
+/*   Updated: 2019/01/09 17:04:02 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_header.h>
 #include <stdlib.h>
-
-void	ft_putnbr_long(long long nbr)
-{
-	if (nbr < 0)
-	{
-		ft_putchar('-');
-		ft_putnbr_long(-nbr);
-	}
-	nbr >= 10 ? ft_putnbr_long(nbr / 10) : nbr;
-	nbr >= 0 ? ft_putchar(nbr % 10 + '0') : nbr;
-}
 
 void	ft_putnbr_float2(double nbr)
 {
@@ -40,12 +29,9 @@ void	ft_putnbr_float1(double nbr, int preci, int champ)
 	int		i;
 	int		j;
 	char	*str;
-	char	*tmp;
 
 	str = NULL;
-	tmp = NULL;
-	str = ft_itoa_float((long long int)nbr, tmp);
-	free(tmp);
+	str = ft_itoa_float((long long int)nbr, str);
 	i = 0;
 	i = ft_strlen(str);
 	if (preci > 0)
@@ -77,14 +63,7 @@ void	ft_putnbr_float1_suite(char *str, int preci, int champ, int j)
 		;
 	while (str[++j])
 		i++;
-	if (i == preci)
-	{
-		ft_putstr(str, -1, champ);
-		free(str);
-		return ;
-	}
-	i = ft_strlen(str);
-	if (str[--i] == '9')
+	if (i < preci && str[--i] == '9')
 	{
 		while (str[i] == '9')
 		{
@@ -92,8 +71,8 @@ void	ft_putnbr_float1_suite(char *str, int preci, int champ, int j)
 			str[i] == '.' ? i-- : str[i];
 		}
 		str[i]++;
-		ft_putstr(str, -1, champ);
 	}
+	ft_putstr(str, -1, champ);
 	free(str);
 }
 

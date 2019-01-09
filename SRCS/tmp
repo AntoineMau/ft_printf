@@ -1,5 +1,6 @@
 #!/bin/bash
 
 gcc -Wall -Wextra -Werror -I ../includes/. *.c
+#valgrind --leak-check=full ./a.out
 ./a.out
 rm -f a.out
