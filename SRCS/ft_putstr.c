@@ -6,7 +6,7 @@
 /*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 19:34:15 by anmauffr          #+#    #+#             */
-/*   Updated: 2019/01/08 17:56:54 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/01/09 09:42:04 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 void	ft_putstr(char *str, int preci, int champ)
 {
-	dprintf(1, "\npreci: %dchamp:%d\tstr:%s\n", preci, champ, str);
 	champ++;
 	if (preci == -1 || preci >= ft_strlen(str))
 	{
@@ -30,4 +29,3 @@ void	ft_putstr(char *str, int preci, int champ)
 		write(1, str, preci);
 	}
 }
-

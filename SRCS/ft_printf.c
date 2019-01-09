@@ -6,7 +6,7 @@
 /*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 19:48:42 by anmauffr          #+#    #+#             */
-/*   Updated: 2019/01/08 18:03:30 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/01/09 09:50:53 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,41 @@
 #include <stdarg.h>
 #include <stdlib.h>
 
+char	*test_int(const char *str, char c)
+{
+	int		i;
+	char	*new_str;
+
+	if (!(new_str = (char*)malloc(sizeof(*new_str) * (ft_strlen((char*)str) + 2))))
+		return (FALSE);
+	i = 0;
+	new_str[i--] = c;
+	while (str[++i])
+		new_str[i + 1] = str[i];
+	new_str[i + 1] = '\0';
+	return (new_str);
+}
+
 int		ft_printf(const char * restrict format, ...)
 {
 	int		i;
 	int		preci;
 	int		champ;
-	int	precie;
 	char	*str;
 	char	*tmp;
 	va_list	ap;
 
-	precie = 0;
-	champ = 0;
 	va_start(ap, format);
 	i = -1;
 	while (format[++i])
+	{
+		champ = 0;
+		tmp = NULL;
 		if (format[i] == '%')
 		{
 			i++;
 			if ((champ = (format[i] >= '0' && format[i] <= '9' ? ft_atoi(&format[i]) : 1)) < 1)
-				return (FALSE);
+				;
 			while (format[i] >= '0' && format[i] <= '9')
 				i++;
 			if (format[i] == 'c')
@@ -130,10 +145,14 @@ int		ft_printf(const char * restrict format, ...)
 					if (!(str = ft_itoa(va_arg(ap, int), tmp)))
 						return (FALSE);
 					free(tmp);
-					precie = preci;
-					while (precie-- > ft_strlen(str))
-						ft_putchar('0');
-					ft_putstr(str, preci, champ);
+					preci = (preci <= ft_strlen(str) ? ft_strlen(str) : preci - ft_strlen(str));
+					if (preci != ft_strlen(str))
+						while (preci > 0)
+						{
+							str = test_int(str, '0');
+							preci--;
+						}
+					ft_putstr(str, -1, champ);
 					free(str);
 					str = NULL;
 				}
@@ -220,16 +239,24 @@ int		ft_printf(const char * restrict format, ...)
 		else
 			ft_putchar(format[i]);
 	
+	}
 	va_end(ap);
 	return (TRUE);
 }
 
-int main(void)	//	int value = -2147483648 / 2147483647
-{				//	unsigned int value = 0 / 4294967295
-	int	age = 125;	//	short int value = -32768 / 32767
-	char			nom[] = "Antoine";	//	short unsigned int = 0 / 65535
+int		main(void)
+{
+	int	age;
 
-	printf(   "Vrai: Je m'appelle %2.25s, j'ai %4.1d ans \n", nom, age);
-	ft_printf("Mien: Je m'appelle %2.25s, j'ai %4.1d ans \n", nom, age);
+	age = 125;
+	printf(   "Vrai: J'ai %0.10d ans \n", age);
+	ft_printf("Mien: J'ai %0.10d ans \n", age);
 	return (0);
 }
+
+/*
+	int value = -2147483648 / 2147483647
+	unsigned int value = 0 / 4294967295
+	short int value = -32768 / 32767
+	short unsigned int = 0 / 65535
+*/
