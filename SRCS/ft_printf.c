@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 19:48:42 by anmauffr          #+#    #+#             */
-/*   Updated: 2019/01/09 11:48:32 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/01/09 13:42:12 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdarg.h>
 #include <stdlib.h>
 
-int		ft_printf(const char * restrict format, ...)
+int		ft_printf(const char *restrict format, ...)
 {
 	int		i;
 	int		preci;
@@ -32,7 +32,8 @@ int		ft_printf(const char * restrict format, ...)
 		if (format[i] == '%')
 		{
 			i++;
-			if ((champ = format[i] >= '0' && format[i] <= '9' ? ft_atoi(&format[i]) : 1) < 1)
+			if ((champ = format[i] >= '0' && format[i] <= '9' ?
+			ft_atoi(&format[i]) : 1) < 1)
 				;
 			while (format[i] >= '0' && format[i] <= '9')
 				i++;
@@ -69,7 +70,8 @@ int		ft_printf(const char * restrict format, ...)
 				str = NULL;
 			}
 			else if (format[i] == 'x' || format[i] == 'X')
-				ft_puthex_int(va_arg(ap, unsigned int), format[i] - 23, -1, champ);
+				ft_puthex_int(va_arg(ap, unsigned int), format[i] - 23, -1,
+				champ);
 			else if (format[i] == 'f')
 				ft_putnbr_float1(va_arg(ap, double), 6, champ);
 			else if (format[i] == '%')
@@ -104,7 +106,8 @@ int		ft_printf(const char * restrict format, ...)
 				else if (format[i] == 'u')
 					ft_putnbr_long_unsi(va_arg(ap, long long unsigned int));
 				else if (format[i] == 'x' || format[i] == 'X')
-					ft_puthex_long(va_arg(ap, long long unsigned int), format[i] - 23);
+					ft_puthex_long(va_arg(ap, long long unsigned int),
+					format[i] - 23);
 				else
 					return (FALSE);
 			else if (format[i] == 'l' && i++)
@@ -115,7 +118,8 @@ int		ft_printf(const char * restrict format, ...)
 				else if (format[i] == 'u')
 					ft_putnbr_unsi(va_arg(ap, long unsigned int));
 				else if (format[i] == 'x' || format[i] == 'X')
-					ft_puthex_int(va_arg(ap, long unsigned int), format[i] - 23, -1, champ);
+					ft_puthex_int(va_arg(ap, long unsigned int), format[i] - 23,
+					-1, champ);
 				else if (format[i] == 'f')
 					ft_putnbr_float1(va_arg(ap, double), 6, champ);
 				else
@@ -170,7 +174,8 @@ int		ft_printf(const char * restrict format, ...)
 					str = NULL;
 				}
 				else if (format[i] == 'x' || format[i] == 'X')
-					ft_puthex_int(va_arg(ap, unsigned int), format[i] - 23, preci, champ);
+					ft_puthex_int(va_arg(ap, unsigned int), format[i] - 23,
+					preci, champ);
 				else if (format[i] == 'f')
 					ft_putnbr_float1(va_arg(ap, double), preci, 0);
 				else if (format[i] == 'h' && i++)
@@ -202,7 +207,6 @@ int		ft_printf(const char * restrict format, ...)
 		}
 		else
 			ft_putchar(format[i]);
-	
 	}
 	va_end(ap);
 	return (TRUE);
@@ -210,11 +214,12 @@ int		ft_printf(const char * restrict format, ...)
 
 int		main(void)
 {
-	char	age;
+	float	age;
 
-	age = 'c';
-	printf(   "Vrai: J'ai %.10% ans\n");
-	ft_printf("Mien: J'ai %.10% ans\n");
+	/*age = 123.0000;
+	printf(   "Vrai: J'ai %f ans\n", age);
+	ft_printf("Mien: J'ai %f ans\n", age);
+	*/
 	return (0);
 }
 

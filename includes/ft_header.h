@@ -15,6 +15,7 @@ void	ft_putnbr_short_unsi(short unsigned int nbr);
 void	ft_putnbr_long(long long int nbr);
 void	ft_putnbr_long_unsi(long long unsigned int nbr);
 void	ft_putnbr_float1(double nbr, int preci, int champ);
+void	ft_putnbr_float1_suite(char *str, int preci, int champ, int j);
 void	ft_putnbr_float2(double nbr);
 void	ft_putnbr_float_ld1(long double nbr, int preci);
 void	ft_putnbr_float_ld2(long double nbr);
