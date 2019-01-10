@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 19:48:42 by anmauffr          #+#    #+#             */
-/*   Updated: 2019/01/09 18:14:29 by judumay          ###   ########.fr       */
+/*   Updated: 2019/01/10 17:57:57 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,30 +148,23 @@ int		ft_printf(const char *restrict format, ...)
 					champ);
 				else
 					return (FALSE);
-			else if (format[i] == 'l' && format[i + 1] == 'l' && (i += 2))
+			else if ((format[i] == 'l' && format[i + 1] == 'l' && (i += 2)) || (format[i] == 'l' && i++))
 				if (format[i] == 'd' || format[i] == 'i')
-					ft_putnbr_long(va_arg(ap, long long int));
+				{
+					tmp = NULL;
+					if (!(str = ft_itoa_long(va_arg(ap, __int64_t), tmp)))
+						return (FALSE);
+					free(tmp);
+					ft_putstr(str, -1, champ);
+					str = NULL;
+				}
 				else if (format[i] == 'o')
-					ft_putoct_long(va_arg(ap, long long unsigned int));
+					ft_putoct_long(va_arg(ap, long long unsigned int), -1, champ);
 				else if (format[i] == 'u')
 					ft_putnbr_long_unsi(va_arg(ap, long long unsigned int));
 				else if (format[i] == 'x' || format[i] == 'X')
 					ft_puthex_long(va_arg(ap, long long unsigned int),
 					format[i] - 23);
-				else
-					return (FALSE);
-			else if (format[i] == 'l' && i++)
-				if (format[i] == 'd' || format[i] == 'i')
-					ft_putnbr_int(va_arg(ap, int));
-				else if (format[i] == 'o')
-					ft_putoct_int(va_arg(ap, long int), -1, champ);
-				else if (format[i] == 'u')
-					ft_putnbr_unsi(va_arg(ap, long unsigned int));
-				else if (format[i] == 'x' || format[i] == 'X')
-					ft_puthex_int(va_arg(ap, long unsigned int), format[i] - 23,
-					-1, champ);
-				else if (format[i] == 'f')
-					ft_putnbr_float1(va_arg(ap, double), 6, champ);
 				else
 					return (FALSE);
 			else if (format[i] == 'L' && i++)
@@ -320,6 +313,36 @@ int		ft_printf(const char *restrict format, ...)
 						champ);
 					else
 						return (FALSE);
+				else if ((format[i] == 'l' && format[i + 1] == 'l' && (i += 2)) || (format[i] == 'l' && i++))
+					if (format[i] == 'd' || format[i] == 'i')
+					{
+						tmp = NULL;
+						if (!(str = ft_itoa_long(va_arg(ap, __int64_t), tmp)))
+							return (FALSE);
+						free(tmp);
+						preci = str[0] == '-' ? preci + 1 : preci;
+						if (preci > ft_strlen(str))
+						{
+							preci = preci - ft_strlen(str);
+							while (preci > 0)
+							{
+								str = ft_preci_int(str, "0\0");
+								preci--;
+							}
+						}
+						ft_putstr(str, -1, champ);
+						free(str);
+						str = NULL;
+					}
+					else if (format[i] == 'o')
+						ft_putoct_long(va_arg(ap, long long unsigned int), preci, champ);
+					else if (format[i] == 'u')
+						ft_putnbr_long_unsi(va_arg(ap, long long unsigned int));
+					else if (format[i] == 'x' || format[i] == 'X')
+						ft_puthex_long(va_arg(ap, long long unsigned int),
+						format[i] - 23);
+					else
+						return (FALSE);
 				else if (format[i] == '%')
 					ft_putstr("%", -1, champ);
 				else
@@ -332,24 +355,22 @@ int		ft_printf(const char *restrict format, ...)
 			ft_putchar(format[i]);
 	}
 	va_end(ap);
+	free(str);
 	return (TRUE);
 }
 
 int		main(void)
 {
-	unsigned long age;
+	__int64_t age;
 
-	age = 120;
-	printf(   "Vrai: J'ai %.15lx ans\n", age);
-	ft_printf("Mien: J'ai %.15lx ans\n", age);
-	
-
+	age = 9223372036854775807;
+	printf(   "Vrai: J'ai %.35llo ans\n", age);
+	ft_printf("Mien: J'ai %.35llo ans\n", age);
 	return (0);
 }
 
 /*
-	int value = -2147483648 / 2147483647
-	unsigned int value = 0 / 4294967295
-	short int value = -32768 / 32767
-	short unsigned int = 0 / 65535
+	int / long : -2147483648 / 2147483647 | unsigned : 0 / 4294967295
+	short : -32768 / 32767 | unsigned : 0 / 65535
+	long long : 9223372036854775807 / -9223372036854775808 | unsigned : 0 / 18446744073709551615
 */

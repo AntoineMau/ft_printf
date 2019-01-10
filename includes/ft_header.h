@@ -27,12 +27,13 @@ int		ft_strlen(char *str);
 int		ft_atoi(const char *str);
 int		ft_putoct_int(unsigned int nb, int preci, int champ);
 int		ft_putoct_short(short unsigned int nb, int preci);
-int		ft_putoct_long(long long unsigned int nb);
+int		ft_putoct_long(__uint64_t nb, __int32_t preci, __int32_t champ);
 char	*ft_strcpy(char *s1, const char *s2);
 char	*ft_strrev(char *str);
 char	*ft_itoa(int nb, char *str);
+char	*ft_itoa_long(__int64_t nb, char *str);
 char	*ft_itoa_unsi(unsigned int nb, char *str);
-char	*ft_itoa_float(__int64_t nb, char *str);
+char	*ft_itoa_float(long nb, char *str);
 char	*ft_preci_int(char *s1, char *s2);
 
 #endif

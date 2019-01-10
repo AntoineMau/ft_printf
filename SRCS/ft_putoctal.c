@@ -3,22 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putoctal.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 19:29:47 by anmauffr          #+#    #+#             */
-/*   Updated: 2019/01/09 18:03:18 by judumay          ###   ########.fr       */
+/*   Updated: 2019/01/10 18:08:39 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_header.h>
 #include <stdlib.h>
+#include <string.h>
 
 int		ft_putoct_int(unsigned int nb, int preci, int champ)
 {
 	int		i;
 	char	*str;
 
-	if (!(str = (char*)malloc(sizeof(*str) * 9)))
+	if (!(str = (char*)malloc(sizeof(*str) * (9 + preci))))
 		return (FALSE);
 	i = 0;
 	if (nb == 0)
@@ -68,23 +69,38 @@ int		ft_putoct_short(short unsigned int nb, int preci)
 	return (TRUE);
 }
 
-int		ft_putoct_long(long long unsigned int nb)
+int		ft_putoct_long(__uint64_t nb, __int32_t preci, __int32_t champ)
 {
-	int		i;
-	char	*str;
+	__uint8_t	i;
+	char		*tmp;
+	char		*str;
 
-	if (!(str = (char*)malloc(sizeof(*str) * 100)))
+	tmp = NULL;
+	if (!(str = (char*)malloc(sizeof(*str) * (21 + preci))))
 		return (FALSE);
 	i = 0;
 	if (nb == 0)
 		str[i++] = '0';
 	while (nb > 0)
 	{
-		str[i] = nb % 8 + '0';
+		str[i++] = nb % 8 + '0';
 		nb /= 8;
-		i++;
 	}
 	str[i] = '\0';
-	ft_putstr(ft_strrev(str), -1, 0);
+	if (preci > ft_strlen(str))
+	{
+		preci = preci - ft_strlen(str);
+		while (preci > 0 && preci--)
+		{
+			tmp = ft_preci_int("0\0", str);
+			free(str);
+			str = NULL;
+			str = strdup(tmp);
+			free(tmp);
+			tmp = NULL;
+		}
+	}
+	ft_putstr(ft_strrev(str), -1, champ);
+	free(str);
 	return (TRUE);
 }

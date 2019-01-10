@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 19:35:06 by anmauffr          #+#    #+#             */
-/*   Updated: 2019/01/09 15:19:36 by judumay          ###   ########.fr       */
+/*   Updated: 2019/01/10 17:51:02 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,35 @@ char	*ft_itoa(int nb, char *str)
 	return (ft_strrev(str));
 }
 
-char	*ft_itoa_float(__int64_t nb, char *str)
+char	*ft_itoa_long(__int64_t nb, char *str)
+{
+	__uint8_t	i;
+	__uint8_t	neg;
+	__uint64_t	unb;
+
+	if (!(str = (char*)malloc(sizeof(*str) * 21)))
+		return (FALSE);
+	neg = 0;
+	unb = nb;
+	if (nb < 0 && (neg = 1))
+		unb = -nb;
+	i = 0;
+	if (unb == 0)
+		str[i++] = '0';
+	else if (unb == 9223372036854775808UL)
+		return ("-9223372036854775808");
+	while (unb > 0)
+	{
+		str[i++] = unb % 10 + '0';
+		unb /= 10;
+	}
+	if (neg == 1)
+		str[i++] = '-';
+	str[i] = '\0';
+	return (ft_strrev(str));
+}
+
+char	*ft_itoa_float(long nb, char *str)
 {
 	int		i;
 	int		neg;
