@@ -6,7 +6,7 @@
 /*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 19:48:42 by anmauffr          #+#    #+#             */
-/*   Updated: 2019/01/10 17:57:57 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/01/10 18:13:06 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,7 +188,12 @@ int		ft_printf(const char *restrict format, ...)
 						preci = preci - ft_strlen(str);
 						while (preci > 0)
 						{
-							str = ft_preci_int(str, "0\0");
+							tmp = str;
+							free(str);
+							str = NULL;
+							str = ft_preci_int(tmp, "0\0");
+							free(tmp);
+							tmp = NULL;
 							preci--;
 						}
 					}
@@ -361,11 +366,11 @@ int		ft_printf(const char *restrict format, ...)
 
 int		main(void)
 {
-	__int64_t age;
+	char age;
 
-	age = 9223372036854775807;
-	printf(   "Vrai: J'ai %.35llo ans\n", age);
-	ft_printf("Mien: J'ai %.35llo ans\n", age);
+	age = 92;
+	printf(   "Vrai: J'ai %.35hho ans\n", age);
+	ft_printf("Mien: J'ai %.35hho ans\n", age);
 	return (0);
 }
 

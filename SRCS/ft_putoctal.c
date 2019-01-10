@@ -6,7 +6,7 @@
 /*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 19:29:47 by anmauffr          #+#    #+#             */
-/*   Updated: 2019/01/10 18:08:39 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/01/10 18:16:28 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@
 int		ft_putoct_int(unsigned int nb, int preci, int champ)
 {
 	int		i;
+	char	*tmp;
 	char	*str;
 
+	tmp = NULL;
 	if (!(str = (char*)malloc(sizeof(*str) * (9 + preci))))
 		return (FALSE);
 	i = 0;
@@ -36,7 +38,11 @@ int		ft_putoct_int(unsigned int nb, int preci, int champ)
 		preci = preci - ft_strlen(str);
 		while (preci > 0)
 		{
-			str = ft_preci_int("0\0", str);
+			tmp = strdup(str);
+			free(str);
+			str = NULL;
+			str = ft_preci_int("0\0", tmp);
+			memdel(tmp);
 			preci--;
 		}
 	}
