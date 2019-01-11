@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_puthexa.c                                       :+:      :+:    :+:   */
+/*   ft_x.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/16 19:31:29 by anmauffr          #+#    #+#             */
-/*   Updated: 2019/01/09 18:08:12 by judumay          ###   ########.fr       */
+/*   Created: 2019/01/11 16:29:56 by judumay           #+#    #+#             */
+/*   Updated: 2019/01/11 16:29:57 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_putnbr_long(long long nbr)
 	nbr >= 0 ? ft_putchar(nbr % 10 + '0') : nbr;
 }
 
-int		ft_puthex_int_p(int nb, int champ)
+int		ft_x_p(int nb, int champ)
 {
 	int		i;
 	char	*str;
@@ -53,7 +53,7 @@ int		ft_puthex_int_p(int nb, int champ)
 	return (TRUE);
 }
 
-int		ft_puthex_int(unsigned int nb, int letter, int preci, int champ)
+int		ft_x(unsigned int nb, int letter, int preci, int champ)
 {
 	int		i;
 	char	*str;
@@ -73,15 +73,9 @@ int		ft_puthex_int(unsigned int nb, int letter, int preci, int champ)
 		i++;
 	}
 	str[i] = '\0';
-	if (preci > ft_strlen(str))
-	{
-		preci = preci - ft_strlen(str);
-		while (preci > 0)
-		{
+	if (preci > ft_strlen(str) && (preci = preci - ft_strlen(str)))
+		while (preci-- > 0)
 			str = ft_preci_int("0\0", str);
-			preci--;
-		}
-	}
 	ft_putstr(ft_strrev(str), -1, champ);
 	free(str);
 	return (TRUE);
