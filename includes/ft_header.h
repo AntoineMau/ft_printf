@@ -50,7 +50,9 @@ int		ft_csp(int champ, va_list ap, char k);
 int		ft_diouxx(int champ, va_list ap, char k);
 int		ft_hhll(int champ, va_list ap, char k);
 int		ft_lhl(int champ, va_list ap, char k);
-int		ft_cspdiouxxhhllhll(int champ, va_list ap, const char *restrict format, int i);
-int		ft_check_flag(const char *restrict format, int i, int champ, va_list ap);
+int		ft_cspdiouxxhhllhll(int champ, va_list ap,
+	const char *restrict format, int i);
+int		ft_check_flag(const char *restrict format,
+	int i, int champ, va_list ap);
 
 #endif
