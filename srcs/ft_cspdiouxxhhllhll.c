@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 17:05:16 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/11 17:57:48 by judumay          ###   ########.fr       */
+/*   Updated: 2019/01/11 18:38:59 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@ int		ft_check_flag(const char *restrict format, int i, int champ, va_list ap)
 {
 	if (format[i] == '%' && i++)
 	{
+		if (format[i] == '-')
+			i++;
+		else if (format[i] == '+' && i++)
+			ft_putchar('+');
 		if ((champ = format[i] >= '0' && format[i] <= '9' ?
 		ft_atoi(&format[i]) : 1) < 1)
 			;
