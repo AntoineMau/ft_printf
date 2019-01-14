@@ -6,14 +6,14 @@
 /*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 18:06:51 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/14 08:34:17 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/01/14 11:50:47 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_header.h>
 #include <stdlib.h>
 
-void	ft_putnbr_float2(double nbr)
+void	ft_putnbr_float2(long double nbr)
 {
 	if (nbr < 0)
 	{
@@ -24,7 +24,7 @@ void	ft_putnbr_float2(double nbr)
 	ft_putchar((__int64_t)nbr % 10 + '0');
 }
 
-void	ft_putnbr_float1(double nbr, __int32_t preci, __int32_t champ)
+void	ft_putnbr_float1(long double nbr, __int32_t preci, __int32_t champ)
 {
 	__int32_t	i;
 	__int32_t	j;

@@ -6,7 +6,7 @@
 /*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 16:04:47 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/14 08:30:37 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/01/14 11:54:36 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 #include <stdarg.h>
 #include <stdlib.h>
 
-void	ft_putnbr_long_unsi(__uint64_t nbr)
+void		ft_putnbr_long_unsi(__uint64_t nbr)
 {
 	nbr >= 10 ? ft_putnbr_long_unsi(nbr / 10) : nbr;
 	ft_putchar(nbr % 10 + '0');
 }
 
-int		ft_ll(__int32_t champ, va_list ap, __int8_t k)
+__int32_t	ft_ll(__int32_t champ, va_list ap, __int8_t k)
 {
 	char	*str;
 	char	*tmp;

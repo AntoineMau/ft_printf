@@ -6,7 +6,7 @@
 /*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 12:19:06 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/14 08:32:35 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/01/14 12:13:21 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,30 +30,7 @@ const char *restrict format, __int32_t i)
 	if (format[i] == 's')
 		ft_putstr(va_arg(ap, char *), preci, champ);
 	else if (format[i] == 'd' || format[i] == 'i')
-	{
-		tmp = NULL;
-		if (!(str = ft_itoa(va_arg(ap, __int32_t), tmp)))
-			return (FALSE);
-		free(tmp);
-		preci = str[0] == '-' ? preci + 1 : preci;
-		if (preci > ft_strlen(str))
-		{
-			preci = preci - ft_strlen(str);
-			while (preci > 0)
-			{
-				tmp = str;
-				free(str);
-				str = NULL;
-				str = ft_preci_int(tmp, "0\0");
-				free(tmp);
-				tmp = NULL;
-				preci--;
-			}
-		}
-		ft_putstr(str, -1, champ);
-		free(str);
-		str = NULL;
-	}
+		ft_d_i_(ap, champ, preci);
 	else if (format[i] == 'o')
 		ft_putoct_int(va_arg(ap, __int32_t), preci, champ);
 	else if (format[i] == 'u')

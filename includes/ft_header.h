@@ -14,9 +14,9 @@ void		ft_putnbr_short(__int16_t nbr);
 void		ft_putnbr_short_unsi(__uint16_t nbr);
 void		ft_putnbr_long(__int64_t nbr);
 void		ft_putnbr_long_unsi(__uint64_t nbr);
-void		ft_putnbr_float1(double nbr, __int32_t preci, __int32_t champ);
+void		ft_putnbr_float1(long double nbr, __int32_t preci, __int32_t champ);
 void		ft_putnbr_float1_suite(char *str, __int32_t preci, __int32_t champ, __int32_t j);
-void		ft_putnbr_float2(double nbr);
+void		ft_putnbr_float2(long double nbr);
 void		ft_putnbr_float_ld1(long double nbr, __int32_t preci);
 void		ft_putnbr_float_ld2(long double nbr);
 __int32_t	ft_x_p(__int32_t nb, __int32_t champ);
@@ -47,12 +47,13 @@ __int32_t	ft_h(__int32_t champ, va_list ap, __int8_t k);
 char		*ft_itoa_short(__int32_t nb, char *str);
 __int32_t	ft_ll(__int32_t champ, va_list ap, __int8_t k);
 __int32_t	ft_csp(__int32_t champ, va_list ap, __int8_t k);
-__int32_t	ft_diouxx(__int32_t champ, va_list ap, __int8_t k);
+__int32_t	ft_diouxx(__int32_t champ, va_list ap, __int8_t k, __int32_t preci);
 __int32_t	ft_hhll(__int32_t champ, va_list ap, __int8_t k);
 __int32_t	ft_lhl(__int32_t champ, va_list ap, __int8_t k);
 __int32_t	ft_cspdiouxxhhllhll(__int32_t champ, va_list ap,
 	const char *restrict format, __int32_t i);
 __int32_t	ft_check_flag(const char *restrict format,
 	__int32_t i, __int32_t champ, va_list ap);
+void		ft_d_i_(va_list ap, __int32_t champ, __int32_t preci);
 
 #endif

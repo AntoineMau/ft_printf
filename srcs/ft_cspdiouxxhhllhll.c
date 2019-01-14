@@ -6,7 +6,7 @@
 /*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 17:05:16 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/14 08:25:56 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/01/14 12:23:34 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ __int32_t champ, va_list ap)
 			;
 		while (format[i] >= '0' && format[i] <= '9')
 			i++;
-		ft_cspdiouxxhhllhll(champ, ap, format, i);
+		i = ft_cspdiouxxhhllhll(champ, ap, format, i);
 		if ((format[i] == 'h' && format[i + 1] == 'h') || (format[i] == 'l'
 		&& format[i + 1] == 'l'))
 			i += 2;
@@ -44,11 +44,20 @@ __int32_t champ, va_list ap)
 __int32_t	ft_cspdiouxxhhllhll(__int32_t champ, va_list ap,
 const char *restrict format, __int32_t i)
 {
+	__int32_t	preci;
+
+	if (format[i] == '.')
+		i++;
+	preci = ft_atoi(&format[i]);
+	if (format[i] < '0' || format[i] > '9')
+		preci = 0;
+	while (format[i] >= '0' && format[i] <= '9')
+		i++;
 	if (format[i] == 'c' || format[i] == 's' || format[i] == 'p')
 		ft_csp(champ, ap, format[i]);
 	else if (format[i] == 'd' || format[i] == 'i' || format[i] == 'o'
 	|| format[i] == 'u' || format[i] == 'x' || format[i] == 'X')
-		ft_diouxx(champ, ap, format[i]);
+		ft_diouxx(champ, ap, format[i], preci);
 	else if (format[i] == 'f')
 		ft_putnbr_float1(va_arg(ap, double), 6, champ);
 	else if (format[i] == '%')
@@ -59,7 +68,7 @@ const char *restrict format, __int32_t i)
 	else if ((format[i] == 'h' || format[i] == 'l'
 	|| format[i] == 'L') && i++)
 		ft_lhl(champ, ap, format[i]);
-	else if (format[i] == '.' && i++)
-		i = ft_printf_point(champ, ap, format, i);
-	return (TRUE);
+	//else if (format[i] == '.' && i++)
+	//	i = ft_printf_point(champ, ap, format, i);
+	return (i);
 }

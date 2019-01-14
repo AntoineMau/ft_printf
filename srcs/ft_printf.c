@@ -6,7 +6,7 @@
 /*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 18:06:20 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/14 08:56:14 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/01/14 12:24:35 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 
 char		*ft_itoa_float(__int64_t nb, char *str)
 {
-	int		i;
-	int		neg;
+	__int32_t	i;
+	__int32_t	neg;
 
 	if (!(str = (char*)malloc(sizeof(*str) * 99)))
 		return (FALSE);
@@ -89,17 +89,17 @@ int			ft_printf(const char *restrict format, ...)
 }
 
 /***
-__int32_t	main(void)
-{
-	__int32_t	age;
-
-	age = 2147483647;
-	printf("Vrai: J'ai % d ans\n", age);
-	ft_printf("Mien: J'ai %d ans\n", -2147483648);
-	return (0);
-}
-
 	int / long : -2147483648 / 2147483647 | unsigned : 0 / 4294967295
 	short : -32768 / 32767 | unsigned : 0 / 65535
 	long long : 9223372036854775807 / -9223372036854775808 | unsigned : 0 / 18446744073709551615
 ***/
+
+__int32_t	main(void)
+{
+	int	age;
+
+	age = 123456;
+	printf("Vrai: J'ai %d ans\n", age);
+	ft_printf("Mien: J'ai %d ans\n", age);
+	return (0);
+}
