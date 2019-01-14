@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putruc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 18:08:12 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/11 18:08:15 by judumay          ###   ########.fr       */
+/*   Updated: 2019/01/14 08:46:36 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-void	ft_putchar(char c)
+void		ft_putchar(__int8_t c)
 {
 	write(1, &c, 1);
 }
 
-void	ft_putstr(char *str, int preci, int champ)
+void		ft_putstr(char *str, __int32_t preci, __int32_t champ)
 {
 	champ++;
 	if (preci == -1 || preci >= ft_strlen(str))
@@ -36,9 +36,9 @@ void	ft_putstr(char *str, int preci, int champ)
 	}
 }
 
-char	*ft_strcpy(char *s1, const char *s2)
+char		*ft_strcpy(char *s1, const char *s2)
 {
-	int		i;
+	__int32_t	i;
 
 	i = 0;
 	while (s2[i])
@@ -50,9 +50,9 @@ char	*ft_strcpy(char *s1, const char *s2)
 	return (s1);
 }
 
-int		ft_strlen(char *str)
+__int32_t	ft_strlen(char *str)
 {
-	int	i;
+	__int32_t	i;
 
 	i = 0;
 	while (str[i])
@@ -60,11 +60,11 @@ int		ft_strlen(char *str)
 	return (i);
 }
 
-char	*ft_strrev(char *str)
+char		*ft_strrev(char *str)
 {
-	int		i;
-	int		j;
-	char	tmp;
+	__int32_t	i;
+	__int32_t	j;
+	__int8_t	tmp;
 
 	i = 0;
 	while (str[i])

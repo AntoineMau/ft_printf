@@ -5,3 +5,4 @@ valgrind --leak-check=full ./a.out
 echo ""
 ./a.out
 rm -f a.out
+rm -rf a.out.dSYM

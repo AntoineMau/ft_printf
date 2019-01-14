@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 18:06:51 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/11 18:07:01 by judumay          ###   ########.fr       */
+/*   Updated: 2019/01/14 08:34:17 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,17 @@ void	ft_putnbr_float2(double nbr)
 		ft_putnbr_float2(-nbr);
 	}
 	nbr >= 10 ? ft_putnbr_float2(nbr / 10) : nbr;
-	ft_putchar((long)nbr % 10 + '0');
+	ft_putchar((__int64_t)nbr % 10 + '0');
 }
 
-void	ft_putnbr_float1(double nbr, int preci, int champ)
+void	ft_putnbr_float1(double nbr, __int32_t preci, __int32_t champ)
 {
-	int		i;
-	int		j;
-	char	*str;
+	__int32_t	i;
+	__int32_t	j;
+	char		*str;
 
 	str = NULL;
-	str = ft_itoa_float((long long int)nbr, str);
+	str = ft_itoa_float((__int64_t)nbr, str);
 	i = 0;
 	i = ft_strlen(str);
 	if (preci > 0)
@@ -39,23 +39,24 @@ void	ft_putnbr_float1(double nbr, int preci, int champ)
 	j = -1;
 	while (++j < preci)
 	{
-		nbr > 9 ? nbr -= (int)nbr : nbr;
+		nbr > 9 ? nbr -= (__int32_t)nbr : nbr;
 		nbr *= 10;
-		if ((int)nbr % 10 < 0 || (int)nbr % 10 > 9)
+		if ((__int32_t)nbr % 10 < 0 || (__int32_t)nbr % 10 > 9)
 			str[i++] = '0';
-		else if (j == preci - 1 && ((int)(nbr * 10) % 10) >= 5
-		&& (int)nbr % 10 < 9)
-			str[i++] = (int)nbr % 10 + 1 + '0';
+		else if (j == preci - 1 && ((__int32_t)(nbr * 10) % 10) >= 5
+		&& (__int32_t)nbr % 10 < 9)
+			str[i++] = (__int32_t)nbr % 10 + 1 + '0';
 		else
-			str[i++] = (int)nbr % 10 + '0';
+			str[i++] = (__int32_t)nbr % 10 + '0';
 	}
 	str[i] = '\0';
 	ft_putnbr_float1_suite(str, preci, champ, j);
 }
 
-void	ft_putnbr_float1_suite(char *str, int preci, int champ, int j)
+void	ft_putnbr_float1_suite(char *str, __int32_t preci,
+__int32_t champ, __int32_t j)
 {
-	int i;
+	__int32_t	i;
 
 	j = -1;
 	i = 0;
@@ -84,12 +85,12 @@ void	ft_putnbr_float_ld2(long double nbr)
 		ft_putnbr_float_ld2(-nbr);
 	}
 	nbr >= 10 ? ft_putnbr_float_ld2(nbr / 10) : nbr;
-	nbr >= 0 ? ft_putchar((int)nbr % 10 + '0') : nbr;
+	nbr >= 0 ? ft_putchar((__int32_t)nbr % 10 + '0') : nbr;
 }
 
-void	ft_putnbr_float_ld1(long double nbr, int preci)
+void	ft_putnbr_float_ld1(long double nbr, __int32_t preci)
 {
-	int		i;
+	__int32_t	i;
 
 	ft_putnbr_float_ld2(nbr);
 	ft_putchar('.');
@@ -97,10 +98,10 @@ void	ft_putnbr_float_ld1(long double nbr, int preci)
 	while (i < preci)
 	{
 		nbr *= 10;
-		if (i == preci - 1 && ((int)(nbr * 10) % 10) >= 5)
-			ft_putchar((int)nbr % 10 + 1 + '0');
+		if (i == preci - 1 && ((__int32_t)(nbr * 10) % 10) >= 5)
+			ft_putchar((__int32_t)nbr % 10 + 1 + '0');
 		else
-			ft_putchar((int)nbr % 10 + '0');
+			ft_putchar((__int32_t)nbr % 10 + '0');
 		i++;
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cspdiouxxhhllhll.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 17:05:16 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/11 18:38:59 by judumay          ###   ########.fr       */
+/*   Updated: 2019/01/14 08:25:56 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 #include <stdarg.h>
 #include <stdlib.h>
 
-int		ft_check_flag(const char *restrict format, int i, int champ, va_list ap)
+__int32_t	ft_check_flag(const char *restrict format, __int32_t i,
+__int32_t champ, va_list ap)
 {
 	if (format[i] == '%' && i++)
 	{
@@ -40,8 +41,8 @@ int		ft_check_flag(const char *restrict format, int i, int champ, va_list ap)
 	return (i);
 }
 
-int		ft_cspdiouxxhhllhll(int champ, va_list ap,
-const char *restrict format, int i)
+__int32_t	ft_cspdiouxxhhllhll(__int32_t champ, va_list ap,
+const char *restrict format, __int32_t i)
 {
 	if (format[i] == 'c' || format[i] == 's' || format[i] == 'p')
 		ft_csp(champ, ap, format[i]);

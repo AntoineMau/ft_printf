@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_h.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 15:15:34 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/11 16:29:33 by judumay          ###   ########.fr       */
+/*   Updated: 2019/01/14 08:26:51 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdarg.h>
 #include <stdlib.h>
 
-int		ft_h(int champ, va_list ap, char k)
+__int32_t	ft_h(__int32_t champ, va_list ap, __int8_t k)
 {
 	char	*str;
 	char	*tmp;
@@ -23,15 +23,15 @@ int		ft_h(int champ, va_list ap, char k)
 	tmp = NULL;
 	if (k == 'd' || k == 'i')
 	{
-		if (!(str = ft_itoa_short(va_arg(ap, int), tmp)))
+		if (!(str = ft_itoa_short(va_arg(ap, __int32_t), tmp)))
 			return (FALSE);
 		ft_putstr(str, -1, champ);
 	}
 	else if (k == 'o')
-		ft_putoct_int(va_arg(ap, int), -1, champ);
+		ft_putoct_int(va_arg(ap, __int32_t), -1, champ);
 	else if (k == 'u')
 	{
-		if (!(str = ft_itoa_unsi(va_arg(ap, unsigned int), tmp)))
+		if (!(str = ft_itoa_unsi(va_arg(ap, __uint32_t), tmp)))
 			return (FALSE);
 		ft_putstr(str, -1, champ);
 		free(str);

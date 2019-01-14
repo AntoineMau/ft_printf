@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 18:06:01 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/11 18:06:03 by judumay          ###   ########.fr       */
+/*   Updated: 2019/01/14 08:46:22 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 #include <stdlib.h>
 #include <string.h>
 
-int		ft_atoi(const char *str)
+__int32_t	ft_atoi(const char *str)
 {
-	int		i;
-	int		nb;
-	int		neg;
+	__uint8_t	i;
+	__int32_t	nb;
+	__uint8_t	neg;
 
 	i = 0;
 	while (str[i] == '\t' || str[i] == '\n' || str[i] == '\v' ||
@@ -32,9 +32,9 @@ int		ft_atoi(const char *str)
 	return (nb * neg);
 }
 
-char	*ft_itoa_unsi(unsigned int nb, char *str)
+char		*ft_itoa_unsi(__uint32_t nb, char *str)
 {
-	int		i;
+	__uint8_t	i;
 
 	if (!(str = (char*)malloc(sizeof(*str) * 11)))
 		return (FALSE);
@@ -50,10 +50,10 @@ char	*ft_itoa_unsi(unsigned int nb, char *str)
 	return (ft_strrev(str));
 }
 
-char	*ft_itoa_short(int nb, char *str)
+char		*ft_itoa_short(__int32_t nb, char *str)
 {
-	int		i;
-	int		neg;
+	__uint8_t	i;
+	__uint8_t	neg;
 
 	if (!(str = (char*)malloc(sizeof(*str) * 12)))
 		return (FALSE);
@@ -79,10 +79,10 @@ char	*ft_itoa_short(int nb, char *str)
 	return (ft_strrev(str));
 }
 
-char	*ft_itoa(int nb, char *str)
+char		*ft_itoa(__int32_t nb, char *str)
 {
-	int		i;
-	int		neg;
+	__uint8_t	i;
+	__uint8_t	neg;
 
 	if (!(str = (char*)malloc(sizeof(*str) * 12)))
 		return (FALSE);
@@ -108,7 +108,7 @@ char	*ft_itoa(int nb, char *str)
 	return (ft_strrev(str));
 }
 
-char	*ft_itoa_long(__int64_t nb, char *str, __uint8_t neg)
+char		*ft_itoa_long(__int64_t nb, char *str, __uint8_t neg)
 {
 	__uint8_t	i;
 	__uint64_t	unb;

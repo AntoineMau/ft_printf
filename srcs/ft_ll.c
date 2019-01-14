@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ll.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 16:04:47 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/11 18:14:37 by judumay          ###   ########.fr       */
+/*   Updated: 2019/01/14 08:30:37 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 #include <stdarg.h>
 #include <stdlib.h>
 
-void	ft_putnbr_long_unsi(long long unsigned int nbr)
+void	ft_putnbr_long_unsi(__uint64_t nbr)
 {
 	nbr >= 10 ? ft_putnbr_long_unsi(nbr / 10) : nbr;
 	ft_putchar(nbr % 10 + '0');
 }
 
-int		ft_ll(int champ, va_list ap, char k)
+int		ft_ll(__int32_t champ, va_list ap, __int8_t k)
 {
 	char	*str;
 	char	*tmp;
@@ -36,11 +36,11 @@ int		ft_ll(int champ, va_list ap, char k)
 		free(str);
 	}
 	else if (k == 'o')
-		ft_putoct_long(va_arg(ap, long long), -1, champ);
+		ft_putoct_long(va_arg(ap, __int64_t), -1, champ);
 	else if (k == 'u')
-		ft_putnbr_long_unsi(va_arg(ap, long long unsigned));
+		ft_putnbr_long_unsi(va_arg(ap, __uint64_t));
 	else if (k == 'x' || k == 'X')
-		ft_puthex_long(va_arg(ap, long long), k - 23);
+		ft_puthex_long(va_arg(ap, __int64_t), k - 23);
 	else
 		return (FALSE);
 	return (TRUE);

@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lhl.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 16:52:36 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/11 16:56:58 by judumay          ###   ########.fr       */
+/*   Updated: 2019/01/14 08:30:00 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_header.h>
 #include <stdarg.h>
 
-int		ft_lhl(int champ, va_list ap, char k)
+__int32_t	ft_lhl(__int32_t champ, va_list ap, __int8_t k)
 {
 	if (k == 'h')
 		ft_h(champ, ap, k);

@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   ft_diouxx.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 16:32:54 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/11 17:06:45 by judumay          ###   ########.fr       */
+/*   Updated: 2019/01/14 08:26:28 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_header.h>
 #include <stdarg.h>
 
-int		ft_diouxx(int champ, va_list ap, char k)
+__int32_t	ft_diouxx(__int32_t champ, va_list ap, __int8_t k)
 {
 	if (k == 'd' || k == 'i')
 		ft_d_i(ap, champ);
 	else if (k == 'o')
-		ft_putoct_int(va_arg(ap, int), -1, champ);
+		ft_putoct_int(va_arg(ap, __int32_t), -1, champ);
 	else if (k == 'u')
 		ft_u(ap, champ);
 	else if (k == 'x' || k == 'X')

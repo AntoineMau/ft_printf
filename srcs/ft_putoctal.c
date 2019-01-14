@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putoctal.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 18:07:51 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/11 18:07:54 by judumay          ###   ########.fr       */
+/*   Updated: 2019/01/14 08:35:48 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 #include <stdlib.h>
 #include <string.h>
 
-int		ft_putoct_int(unsigned int nb, int preci, int champ)
+__int32_t	ft_putoct_int(__uint32_t nb, __int32_t preci, __int32_t champ)
 {
-	int		i;
-	char	*tmp;
-	char	*str;
+	__int32_t	i;
+	char		*tmp;
+	char		*str;
 
 	tmp = NULL;
 	if (!(str = (char*)malloc(sizeof(*str) * (9 + preci))))
@@ -42,10 +42,10 @@ int		ft_putoct_int(unsigned int nb, int preci, int champ)
 	return (TRUE);
 }
 
-int		ft_putoct_short(short unsigned int nb, int preci)
+__int32_t	ft_putoct_short(__uint16_t nb, __int32_t preci)
 {
-	int		i;
-	char	*str;
+	__int32_t	i;
+	char		*str;
 
 	if (!(str = (char*)malloc(sizeof(*str) * 7)))
 		return (FALSE);
@@ -66,7 +66,7 @@ int		ft_putoct_short(short unsigned int nb, int preci)
 	return (TRUE);
 }
 
-int		ft_putoct_long(__uint64_t nb, __int32_t preci, __int32_t champ)
+__int32_t	ft_putoct_long(__uint64_t nb, __int32_t preci, __int32_t champ)
 {
 	__uint8_t	i;
 	char		*tmp;

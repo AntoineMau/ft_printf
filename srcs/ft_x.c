@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_x.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 16:29:56 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/11 16:29:57 by judumay          ###   ########.fr       */
+/*   Updated: 2019/01/14 08:38:02 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_header.h>
 #include <stdlib.h>
 
-void	ft_putnbr_long(long long nbr)
+void		ft_putnbr_long(__int64_t nbr)
 {
 	if (nbr < 0)
 	{
@@ -24,10 +24,10 @@ void	ft_putnbr_long(long long nbr)
 	nbr >= 0 ? ft_putchar(nbr % 10 + '0') : nbr;
 }
 
-int		ft_x_p(int nb, int champ)
+__int32_t	ft_x_p(__int32_t nb, __int32_t champ)
 {
-	int		i;
-	char	*str;
+	__int32_t	i;
+	char		*str;
 
 	if (!(str = (char*)malloc(sizeof(*str) * 15)))
 		return (FALSE);
@@ -53,10 +53,11 @@ int		ft_x_p(int nb, int champ)
 	return (TRUE);
 }
 
-int		ft_x(unsigned int nb, int letter, int preci, int champ)
+__int32_t	ft_x(__uint32_t nb, __int32_t letter,
+__int32_t preci, __int32_t champ)
 {
-	int		i;
-	char	*str;
+	__int32_t	i;
+	char		*str;
 
 	if (!(str = (char*)malloc(sizeof(*str) * 9)))
 		return (FALSE);
@@ -81,10 +82,10 @@ int		ft_x(unsigned int nb, int letter, int preci, int champ)
 	return (TRUE);
 }
 
-int		ft_puthex_short(short unsigned int nb, int letter)
+__int32_t	ft_puthex_short(__uint16_t nb, __int32_t letter)
 {
-	int		i;
-	char	*str;
+	__int32_t	i;
+	char		*str;
 
 	if (!(str = (char*)malloc(sizeof(*str) * 9)))
 		return (FALSE);
@@ -105,10 +106,10 @@ int		ft_puthex_short(short unsigned int nb, int letter)
 	return (TRUE);
 }
 
-int		ft_puthex_long(long long int nb, int letter)
+__int32_t	ft_puthex_long(__int64_t nb, __int32_t letter)
 {
-	int		i;
-	char	*str;
+	__int32_t	i;
+	char		*str;
 
 	if (!(str = (char*)malloc(sizeof(*str) * 100)))
 		return (FALSE);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_point.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 12:19:06 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/11 18:00:07 by judumay          ###   ########.fr       */
+/*   Updated: 2019/01/14 08:32:35 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,12 @@
 #include <stdlib.h>
 #include <string.h>
 
-int	ft_printf_point(int champ, va_list ap, const char *restrict format, int i)
+__int32_t	ft_printf_point(__int32_t champ, va_list ap,
+const char *restrict format, __int32_t i)
 {
-	int		preci;
-	char	*tmp;
-	char	*str;
+	__int32_t	preci;
+	char		*tmp;
+	char		*str;
 
 	tmp = NULL;
 	str = NULL;
@@ -31,7 +32,7 @@ int	ft_printf_point(int champ, va_list ap, const char *restrict format, int i)
 	else if (format[i] == 'd' || format[i] == 'i')
 	{
 		tmp = NULL;
-		if (!(str = ft_itoa(va_arg(ap, int), tmp)))
+		if (!(str = ft_itoa(va_arg(ap, __int32_t), tmp)))
 			return (FALSE);
 		free(tmp);
 		preci = str[0] == '-' ? preci + 1 : preci;
@@ -54,11 +55,11 @@ int	ft_printf_point(int champ, va_list ap, const char *restrict format, int i)
 		str = NULL;
 	}
 	else if (format[i] == 'o')
-		ft_putoct_int(va_arg(ap, int), preci, champ);
+		ft_putoct_int(va_arg(ap, __int32_t), preci, champ);
 	else if (format[i] == 'u')
 	{
 		tmp = NULL;
-		if (!(str = ft_itoa_unsi(va_arg(ap, unsigned int), tmp)))
+		if (!(str = ft_itoa_unsi(va_arg(ap, __uint32_t), tmp)))
 			return (FALSE);
 		if (preci > ft_strlen(str))
 		{
@@ -74,7 +75,7 @@ int	ft_printf_point(int champ, va_list ap, const char *restrict format, int i)
 		str = NULL;
 	}
 	else if (format[i] == 'x' || format[i] == 'X')
-		ft_x(va_arg(ap, unsigned int), format[i] - 23,
+		ft_x(va_arg(ap, __uint32_t), format[i] - 23,
 		preci, champ);
 	else if (format[i] == 'f')
 		ft_putnbr_float1(va_arg(ap, double), preci, 0);
@@ -82,7 +83,7 @@ int	ft_printf_point(int champ, va_list ap, const char *restrict format, int i)
 		if (format[i] == 'd' || format[i] == 'i')
 		{
 			tmp = NULL;
-			if (!(str = ft_itoa(va_arg(ap, int), tmp)))
+			if (!(str = ft_itoa(va_arg(ap, __int32_t), tmp)))
 				return (FALSE);
 			free(tmp);
 			preci = str[0] == '-' ? preci + 1 : preci;
@@ -100,11 +101,11 @@ int	ft_printf_point(int champ, va_list ap, const char *restrict format, int i)
 			str = NULL;
 		}
 		else if (format[i] == 'o')
-			ft_putoct_int(va_arg(ap, int), preci, champ);
+			ft_putoct_int(va_arg(ap, __int32_t), preci, champ);
 		else if (format[i] == 'u')
 		{
 			tmp = NULL;
-			if (!(str = ft_itoa_unsi(va_arg(ap, unsigned int), tmp)))
+			if (!(str = ft_itoa_unsi(va_arg(ap, __uint32_t), tmp)))
 				return (FALSE);
 			if (preci > ft_strlen(str))
 			{
@@ -120,7 +121,7 @@ int	ft_printf_point(int champ, va_list ap, const char *restrict format, int i)
 			str = NULL;
 		}
 		else if (format[i] == 'x' || format[i] == 'X')
-			ft_x(va_arg(ap, unsigned int), format[i] - 23, preci,
+			ft_x(va_arg(ap, __uint32_t), format[i] - 23, preci,
 			champ);
 		else
 			return (FALSE);
@@ -128,7 +129,7 @@ int	ft_printf_point(int champ, va_list ap, const char *restrict format, int i)
 		if (format[i] == 'd' || format[i] == 'i')
 		{
 			tmp = NULL;
-			if (!(str = ft_itoa(va_arg(ap, int), tmp)))
+			if (!(str = ft_itoa(va_arg(ap, __int32_t), tmp)))
 				return (FALSE);
 			free(tmp);
 			preci = str[0] == '-' ? preci + 1 : preci;
@@ -146,11 +147,11 @@ int	ft_printf_point(int champ, va_list ap, const char *restrict format, int i)
 			str = NULL;
 		}
 		else if (format[i] == 'o')
-			ft_putoct_int(va_arg(ap, int), preci, champ);
+			ft_putoct_int(va_arg(ap, __int32_t), preci, champ);
 		else if (format[i] == 'u')
 		{
 			tmp = NULL;
-			if (!(str = ft_itoa_unsi(va_arg(ap, unsigned int), tmp)))
+			if (!(str = ft_itoa_unsi(va_arg(ap, __uint32_t), tmp)))
 				return (FALSE);
 			if (preci > ft_strlen(str))
 			{
@@ -165,7 +166,7 @@ int	ft_printf_point(int champ, va_list ap, const char *restrict format, int i)
 			ft_memdel(str);
 		}
 		else if (format[i] == 'x' || format[i] == 'X')
-			ft_x(va_arg(ap, unsigned int), format[i] - 23, preci,
+			ft_x(va_arg(ap, __uint32_t), format[i] - 23, preci,
 			champ);
 		else
 			return (FALSE);
@@ -192,12 +193,12 @@ int	ft_printf_point(int champ, va_list ap, const char *restrict format, int i)
 			str = NULL;
 		}
 		else if (format[i] == 'o')
-			ft_putoct_long(va_arg(ap, long long unsigned int),
+			ft_putoct_long(va_arg(ap, __uint64_t),
 			preci, champ);
 		else if (format[i] == 'u')
-			ft_putnbr_long_unsi(va_arg(ap, long long unsigned int));
+			ft_putnbr_long_unsi(va_arg(ap, __uint64_t));
 		else if (format[i] == 'x' || format[i] == 'X')
-			ft_puthex_long(va_arg(ap, long long unsigned int),
+			ft_puthex_long(va_arg(ap, __uint64_t),
 			format[i] - 23);
 		else
 			return (FALSE);
