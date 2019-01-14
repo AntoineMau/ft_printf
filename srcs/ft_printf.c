@@ -6,7 +6,7 @@
 /*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 18:06:20 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/14 12:33:24 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/01/14 18:11:14 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,10 @@ int			ft_printf(const char *restrict format, ...)
 
 __int32_t	main(void)
 {
-	char	age[] = "Antoine";
-	printf("Vrai: J'ai %s ans\n", age);
-	ft_printf("Mien: J'ai %s ans\n", age);
+	__uint32_t	age;
+
+	age = 4294967295;
+	printf(   "Vrai: J'ai %30.20x ans\nVrai: J'ai %30.20X ans\n", age, age);
+	ft_printf("Mien: J'ai %30.20x ans\nMien: J'ai %30.20X ans\n", age, age);
 	return (0);
 }

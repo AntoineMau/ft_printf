@@ -6,7 +6,7 @@
 /*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 16:29:56 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/14 08:38:02 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/01/14 18:09:32 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ __int32_t preci, __int32_t champ)
 {
 	__int32_t	i;
 	char		*str;
+	char		*tmp;
 
 	if (!(str = (char*)malloc(sizeof(*str) * 9)))
 		return (FALSE);
@@ -75,8 +76,14 @@ __int32_t preci, __int32_t champ)
 	}
 	str[i] = '\0';
 	if (preci > ft_strlen(str) && (preci = preci - ft_strlen(str)))
-		while (preci-- > 0)
-			str = ft_preci_int("0\0", str);
+		while (preci > 0)
+		{
+			tmp = strdup(str);
+			ft_memdel(str);
+			str = ft_preci_int("0\0", tmp);
+			ft_memdel(tmp);
+			preci--;
+		}
 	ft_putstr(ft_strrev(str), -1, champ);
 	free(str);
 	return (TRUE);

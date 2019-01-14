@@ -5,6 +5,7 @@
 # define FALSE 0
 
 #include <stdio.h>
+#include <string.h>
 
 void		ft_putchar(__int8_t c);
 void		ft_putstr(char *str, __int32_t preci, __int32_t champ);
@@ -41,7 +42,7 @@ __int32_t	ft_printf_point(__int32_t champ, va_list ap,
 	const char *restrict format, __int32_t i);
 void		ft_d_i(va_list ap, __int32_t champ);
 void		ft_c(__int32_t champ, va_list ap);
-void		ft_u(va_list ap, __int32_t champ);
+void		ft_u(va_list ap, __int32_t champ, __int32_t preci);
 __int32_t	ft_hh(__int32_t preci, __int32_t champ, va_list ap, __int8_t k);
 __int32_t	ft_h(__int32_t champ, va_list ap, __int8_t k);
 char		*ft_itoa_short(__int32_t nb, char *str);
@@ -55,5 +56,6 @@ __int32_t	ft_cspdiouxxhhllhll(__int32_t champ, va_list ap,
 __int32_t	ft_check_flag(const char *restrict format,
 	__int32_t i, __int32_t champ, va_list ap);
 void		ft_d_i_(va_list ap, __int32_t champ, __int32_t preci);
+__int32_t	ft_strcmp(char *s1, char *s2);
 
 #endif
