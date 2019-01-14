@@ -46,7 +46,7 @@ __int32_t	ft_hh(__int32_t preci, __int32_t champ, va_list ap, __int8_t k);
 __int32_t	ft_h(__int32_t champ, va_list ap, __int8_t k);
 char		*ft_itoa_short(__int32_t nb, char *str);
 __int32_t	ft_ll(__int32_t champ, va_list ap, __int8_t k);
-__int32_t	ft_csp(__int32_t champ, va_list ap, __int8_t k);
+__int32_t	ft_csp(__int32_t champ, va_list ap, __int8_t k, __int32_t preci);
 __int32_t	ft_diouxx(__int32_t champ, va_list ap, __int8_t k, __int32_t preci);
 __int32_t	ft_hhll(__int32_t champ, va_list ap, __int8_t k);
 __int32_t	ft_lhl(__int32_t champ, va_list ap, __int8_t k);

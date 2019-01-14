@@ -6,7 +6,7 @@
 /*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 17:05:16 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/14 12:23:34 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/01/14 12:33:38 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,13 @@ const char *restrict format, __int32_t i)
 
 	if (format[i] == '.')
 		i++;
-	preci = ft_atoi(&format[i]);
-	if (format[i] < '0' || format[i] > '9')
-		preci = 0;
+	preci = -1;
+	if (format[i]>= '0' && format[i] <= '9')
+		preci = ft_atoi(&format[i]);
 	while (format[i] >= '0' && format[i] <= '9')
 		i++;
 	if (format[i] == 'c' || format[i] == 's' || format[i] == 'p')
-		ft_csp(champ, ap, format[i]);
+		ft_csp(champ, ap, format[i], preci);
 	else if (format[i] == 'd' || format[i] == 'i' || format[i] == 'o'
 	|| format[i] == 'u' || format[i] == 'x' || format[i] == 'X')
 		ft_diouxx(champ, ap, format[i], preci);
