@@ -105,7 +105,7 @@ fclean:
 re: fclean all
 
 norme:
-	@norminette $(SRCS_PATH)
-	@norminette $(INCS_PATH)
+	@norminette $(SRCS_PATH)ft_*.c
+	@norminette $(INCS_PATH)*.h
 
 .PHONY: all clean fclean re norme

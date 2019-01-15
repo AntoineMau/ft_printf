@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_header.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/15 09:51:54 by anmauffr          #+#    #+#             */
+/*   Updated: 2019/01/15 10:16:50 by anmauffr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_HEADER_H
 # define FT_HEADER_H
 
 # define TRUE 1
 # define FALSE 0
 
-#include <stdio.h>
-#include <string.h>
+# include <stdio.h>
+# include <string.h>
 
 void		ft_putchar(__int8_t c);
 void		ft_putstr(char *str, __int32_t preci, __int32_t champ);
@@ -16,12 +28,14 @@ void		ft_putnbr_short_unsi(__uint16_t nbr);
 void		ft_putnbr_long(__int64_t nbr);
 void		ft_putnbr_long_unsi(__uint64_t nbr);
 void		ft_putnbr_float1(long double nbr, __int32_t preci, __int32_t champ);
-void		ft_putnbr_float1_suite(char *str, __int32_t preci, __int32_t champ, __int32_t j);
+void		ft_putnbr_float1_suite(char *str, __int32_t preci, __int32_t champ,
+	__int32_t j);
 void		ft_putnbr_float2(long double nbr);
 void		ft_putnbr_float_ld1(long double nbr, __int32_t preci);
 void		ft_putnbr_float_ld2(long double nbr);
 __int32_t	ft_x_p(__int32_t nb, __int32_t champ);
-__int32_t	ft_x(__uint32_t nb, __int32_t letter, __int32_t preci, __int32_t champ);
+__int32_t	ft_x(__uint32_t nb, __int32_t letter, __int32_t preci,
+	__int32_t champ);
 __int32_t	ft_puthex_short(__uint16_t nb, __int32_t letter);
 __int32_t	ft_puthex_long(__int64_t nb, __int32_t letter);
 __int32_t	ft_strlen(char *str);

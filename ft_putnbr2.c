@@ -6,7 +6,7 @@
 /*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 18:07:20 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/14 11:54:11 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/01/15 10:36:50 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_putnbr_int(__int32_t nbr)
 	nbr >= 0 ? ft_putchar(nbr % 10 + '0') : nbr;
 }
 
-void	ft_putnbr_short(short nbr)
+void	ft_putnbr_short(__int16_t nbr)
 {
 	if (nbr == -32768)
 		ft_putstr("-32768", -1, 0);

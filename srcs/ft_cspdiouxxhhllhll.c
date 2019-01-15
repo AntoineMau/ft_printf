@@ -6,7 +6,7 @@
 /*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 17:05:16 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/14 12:33:38 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/01/15 10:30:42 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,7 @@ __int32_t champ, va_list ap)
 			i++;
 		else if (format[i] == '+' && i++)
 			ft_putchar('+');
-		if ((champ = format[i] >= '0' && format[i] <= '9' ?
-		ft_atoi(&format[i]) : 1) < 1)
-			;
+		champ = format[i] >= '0' && format[i] <= '9' ? ft_atoi(&format[i]) : 1;
 		while (format[i] >= '0' && format[i] <= '9')
 			i++;
 		i = ft_cspdiouxxhhllhll(champ, ap, format, i);
@@ -49,7 +47,7 @@ const char *restrict format, __int32_t i)
 	if (format[i] == '.')
 		i++;
 	preci = -1;
-	if (format[i]>= '0' && format[i] <= '9')
+	if (format[i] >= '0' && format[i] <= '9')
 		preci = ft_atoi(&format[i]);
 	while (format[i] >= '0' && format[i] <= '9')
 		i++;
@@ -68,7 +66,5 @@ const char *restrict format, __int32_t i)
 	else if ((format[i] == 'h' || format[i] == 'l'
 	|| format[i] == 'L') && i++)
 		ft_lhl(champ, ap, format[i]);
-	//else if (format[i] == '.' && i++)
-	//	i = ft_printf_point(champ, ap, format, i);
 	return (i);
 }

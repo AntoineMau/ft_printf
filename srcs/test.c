@@ -6,7 +6,7 @@
 /*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 08:52:11 by anmauffr          #+#    #+#             */
-/*   Updated: 2019/01/14 11:55:11 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/01/15 10:21:44 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	test(double nb)
 	printf("nb depart: %.7f\n", nb);
 	str = (char*)malloc(sizeof(*str) * 1000);
 	i = 0;
-	while (i < 999)
+	while (i <= 999)
 		str[i++] = '\0';
 	count = 0;
 	while (nb < -10 || nb > 10)
