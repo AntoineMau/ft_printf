@@ -6,7 +6,7 @@
 /*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 18:06:20 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/15 10:18:21 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/01/15 16:42:05 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,15 +74,15 @@ char		*ft_preci_int(char *s1, char *s2)
 int			ft_printf(const char *restrict format, ...)
 {
 	__int32_t	i;
-	__int32_t	champ;
+	__int32_t	tab[3];
 	va_list		ap;
 
 	va_start(ap, format);
 	i = -1;
 	while (format[++i])
 	{
-		champ = 0;
-		i = ft_check_flag(format, i, champ, ap);
+		tab[0] = 0;
+		i = ft_check_flag(format, i, tab, ap);
 	}
 	va_end(ap);
 	return (TRUE);
@@ -96,10 +96,10 @@ int			ft_printf(const char *restrict format, ...)
 
 __int32_t	main(void)
 {
-	__uint32_t	age;
+	__uint64_t	age;
 
-	age = 4294967295;
-	printf(   "Vrai: J'ai %30x ans\n", age);
-	ft_printf("Mien: J'ai %30x ans\n", age);
+	age = 18446744073709551615UL;
+	printf(   "Vrai: J'ai %llu ans\n", age);
+	ft_printf("Mien: J'ai %llu ans\n", age);
 	return (0);
 }

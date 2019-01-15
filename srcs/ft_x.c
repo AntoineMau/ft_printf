@@ -6,7 +6,7 @@
 /*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 16:29:56 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/15 10:17:13 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/01/15 16:37:07 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void		ft_putnbr_long(__int64_t nbr)
 	nbr >= 0 ? ft_putchar(nbr % 10 + '0') : nbr;
 }
 
-__int32_t	ft_x_p(__int32_t nb, __int32_t champ)
+__int32_t	ft_x_p(__int32_t nb, __int32_t *tab)
 {
 	__int32_t	i;
 	char		*str;
@@ -48,13 +48,12 @@ __int32_t	ft_x_p(__int32_t nb, __int32_t champ)
 	str[i++] = 'x';
 	str[i++] = '0';
 	str[i] = '\0';
-	ft_putstr(ft_strrev(str), -1, champ);
+	ft_putstr(ft_strrev(str), tab);
 	free(str);
 	return (TRUE);
 }
 
-__int32_t	ft_x(__uint32_t nb, __int32_t letter,
-__int32_t preci, __int32_t champ)
+__int32_t	ft_x(__uint32_t nb, __int32_t letter, __int32_t *tab)
 {
 	__int32_t	i;
 	char		*str;
@@ -70,15 +69,15 @@ __int32_t preci, __int32_t champ)
 		nb /= 16;
 	}
 	str[i] = '\0';
-	if (preci > ft_strlen(str) && (preci = preci - ft_strlen(str)))
-		while (preci > 0 && preci--)
+	if (tab[1] > ft_strlen(str) && (tab[1] = tab[1] - ft_strlen(str)))
+		while (tab[1] > 0 && tab[1]--)
 		{
 			tmp = strdup(str);
 			ft_memdel(str);
 			str = ft_preci_int("0\0", tmp);
 			ft_memdel(tmp);
 		}
-	ft_putstr(ft_strrev(str), -1, champ);
+	ft_putstr(ft_strrev(str), tab);
 	free(str);
 	return (TRUE);
 }
@@ -103,7 +102,8 @@ __int32_t	ft_puthex_short(__uint16_t nb, __int32_t letter)
 		i++;
 	}
 	str[i] = '\0';
-	ft_putstr(ft_strrev(str), -1, 0);
+	i = 0;
+	ft_putstr(ft_strrev(str), &i);
 	return (TRUE);
 }
 
@@ -127,6 +127,7 @@ __int32_t	ft_puthex_long(__int64_t nb, __int32_t letter)
 		i++;
 	}
 	str[i] = '\0';
-	ft_putstr(ft_strrev(str), -1, 0);
+	i = 0;
+	ft_putstr(ft_strrev(str), &i);
 	return (TRUE);
 }

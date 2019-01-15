@@ -6,7 +6,7 @@
 /*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 17:05:16 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/15 10:30:42 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/01/15 16:39:32 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <stdlib.h>
 
 __int32_t	ft_check_flag(const char *restrict format, __int32_t i,
-__int32_t champ, va_list ap)
+__int32_t *tab, va_list ap)
 {
 	if (format[i] == '%' && i++)
 	{
@@ -23,10 +23,10 @@ __int32_t champ, va_list ap)
 			i++;
 		else if (format[i] == '+' && i++)
 			ft_putchar('+');
-		champ = format[i] >= '0' && format[i] <= '9' ? ft_atoi(&format[i]) : 1;
+		tab[0] = format[i] >= '0' && format[i] <= '9' ? ft_atoi(&format[i]) : 1;
 		while (format[i] >= '0' && format[i] <= '9')
 			i++;
-		i = ft_cspdiouxxhhllhll(champ, ap, format, i);
+		i = ft_cspdiouxxhhllhll(tab, ap, format, i);
 		if ((format[i] == 'h' && format[i + 1] == 'h') || (format[i] == 'l'
 		&& format[i + 1] == 'l'))
 			i += 2;
@@ -39,32 +39,32 @@ __int32_t champ, va_list ap)
 	return (i);
 }
 
-__int32_t	ft_cspdiouxxhhllhll(__int32_t champ, va_list ap,
+__int32_t	ft_cspdiouxxhhllhll(__int32_t *tab, va_list ap,
 const char *restrict format, __int32_t i)
 {
-	__int32_t	preci;
-
 	if (format[i] == '.')
 		i++;
-	preci = -1;
+	tab[1] = -1;
 	if (format[i] >= '0' && format[i] <= '9')
-		preci = ft_atoi(&format[i]);
+		tab[1] = ft_atoi(&format[i]);
 	while (format[i] >= '0' && format[i] <= '9')
 		i++;
 	if (format[i] == 'c' || format[i] == 's' || format[i] == 'p')
-		ft_csp(champ, ap, format[i], preci);
+		ft_csp(tab, ap, format[i]);
 	else if (format[i] == 'd' || format[i] == 'i' || format[i] == 'o'
 	|| format[i] == 'u' || format[i] == 'x' || format[i] == 'X')
-		ft_diouxx(champ, ap, format[i], preci);
+		ft_diouxx(tab, ap, format[i]);
 	else if (format[i] == 'f')
-		ft_putnbr_float1(va_arg(ap, double), 6, champ);
+		ft_putnbr_float1(va_arg(ap, double), tab);
 	else if (format[i] == '%')
-		ft_putstr("%", -1, champ);
+		ft_putstr("%", tab);
 	else if ((format[i] == 'h' && format[i + 1] == 'h') || (
-	(format[i] == 'l' && format[i + 1] == 'l') && (i += 2)))
-		ft_hhll(champ, ap, format[i]);
+	(format[i] == 'l' && format[i + 1] == 'l') && (i++)))
+		ft_hhll(tab, ap, format[i]);
 	else if ((format[i] == 'h' || format[i] == 'l'
 	|| format[i] == 'L') && i++)
-		ft_lhl(champ, ap, format[i]);
+		ft_lhl(tab, ap, format[i]);
+	else
+		return (FALSE);
 	return (i);
 }

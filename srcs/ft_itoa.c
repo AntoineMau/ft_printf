@@ -6,7 +6,7 @@
 /*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 18:06:01 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/14 08:46:22 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/01/15 15:15:15 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char		*ft_itoa_unsi(__uint32_t nb, char *str)
 	return (ft_strrev(str));
 }
 
-char		*ft_itoa_short(__int32_t nb, char *str)
+char		*ft_itoa(__int32_t nb, char *str)
 {
 	__uint8_t	i;
 	__uint8_t	neg;
@@ -60,10 +60,10 @@ char		*ft_itoa_short(__int32_t nb, char *str)
 	i = 0;
 	if (nb == 0)
 		str[i++] = '0';
-	else if (nb == -32768)
+	else if (nb == -2147483648)
 	{
 		free(str);
-		return ("-32768");
+		return ("-2147483648");
 	}
 	neg = 0;
 	if (nb < 0 && (neg = 1))
@@ -79,7 +79,7 @@ char		*ft_itoa_short(__int32_t nb, char *str)
 	return (ft_strrev(str));
 }
 
-char		*ft_itoa(__int32_t nb, char *str)
+char		*ft_itoa_short(__int32_t nb, char *str)
 {
 	__uint8_t	i;
 	__uint8_t	neg;
@@ -89,10 +89,10 @@ char		*ft_itoa(__int32_t nb, char *str)
 	i = 0;
 	if (nb == 0)
 		str[i++] = '0';
-	else if (nb == -2147483648)
+	else if (nb == -32768)
 	{
 		free(str);
-		return ("-2147483648");
+		return ("-32768");
 	}
 	neg = 0;
 	if (nb < 0 && (neg = 1))
@@ -132,6 +132,23 @@ char		*ft_itoa_long(__int64_t nb, char *str, __uint8_t neg)
 	}
 	if (neg == 1)
 		str[i++] = '-';
+	str[i] = '\0';
+	return (ft_strrev(str));
+}
+
+char		*ft_itoa_unsi_long(__uint64_t nb, char *str)
+{
+	__uint8_t	i;
+
+	if (!(str = (char*)malloc(sizeof(*str) * 21)))
+		return (FALSE);
+	if ((i = 0) && nb == 0)
+		str[i++] = '0';
+	while (nb > 0)
+	{
+		str[i++] = nb % 10 + '0';
+		nb /= 10;
+	}
 	str[i] = '\0';
 	return (ft_strrev(str));
 }

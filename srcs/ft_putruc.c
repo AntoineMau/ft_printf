@@ -6,7 +6,7 @@
 /*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 18:08:12 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/14 08:46:36 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/01/15 15:54:47 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,20 @@ void		ft_putchar(__int8_t c)
 	write(1, &c, 1);
 }
 
-void		ft_putstr(char *str, __int32_t preci, __int32_t champ)
+void		ft_putstr(char *str, __int32_t *tab)
 {
-	champ++;
-	if (preci == -1 || preci >= ft_strlen(str))
+	tab[0]++;
+	if (tab[1] == -1 || tab[1] >= ft_strlen(str))
 	{
-		while (--champ > ft_strlen(str))
+		while (--tab[0] > ft_strlen(str))
 			ft_putchar(' ');
 		write(1, str, ft_strlen(str));
 	}
 	else
 	{
-		while (--champ > preci)
+		while (--tab[0] > tab[1])
 			ft_putchar(' ');
-		write(1, str, preci);
+		write(1, str, tab[1]);
 	}
 }
 
