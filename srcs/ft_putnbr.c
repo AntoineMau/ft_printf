@@ -6,7 +6,7 @@
 /*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 18:06:51 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/15 16:38:05 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/01/16 15:19:00 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,8 @@ void	ft_putnbr_float1(long double nbr, __int32_t *tab)
 	str = ft_itoa_float((__int64_t)nbr, str);
 	i = 0;
 	i = ft_strlen(str);
-	if (tab[1] > 0)
+	if ((j = -1) && tab[1] > 0)
 		str[i++] = '.';
-	j = -1;
 	while (++j < tab[1])
 	{
 		nbr > 9 ? nbr -= (__int32_t)nbr : nbr;

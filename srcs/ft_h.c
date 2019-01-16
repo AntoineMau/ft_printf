@@ -6,7 +6,7 @@
 /*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 15:15:34 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/15 15:55:55 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/01/16 15:46:29 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,22 @@
 #include <stdarg.h>
 #include <stdlib.h>
 
-__int32_t	ft_h(__int32_t tab[0], va_list ap, __int8_t k)
+__int32_t	ft_h(__int32_t *tab, va_list ap, const char *restrict format,
+	__int32_t i)
 {
 	char	*str;
 	char	*tmp;
 
 	str = NULL;
 	tmp = NULL;
-	if (k == 'd' || k == 'i')
-	{
-		if (!(str = ft_itoa_short(va_arg(ap, __int32_t), tmp)))
-			return (FALSE);
-		ft_putstr(str, tab);
-	}
-	else if (k == 'o')
+	if (format[++i] == 'd' || format[i] == 'i')
+		ft_d_i_(ap, tab);
+	else if (format[i] == 'o')
 		ft_putoct_int(va_arg(ap, __int32_t), tab);
-	else if (k == 'u')
-	{
-		if (!(str = ft_itoa_unsi(va_arg(ap, __uint32_t), tmp)))
-			return (FALSE);
-		ft_putstr(str, tab);
-		free(str);
-	}
-	else if (k == 'x' || k == 'X')
-		ft_x(va_arg(ap, __uint32_t), k - 23, tab);
+	else if (format[i] == 'u')
+		ft_u(ap, tab);
+	else if (format[i] == 'x' || format[i] == 'X')
+		ft_x(va_arg(ap, __uint32_t), format[i] - 23, tab, 0);
 	else
 		return (FALSE);
 	return (TRUE);

@@ -6,7 +6,7 @@
 /*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 18:06:20 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/16 12:34:49 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/01/16 16:49:26 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ int			ft_printf(const char *restrict format, ...)
 }
 
 /*
+**	char : -127 / 126 | unsigned : 0 / 255
 **	int / long : -2147483648 / 2147483647 | unsigned : 0 / 4294967295
 **	short : -32768 / 32767 | unsigned : 0 / 65535
 **	long long : 9223372036854775807 / -9223372036854775808 |
@@ -97,10 +98,52 @@ int			ft_printf(const char *restrict format, ...)
 
 __int32_t	main(void)
 {
-	char	age;
+	unsigned long	age;
 
-	age = 125;
-	printf(   "Vrai: J'ai %.30hhd ans\n", age);
-	ft_printf("Mien: J'ai %.30hhd ans\n", age);
+	age = 4294967295;
+	printf(   "Vrai: J'ai %ld ans\n", age);
+	ft_printf("Mien: J'ai %ld ans\n", age);
+	printf(   "Vrai: J'ai %30ld ans\n", age);
+	ft_printf("Mien: J'ai %30ld ans\n", age);
+	printf(   "Vrai: J'ai %.25ld ans\n", age);
+	ft_printf("Mien: J'ai %.25ld ans\n", age);
+	printf(   "Vrai: J'ai %20.25ld ans\n", age);
+	ft_printf("Mien: J'ai %20.25ld ans\n", age);
+
+	printf(   "\nVrai: J'ai %li ans\n", age);
+	ft_printf("Mien: J'ai %li ans\n", age);
+	printf(   "Vrai: J'ai %30li ans\n", age);
+	ft_printf("Mien: J'ai %30li ans\n", age);
+	printf(   "Vrai: J'ai %.25li ans\n", age);
+	ft_printf("Mien: J'ai %.25li ans\n", age);
+	printf(   "Vrai: J'ai %20.25li ans\n", age);
+	ft_printf("Mien: J'ai %20.25li ans\n", age);
+
+	printf(   "\nVrai: J'ai %lo ans\n", age);
+	ft_printf("Mien: J'ai %lo ans\n", age);
+	printf(   "Vrai: J'ai %30lo ans\n", age);
+	ft_printf("Mien: J'ai %30lo ans\n", age);
+	printf(   "Vrai: J'ai %.25lo ans\n", age);
+	ft_printf("Mien: J'ai %.25lo ans\n", age);
+	printf(   "Vrai: J'ai %20.25lo ans\n", age);
+	ft_printf("Mien: J'ai %20.25lo ans\n", age);
+
+	printf(   "\nVrai: J'ai %lu ans\n", age);
+	ft_printf("Mien: J'ai %lu ans\n", age);
+	printf(   "Vrai: J'ai %30lu ans\n", age);
+	ft_printf("Mien: J'ai %30lu ans\n", age);
+	printf(   "Vrai: J'ai %.25lu ans\n", age);
+	ft_printf("Mien: J'ai %.25lu ans\n", age);
+	printf(   "Vrai: J'ai %20.25lu ans\n", age);
+	ft_printf("Mien: J'ai %20.25lu ans\n", age);
+
+	printf(   "\nVrai: J'ai %lx ans\n", age);
+	ft_printf("Mien: J'ai %lx ans\n", age);
+	printf(   "Vrai: J'ai %30lx ans\n", age);
+	ft_printf("Mien: J'ai %30lx ans\n", age);
+	printf(   "Vrai: J'ai %.25lx ans\n", age);
+	ft_printf("Mien: J'ai %.25lx ans\n", age);
+	printf(   "Vrai: J'ai %20.25lx ans\n", age);
+	ft_printf("Mien: J'ai %20.25lx ans\n", age);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 18:08:12 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/16 12:33:51 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/01/16 16:52:04 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void		ft_putstr(char *str, __int32_t *tab)
 		while (--tab[0] > (tab[1] + ft_strlen(str)))
 			ft_putchar(' ');
 		write(1, str, ft_strlen(str));
-		//write(1, str, tab[1]);
 	}
 }
 

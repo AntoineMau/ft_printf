@@ -6,7 +6,7 @@
 /*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 09:51:54 by anmauffr          #+#    #+#             */
-/*   Updated: 2019/01/16 12:25:55 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/01/16 15:47:02 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ void		ft_putnbr_float2(long double nbr);
 void		ft_putnbr_float_ld1(long double nbr, __int32_t *tab);
 void		ft_putnbr_float_ld2(long double nbr);
 __int32_t	ft_x_p(__int32_t nb, __int32_t *tab);
-__int32_t	ft_x(__uint32_t nb, __int32_t letter, __int32_t *tab);
+__int32_t	ft_x(__uint32_t nb, __int32_t letter, __int32_t *tab,
+	__int32_t i);
 __int32_t	ft_puthex_short(__uint16_t nb, __int32_t letter);
 __int32_t	ft_puthex_long(__uint64_t nb, __int32_t letter, __int32_t *tab);
 __int32_t	ft_strlen(char *str);
@@ -50,28 +51,30 @@ char		*ft_itoa_unsi(__uint32_t nb, char *str);
 char		*ft_itoa_float(__int64_t nb, char *str);
 char		*ft_preci_int(char *s1, char *s2);
 void		ft_memdel(char *str);
-
-//__int32_t	ft_printf_point(__int32_t *tab, va_list ap,
-//	const char *restrict format, __int32_t i);
 void		ft_c(__int32_t *tab, va_list ap);
 void		ft_u(va_list ap, __int32_t *tab);
 __int32_t	ft_hh(__int32_t *tab, va_list ap, const char *restrict format,
 	__int32_t i);
-__int32_t	ft_h(__int32_t *tab, va_list ap, __int8_t k);
+__int32_t	ft_h(__int32_t *tab, va_list ap, const char *restrict format,
+	__int32_t i);
 char		*ft_itoa_short(__int32_t nb, char *str);
 __int32_t	ft_ll(__int32_t *tab, va_list ap, const char *restrict format,
 	__int32_t i);
-__int32_t	ft_csp(__int32_t *tab, va_list ap, __int8_t k);
-__int32_t	ft_diouxx(__int32_t *tab, va_list ap, __int8_t k);
+__int32_t	ft_csp(__int32_t *tab, va_list ap, const char *restrict format,
+	__int32_t i);
+__int32_t	ft_diouxx(__int32_t *tab, va_list ap, const char *restrict format,
+	__int32_t i);
 __int32_t	ft_hhll(__int32_t *tab, va_list ap, const char *restrict format,
 	__int32_t i);
-__int32_t	ft_lhl(__int32_t *tab, va_list ap, __int8_t k);
+__int32_t	ft_lhl(__int32_t *tab, va_list ap, const char *restrict format,
+	__int32_t i);
 __int32_t	ft_cspdiouxxhhllhll(__int32_t *tab, va_list ap,
 	const char *restrict format, __int32_t i);
 __int32_t	ft_check_flag(const char *restrict format,
 	__int32_t i, __int32_t *tab, va_list ap);
 __int32_t	ft_strcmp(char *s1, char *s2);
 void		ft_d_i_(va_list ap, __int32_t *tab);
+void		ft_d_i_short(va_list ap, __int32_t *tab);
 void		ft_d_i_long(va_list ap, __int32_t *tab);
 char		*ft_itoa_unsi_long(__uint64_t nb, char *str);
 void		ft_u_long(va_list ap, __int32_t *tab);

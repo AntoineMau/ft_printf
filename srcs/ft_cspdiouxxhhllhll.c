@@ -6,13 +6,31 @@
 /*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 17:05:16 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/16 12:33:35 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/01/16 16:55:32 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_header.h>
 #include <stdarg.h>
 #include <stdlib.h>
+
+__int32_t	ft_atoi(const char *str)
+{
+	__uint8_t	i;
+	__int32_t	nb;
+	__uint8_t	neg;
+
+	i = 0;
+	while (str[i] == '\t' || str[i] == '\n' || str[i] == '\v' ||
+	str[i] == '\f' || str[i] == '\r' || str[i] == ' ')
+		i++;
+	neg = (str[i] == '-' ? -1 : 1);
+	str[i] == '-' || str[i] == '+' ? i++ : i;
+	nb = 0;
+	while (str[i] >= '0' && str[i] <= '9')
+		nb = nb * 10 + str[i++] - '0';
+	return (nb * neg);
+}
 
 __int32_t	ft_check_flag(const char *restrict format, __int32_t i,
 __int32_t *tab, va_list ap)
@@ -50,19 +68,20 @@ const char *restrict format, __int32_t i)
 	while (format[i] >= '0' && format[i] <= '9')
 		i++;
 	if (format[i] == 'c' || format[i] == 's' || format[i] == 'p')
-		ft_csp(tab, ap, format[i]);
+		ft_csp(tab, ap, format, i);
 	else if (format[i] == 'd' || format[i] == 'i' || format[i] == 'o'
 	|| format[i] == 'u' || format[i] == 'x' || format[i] == 'X')
-		ft_diouxx(tab, ap, format[i]);
+		ft_diouxx(tab, ap, format, i);
 	else if (format[i] == 'f')
 		ft_putnbr_float1(va_arg(ap, double), tab);
 	else if (format[i] == '%')
 		ft_putstr("%", tab);
-	else if (((format[i] == 'h' && format[i + 1] == 'h') || (format[i] == 'l' && format[i + 1] == 'l')) && (i++))
+	else if (((format[i] == 'h' && format[i + 1] == 'h') ||
+	(format[i] == 'l' && format[i + 1] == 'l')) && (i++))
 		ft_hhll(tab, ap, format, i);
 	else if ((format[i] == 'h' || format[i] == 'l'
-	|| format[i] == 'L') && i++)
-		ft_lhl(tab, ap, format[i]);
+	|| format[i] == 'L'))
+		ft_lhl(tab, ap, format, i);
 	else
 		return (FALSE);
 	return (i);

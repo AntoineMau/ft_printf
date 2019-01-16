@@ -6,7 +6,7 @@
 /*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 16:29:56 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/16 12:25:47 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/01/16 16:54:04 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,15 +53,15 @@ __int32_t	ft_x_p(__int32_t nb, __int32_t *tab)
 	return (TRUE);
 }
 
-__int32_t	ft_x(__uint32_t nb, __int32_t letter, __int32_t *tab)
+__int32_t	ft_x(__uint32_t nb, __int32_t letter, __int32_t *tab,
+__int32_t i)
 {
-	__int32_t	i;
 	char		*str;
 	char		*tmp;
 
 	if (!(str = (char*)malloc(sizeof(*str) * 9)))
 		return (FALSE);
-	if ((i = 0) && nb == 0)
+	if (nb == 0)
 		str[i++] = '0';
 	while (nb > 0)
 	{
@@ -78,7 +78,7 @@ __int32_t	ft_x(__uint32_t nb, __int32_t letter, __int32_t *tab)
 			ft_memdel(tmp);
 		}
 	ft_putstr(ft_strrev(str), tab);
-	free(str);
+	ft_memdel(str);
 	return (TRUE);
 }
 
@@ -119,15 +119,9 @@ __int32_t	ft_puthex_long(__uint64_t nb, __int32_t letter, __int32_t *tab)
 	i = 0;
 	if (nb == 0)
 		str[i++] = '0';
-	while (nb > 0)
-	{
-		if (nb % 16 < 10)
-			str[i] = nb % 16 + '0';
-		else
-			str[i] = nb % 16 + letter - 10;
-		nb /= 16;
-		i++;
-	}
+	nb *= 16;
+	while ((nb /= 16) && nb > 0)
+		str[i++] = nb % 16 < 10 ? nb % 16 + '0' : nb % 16 + letter - 10;
 	str[i] = '\0';
 	if (tab[1] > ft_strlen(str) && (tab[1] = tab[1] - ft_strlen(str)))
 		while (tab[1] > 0 && tab[1]--)

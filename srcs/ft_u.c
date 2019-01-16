@@ -6,7 +6,7 @@
 /*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 14:41:53 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/16 12:06:48 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/01/16 15:37:50 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@ void	ft_u(va_list ap, __int32_t *tab)
 		while (tab[1] > 0)
 		{
 			tmp = strdup(str);
-			if (ft_strcmp(str, "-2147483648") != 0)
-				ft_memdel(str);
+			ft_memdel(str);
 			str = ft_preci_int(tmp, "0\0");
 			ft_memdel(tmp);
 			tab[1]--;
