@@ -6,7 +6,7 @@
 /*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 18:08:12 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/16 16:52:04 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/01/16 18:38:38 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,16 @@ void		ft_putchar(__int8_t c)
 void		ft_putstr(char *str, __int32_t *tab)
 {
 	tab[0] = tab[0] > (tab[1] + ft_strlen(str)) ? tab[0] + 1 : tab[0];
-	if (tab[1] == -1 || tab[1] >= ft_strlen(str))
+	if (tab[1] == -1 || (tab[1] <= ft_strlen(str) && tab[6] != 1))
 	{
 		while (--tab[0] > ft_strlen(str))
-			ft_putchar(' ');
+			tab[6] == 1 && tab[1] == -1 ? ft_putchar('0') : ft_putchar(' ');
 		write(1, str, ft_strlen(str));
 	}
 	else
 	{
 		while (--tab[0] > (tab[1] + ft_strlen(str)))
-			ft_putchar(' ');
+			tab[6] == 1 && tab[1] == 0 ? ft_putchar('0') : ft_putchar(' ');
 		write(1, str, ft_strlen(str));
 	}
 }

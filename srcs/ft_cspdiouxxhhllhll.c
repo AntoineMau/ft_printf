@@ -6,7 +6,7 @@
 /*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 17:05:16 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/16 16:55:32 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/01/16 18:20:42 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,15 @@ __int32_t *tab, va_list ap)
 {
 	if (format[i] == '%' && i++)
 	{
+		if (format[i] == '0' && (i++))
+			tab[6] = 1;
+		while (format[i] == ' ')
+			i++;
+		tab[5] = format[i - 1] == ' ' ? 1 : 0;
 		if (format[i] == '-')
 			i++;
 		else if (format[i] == '+' && i++)
-			ft_putchar('+');
+			tab[3]++;
 		tab[0] = format[i] >= '0' && format[i] <= '9' ? ft_atoi(&format[i]) : 1;
 		while (format[i] >= '0' && format[i] <= '9')
 			i++;
