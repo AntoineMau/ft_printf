@@ -6,7 +6,7 @@
 /*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 18:06:20 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/15 16:42:05 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/01/16 12:34:49 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,18 +88,19 @@ int			ft_printf(const char *restrict format, ...)
 	return (TRUE);
 }
 
-/***
-	int / long : -2147483648 / 2147483647 | unsigned : 0 / 4294967295
-	short : -32768 / 32767 | unsigned : 0 / 65535
-	long long : 9223372036854775807 / -9223372036854775808 | unsigned : 0 / 18446744073709551615
-***/
+/*
+**	int / long : -2147483648 / 2147483647 | unsigned : 0 / 4294967295
+**	short : -32768 / 32767 | unsigned : 0 / 65535
+**	long long : 9223372036854775807 / -9223372036854775808 |
+**			unsigned : 0 / 18446744073709551615
+*/
 
 __int32_t	main(void)
 {
-	__uint64_t	age;
+	char	age;
 
-	age = 18446744073709551615UL;
-	printf(   "Vrai: J'ai %llu ans\n", age);
-	ft_printf("Mien: J'ai %llu ans\n", age);
+	age = 125;
+	printf(   "Vrai: J'ai %.30hhd ans\n", age);
+	ft_printf("Mien: J'ai %.30hhd ans\n", age);
 	return (0);
 }

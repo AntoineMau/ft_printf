@@ -6,7 +6,7 @@
 /*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 16:04:47 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/15 17:31:45 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/01/16 12:20:25 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,22 @@ void		ft_putnbr_long_unsi(__uint64_t nbr)
 	ft_putchar(nbr % 10 + '0');
 }
 
-__int32_t	ft_ll(__int32_t *tab, va_list ap, __int8_t k)
+__int32_t	ft_ll(__int32_t *tab, va_list ap, const char *restrict format,
+	__int32_t i)
 {
 	char	*str;
 	char	*tmp;
 
 	str = NULL;
 	tmp = NULL;
-	printf("Bonjour\n");
-	printf("Bonjour\n");
-	if (k == 'd' || k == 'i')
+	if (format[++i] == 'd' || format[i] == 'i')
 		ft_d_i_long(ap, tab);
-	else if (k == 'o')
+	else if (format[i] == 'o')
 		ft_putoct_long(va_arg(ap, __int64_t), tab);
-	else if (k == 'u')
+	else if (format[i] == 'u')
 		ft_u_long(ap, tab);
-	else if (k == 'x' || k == 'X')
-		ft_puthex_long(va_arg(ap, __int64_t), k - 23);
+	else if (format[i] == 'x' || format[i] == 'X')
+		ft_puthex_long(va_arg(ap, __int64_t), format[i] - 23, tab);
 	else
 		return (FALSE);
 	return (TRUE);

@@ -6,7 +6,7 @@
 /*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 16:29:56 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/15 16:37:07 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/01/16 12:25:47 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,11 +107,13 @@ __int32_t	ft_puthex_short(__uint16_t nb, __int32_t letter)
 	return (TRUE);
 }
 
-__int32_t	ft_puthex_long(__int64_t nb, __int32_t letter)
+__int32_t	ft_puthex_long(__uint64_t nb, __int32_t letter, __int32_t *tab)
 {
 	__int32_t	i;
 	char		*str;
+	char		*tmp;
 
+	tmp = NULL;
 	if (!(str = (char*)malloc(sizeof(*str) * 100)))
 		return (FALSE);
 	i = 0;
@@ -127,7 +129,14 @@ __int32_t	ft_puthex_long(__int64_t nb, __int32_t letter)
 		i++;
 	}
 	str[i] = '\0';
-	i = 0;
-	ft_putstr(ft_strrev(str), &i);
+	if (tab[1] > ft_strlen(str) && (tab[1] = tab[1] - ft_strlen(str)))
+		while (tab[1] > 0 && tab[1]--)
+		{
+			tmp = strdup(str);
+			ft_memdel(str);
+			str = ft_preci_int("0\0", tmp);
+			ft_memdel(tmp);
+		}
+	ft_putstr(ft_strrev(str), tab);
 	return (TRUE);
 }

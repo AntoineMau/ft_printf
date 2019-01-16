@@ -6,7 +6,7 @@
 /*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 17:05:16 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/15 16:39:32 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/01/16 12:33:35 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,8 @@ const char *restrict format, __int32_t i)
 		ft_putnbr_float1(va_arg(ap, double), tab);
 	else if (format[i] == '%')
 		ft_putstr("%", tab);
-	else if ((format[i] == 'h' && format[i + 1] == 'h') || (
-	(format[i] == 'l' && format[i + 1] == 'l') && (i++)))
-		ft_hhll(tab, ap, format[i]);
+	else if (((format[i] == 'h' && format[i + 1] == 'h') || (format[i] == 'l' && format[i + 1] == 'l')) && (i++))
+		ft_hhll(tab, ap, format, i);
 	else if ((format[i] == 'h' || format[i] == 'l'
 	|| format[i] == 'L') && i++)
 		ft_lhl(tab, ap, format[i]);
