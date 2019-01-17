@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_x.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 16:29:56 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/16 16:54:04 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/01/17 15:45:56 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ __int32_t i)
 		{
 			tmp = strdup(str);
 			ft_memdel(str);
-			str = ft_preci_int("0\0", tmp);
+			str = ft_j("0\0", tmp);
 			ft_memdel(tmp);
 		}
 	ft_putstr(ft_strrev(str), tab);
@@ -128,7 +128,7 @@ __int32_t	ft_puthex_long(__uint64_t nb, __int32_t letter, __int32_t *tab)
 		{
 			tmp = strdup(str);
 			ft_memdel(str);
-			str = ft_preci_int("0\0", tmp);
+			str = ft_j("0\0", tmp);
 			ft_memdel(tmp);
 		}
 	ft_putstr(ft_strrev(str), tab);

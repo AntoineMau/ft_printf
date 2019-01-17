@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 18:06:20 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/17 13:43:51 by judumay          ###   ########.fr       */
+/*   Updated: 2019/01/17 17:04:56 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void		ft_memdel(char *str)
 	str = NULL;
 }
 
-char		*ft_preci_int(char *s1, char *s2)
+char		*ft_j(char *s1, char *s2)
 {
 	__int32_t	i;
 	__int32_t	j;
@@ -84,7 +84,7 @@ int			ft_printf(const char *restrict format, ...)
 	i = -1;
 	while (format[++i])
 	{
-		tab[0] = 0;
+		CHAMP = 0;
 		i = ft_check_flag(format, i, tab, ap);
 	}
 	va_end(ap);
@@ -104,7 +104,24 @@ __int32_t	main(void)
 	int	age;
 
 	age = 4290;
-	printf(   "Vrai: J'ai %10.4s ans\n", "JULIEN"); //PB Str + PRECI // 0 et + interchangeable GO TEST // au lieu de putchar / go faire strjoin de str
-	ft_printf("Mien: J'ai %10.4s ans\n", "JULIEN");
+	printf(   "Vrai: J'ai %030d ans\n", age);
+	ft_printf("Mien: J'ai %030d ans\n", age);
+
+	//printf(   "Vrai: J'ai %++++0+31%10o ans\n");
+	//ft_printf("Mien: J'ai %++++0+31%10o ans\n\n");
+
+	/*printf(   "Vrai: J'ai %031o ans\n", age);
+	ft_printf("Mien: J'ai %031o ans\n\n", age);
+
+	printf(   "Vrai: J'ai %031u ans\n", age);
+	ft_printf("Mien: J'ai %031u ans\n\n", age);
+
+	printf(   "Vrai: J'ai %031x ans\n", age);
+	ft_printf("Mien: J'ai %031x ans\n\n", age);
+	
+	printf(   "Vrai: J'ai %031X ans\n", age);
+	ft_printf("Mien: J'ai %031X ans\n\n", age);*/
+	
+
 	return (0);
 }

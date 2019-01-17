@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 17:05:16 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/17 13:31:08 by judumay          ###   ########.fr       */
+/*   Updated: 2019/01/17 16:41:19 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ __int32_t *tab, va_list ap)
 {
 	if (format[i] == '%' && i++)
 	{
+		while (format[i] == '+' && i++)
+			tab[3] = 1;
 		if (format[i] == '0' && (i++))
 			tab[6] = 1;
 		while (format[i] == ' ')
@@ -44,9 +46,9 @@ __int32_t *tab, va_list ap)
 		tab[5] = format[i - 1] == ' ' ? 1 : 0;
 		if (format[i] == '-')
 			i++;
-		else if (format[i] == '+' && i++)
-			tab[3]++;
-		tab[0] = format[i] >= '0' && format[i] <= '9' ? ft_atoi(&format[i]) : 1;
+		while (format[i] == '+' && i++)
+			tab[3] = 1;
+		CHAMP = format[i] >= '0' && format[i] <= '9' ? ft_atoi(&format[i]) : 1;
 		while (format[i] >= '0' && format[i] <= '9')
 			i++;
 		i = ft_cspdiouxxhhllhll(tab, ap, format, i);
@@ -65,11 +67,17 @@ __int32_t *tab, va_list ap)
 __int32_t	ft_cspdiouxxhhllhll(__int32_t *tab, va_list ap,
 const char *restrict format, __int32_t i)
 {
-	if (format[i] == '.')
+	/*int j;
+
+	j = i - 1;
+	while (format[++j])
 	{
-		i++;
+		if (format[j] == '%' && ft_check_p(format[j + 1]))
+			tab[3] = 0;
+		break ;
+	}*/
+	if (format[i] == '.' && i++)
 		tab[6] = 0;
-	}
 	tab[1] = -1;
 	if (format[i] >= '0' && format[i] <= '9')
 		tab[1] = ft_atoi(&format[i]);

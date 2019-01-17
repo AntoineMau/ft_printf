@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_header.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 09:51:54 by anmauffr          #+#    #+#             */
-/*   Updated: 2019/01/16 15:47:02 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/01/17 16:32:09 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # define TRUE 1
 # define FALSE 0
-
+# define CHAMP tab[0]
 # include <stdio.h>
 # include <string.h>
 
@@ -49,7 +49,7 @@ char		*ft_itoa(__int32_t nb, char *str);
 char		*ft_itoa_long(__int64_t nb, char *str, __uint8_t unb);
 char		*ft_itoa_unsi(__uint32_t nb, char *str);
 char		*ft_itoa_float(__int64_t nb, char *str);
-char		*ft_preci_int(char *s1, char *s2);
+char		*ft_j(char *s1, char *s2);
 void		ft_memdel(char *str);
 void		ft_c(__int32_t *tab, va_list ap);
 void		ft_u(va_list ap, __int32_t *tab);
@@ -78,5 +78,7 @@ void		ft_d_i_short(va_list ap, __int32_t *tab);
 void		ft_d_i_long(va_list ap, __int32_t *tab);
 char		*ft_itoa_unsi_long(__uint64_t nb, char *str);
 void		ft_u_long(va_list ap, __int32_t *tab);
+void		ft_putstr_s(char *str, __int32_t *tab, __int32_t i);
+char		*ft_strjoin(char *s1, char *s2);
 
 #endif
