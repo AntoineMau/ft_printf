@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 18:06:20 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/17 13:43:01 by judumay          ###   ########.fr       */
+/*   Updated: 2019/01/17 13:43:51 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ __int32_t	main(void)
 	int	age;
 
 	age = 4290;
-	printf(   "Vrai: J'ai %10.4s ans\n", "JULIEN"); //PB Str + PRECI
+	printf(   "Vrai: J'ai %10.4s ans\n", "JULIEN"); //PB Str + PRECI // 0 et + interchangeable GO TEST // au lieu de putchar / go faire strjoin de str
 	ft_printf("Mien: J'ai %10.4s ans\n", "JULIEN");
 	return (0);
 }
