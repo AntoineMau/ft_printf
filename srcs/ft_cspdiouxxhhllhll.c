@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cspdiouxxhhllhll.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 17:05:16 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/16 18:20:42 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/01/17 13:31:08 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,10 @@ __int32_t	ft_cspdiouxxhhllhll(__int32_t *tab, va_list ap,
 const char *restrict format, __int32_t i)
 {
 	if (format[i] == '.')
+	{
 		i++;
+		tab[6] = 0;
+	}
 	tab[1] = -1;
 	if (format[i] >= '0' && format[i] <= '9')
 		tab[1] = ft_atoi(&format[i]);

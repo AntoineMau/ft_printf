@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 18:06:20 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/16 18:39:15 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/01/17 13:43:01 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ __int32_t	main(void)
 	int	age;
 
 	age = 4290;
-	printf(   "Vrai: J'ai %010.2d ans\n", age); //PB tab[6]
-	ft_printf("Mien: J'ai %010.2d ans\n", age);
+	printf(   "Vrai: J'ai %10.4s ans\n", "JULIEN"); //PB Str + PRECI
+	ft_printf("Mien: J'ai %10.4s ans\n", "JULIEN");
 	return (0);
 }
