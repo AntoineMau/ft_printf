@@ -1,26 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_hhll.c                                          :+:      :+:    :+:   */
+/*   printf.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/11 16:48:11 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/18 15:22:29 by anmauffr         ###   ########.fr       */
+/*   Created: 2019/01/18 15:23:25 by anmauffr          #+#    #+#             */
+/*   Updated: 2019/01/18 17:24:08 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_header.h>
-#include <stdarg.h>
+#ifndef PRINTF_H
+# define PRINTF_H
 
-__int32_t	ft_hhll(__int32_t *tab, va_list ap, const char *restrict format,
-	__int32_t i)
+# define TRUE 1
+# define FALSE 0
+
+# include <stdio.h>
+# include <string.h>
+
+typedef struct	s_printf
 {
-	if (format[i] == 'h')
-		ft_hh(tab, ap, format, i);
-	else if (format[i] == 'l')
-		ft_ll(tab, ap, format, i);
-	else
-		return (FALSE);
-	return (TRUE);
-}
+	__uint8_t	zero;
+	__uint8_t	plus;
+	__uint8_t	moins;
+	__uint8_t	espace;
+	__uint8_t	hash;
+	__int8_t	preci;
+	__uint8_t	champ;
+	__uint32_t	length;
+	char		*format;
+	va_list		ap;
+}				t_printf;
+
+#endif

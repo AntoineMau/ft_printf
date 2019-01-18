@@ -6,7 +6,7 @@
 /*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 10:40:33 by anmauffr          #+#    #+#             */
-/*   Updated: 2019/01/18 13:48:09 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/01/18 15:02:03 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,11 @@ int		ft_strlen(char *str)
 	return (i);
 }
 
+long long	carre(int puiss)
+{
+	return (0);
+}
+
 int		printg(double nbr)
 {
 	int		i;
@@ -92,42 +97,93 @@ int		printg(double nbr)
 
 	str = (char*)malloc(sizeof(*str) * 99);
 	str[0] = '\0';
-	count = 0;
-	while (nbr > 92233720368547758 && ++count)
-		nbr /= 10;
-	printf("\n%f test\n", nbr);
+	count = 11;
+	printf("nbr : %f origine nbr\n", nbr);
+	//while (nbr > 922337203685477580 && ++count)
+	nbr /= 10000000000;
+	printf("nbr : %f 1\n", nbr);
 	ft_strjoin(str, ft_lltoa((long long)nbr));
+	//printf("nbr : %f\tstr: %s\n", nbr, str);
 	nbr -= (long long int)nbr;
-	while (--count > 0)
-	{
-		nbr *= 10;
+	printf("nbr : %f 2\n", nbr);
+	//while (--count > 0)
+	//{
+		nbr *= 10000000000;
+	printf("nbr : %f 3\n", nbr);
 		ft_strjoin(str, ft_lltoa((long long int)nbr));
 		nbr -= (long long int)nbr;
-	}
+	printf("nbr : %f 4\n", nbr);
+	//}
 	ft_strjoin(str, ft_lltoa((long long int)nbr));
 	i = ft_strlen(str);
 	str[i] = '.';
-	while (count++ < 6)
-	{
-		nbr *= 10;
+	//while (count++ < 6)
+	//{
+	printf("nbr : %f 5\n", nbr);
+		nbr *= 1000000;
+	printf("nbr : %f 6\n", nbr);
 		ft_strjoin(str, ft_lltoa((long long int)nbr));
 		nbr -= (long long int)nbr;
-	}
+	printf("nbr : %f 7\n", nbr);
+	//}
 	write(1, str, ft_strlen(str));
 	return (ft_strlen(str));
 }
 
-/*
-** llong : -9223372036854775808 / 9223372036854775807
-** unsigned llong : 0 / 18446744073709551615
-*/
-
 int		main(void)
 {
-	double	nbr;
+	/*double	nbr;
 
-	nbr = 9223372036854775808.123456;
-	printf("%f\n", nbr);
-	printg(nbr);
+	nbr = 123456789012345678901234567890.123456;
+	//printf("%f\n", nbr);
+	printg(nbr);*/
+
+	int				i;
+	unsigned int	a;
+	unsigned int	som=1;
+	unsigned int	resultat;
+	int				machaine[32];
+	unsigned int	tableau[32];
+	unsigned int	*ptr_tmp = (unsigned int *)(&f);
+	float			f = 9223372036854775808.123456;
+
+	a = *ptr_tmp;
+	i = 0;
+	while(i < 32)
+	{
+		tableau[i++]=som;
+		som=som*2;
+	}
+	i = 0;
+	while(i <= 32)
+	{
+		resultat = a & tableau[i];
+		if(resultat == tableau[i])
+			machaine[i++] = 1;
+		else
+			machaine[i++] = 0;
+	}
+	fprintf(stdout,"nombre float en binaire est :");
+	i = 31;
+	while(i >= 0)
+		fprintf(stdout,"%d",machaine[i--]);
+	fprintf(stdout,"\n");
+	fprintf(stdout,"nombre f : %f\n",f );
+	fprintf(stdout,"nombre e : %e\n",f );
+	fprintf(stdout,"nombre g : %g\n",f );
 	return (0);
 }
+
+/*
+** char : -127 / 126
+** uchar : 0 / 255
+**
+** short : -32768 / 32767
+** ushort : 0 / 65535
+**
+** int | long : -2147483648 / 2147483647
+** uint | ulong : 0 / 4294967295
+**
+** llong : -9223372036854775808 / 9223372036854775807 19
+** ullong : 0 / 18446744073709551615
+*/
