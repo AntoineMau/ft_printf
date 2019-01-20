@@ -10,25 +10,28 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTF_H
+#ifndef PRINTF_H 
 # define PRINTF_H
 
 # define TRUE 1
 # define FALSE 0
 
+#include <stdarg.h>
+
 # include <stdio.h>
 # include <string.h>
+# include <stdint.h>
 
 typedef struct	s_printf
 {
-	__uint8_t	zero;
-	__uint8_t	plus;
-	__uint8_t	moins;
-	__uint8_t	espace;
-	__uint8_t	hash;
-	__int8_t	preci;
-	__uint8_t	champ;
-	__uint32_t	length;
+	uint16_t		zero;
+	uint16_t		plus;
+	uint16_t		minus;
+	uint16_t		space;
+	uint16_t		hash;
+	uint16_t		champ;
+	int16_t		preci;
+	uint32_t	length;
 	char		*format;
 	va_list		ap;
 }				t_printf;

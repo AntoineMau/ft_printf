@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <printf.h>
-#include <stdarg.h>
+#include "../includes/printf.h"
 
 /*
 char		*ft_flags(void)
@@ -40,11 +39,30 @@ char		*ft_flags(void)
 	return ((*flags)(args));
 }
 */
-void	ft_init(t_printf *p)
+
+int32_t		ft_atoi(char *str)
+{
+	uint8_t		i;
+	int32_t		nb;
+	uint8_t		neg;
+
+	i = 0;
+	while (str[i] == '\t' || str[i] == '\n' || str[i] == '\v' ||
+	str[i] == '\f' || str[i] == '\r' || str[i] == ' ')
+		i++;
+	neg = (str[i] == '-' ? -1 : 1);
+	str[i] == '-' || str[i] == '+' ? i++ : i;
+	nb = 0;
+	while (str[i] >= '0' && str[i] <= '9')
+		nb = nb * 10 + str[i++] - '0';
+	return (nb * neg);
+}
+
+void		ft_init(t_printf *p)
 {
 	p->plus = 0;
-	p->moins = 0;
-	p->espace = 0;
+	p->minus = 0;
+	p->space = 0;
 	p->hash = 0;
 	p->preci = -1;
 	p->champ = 0;
@@ -53,9 +71,9 @@ void	ft_init(t_printf *p)
 	p->format = 0;
 }
 
-__int8_t	ft_check(char *format)
+int32_t		ft_check(char *format)
 {
-	int			i;
+	int32_t		i;
 	t_printf	t;
 
 	i = -1;
@@ -64,23 +82,20 @@ __int8_t	ft_check(char *format)
 	while (t.format[++i])
 		if (t.format[i] == '%' && i++)
 		{
-			while (t.format[i] && (t.format[i] == '+' || t.format[i] == '-' ||
-			t.format[i] == ' '))
+			while (t.format[i] == '+' || t.format[i] == '-' ||
+			t.format[i] == ' ')
 			{
-				t.format[i] == ' ' ? t.espace = 1 : 0;
-				t.format[i] == '-' ? t.moins = 1 : 0;
-				if (t.format[i] == '+' && (t.espace = 0))
-					t.plus = 1;
+				t.space = t.format[i] == ' ' && t.plus == 0 ? 1 : 0;
+				t.format[i] == '-' ? t.minus = 1 : 0;
+				t.format[i] == '+' ? t.plus = 1 : 0;
 				i++;
 			}
-			while (t.format[i] && (t.format[i] >= '0' && t.format[i] <= '9'))
-			{
-				t.champ++;
+			t.format[i] >= '0' && t.format[i] <= '9' ? t.champ = ft_atoi(&t.format[i]) : 0;
+			while (t.format[i] >= '0' && t.format[i] <= '9')
 				i++;
-			}
-			if (t.format[i] == '.' && !(t.preci = 0))
-				while (t.format[++i] >= '0' && t.format[i] <= '9')
-					t.preci++;
+			if (t.format[i] == '.' && (t.preci = ft_atoi(&t.format[++i])))
+				while (t.format[i] >= '0' && t.format[i] <= '9')
+					i++;
 			if ((t.format[i] == 'l' || t.format[i] == 'h' || t.format[i] == 'L'))
 				i++;
 			if ((t.format[i] == 'l' || t.format[i] == 'h') && t.format[i - 1] != 'L')
@@ -94,9 +109,13 @@ __int8_t	ft_check(char *format)
 			else if (t.format[i] == 'f' && (format[i - 1] != 'h' || (format[i - 1] == 'l' && format[i - 2] != 'l')))
 				;
 			else
-				return (printf("FAILED\n"));
+			{
+				printf("FAILED\n");
+				return (FALSE);
+			}
 		}
-	return (printf("WIN\n"));
+	printf("WIN\n");
+	return (TRUE);
 }
 
 int			ft_printf(const char *restrict format, ...)
@@ -114,15 +133,13 @@ int			ft_printf(const char *restrict format, ...)
 		p.format++;
 	}
 	va_end(p.ap);
-	//printf("plus: %d\nmoins: %d\nspace: %d\nhash: %d\npreci: %d\nchamp: %d\n zero: %d\n",
-	//p.plus, p.moins, p.espace, p.hash, p.preci, p.champ, p.zero);
 	return (p.length);
 }
 
 int		main(void)
 {
 	printf("Bonjour: %++++++++++10.25dhhh\n", 25);
-	ft_printf("vrain: %++++++++++10.25dhh");
+	ft_printf("vrai: %++++++++++10.25d%hhd");
 	return (0);
 }
 
