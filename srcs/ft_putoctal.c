@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putoctal.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 18:07:51 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/18 15:22:29 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/01/21 08:47:10 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ __int32_t	ft_putoct_long(__uint64_t nb, __int32_t *tab)
 	if (tab[1] > ft_strlen(str) && (tab[1] = tab[1] - ft_strlen(str)))
 		while (tab[1] > 0 && tab[1]--)
 		{
-			tmp = ft_j("0\0", str);
+			tmp = ft_j("0", str);
 			ft_memdel(str);
 			str = strdup(tmp);
 			ft_memdel(tmp);

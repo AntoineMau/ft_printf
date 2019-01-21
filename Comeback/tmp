@@ -7,6 +7,5 @@
 #rm -f a.out
 #rm -rf a.out.dSYM
 
-rm -f a.exe
+rm -f a.out
 gcc -g -I ../includes/. *.c
-./a.exe

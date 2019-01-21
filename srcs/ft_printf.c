@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 18:06:20 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/18 15:22:29 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/01/21 09:47:10 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,6 @@ char		*ft_itoa_float(__int64_t nb, char *str)
 		str[i++] = '-';
 	str[i] = '\0';
 	return (ft_strrev(str));
-}
-
-void		ft_memdel(char *str)
-{
-	free(str);
-	str = NULL;
 }
 
 char		*ft_j(char *s1, char *s2)
