@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_printf_conv.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/23 12:05:53 by anmauffr          #+#    #+#             */
-/*   Updated: 2019/01/23 12:05:53 by anmauffr         ###   ########.fr       */
+/*   Created: 2019/01/23 12:04:24 by anmauffr          #+#    #+#             */
+/*   Updated: 2019/01/23 12:04:25 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "ftprintf.h"
 
-int		ft_printf(char *format, ...)
+t_printf		*ft_printf_conv(t_printf *p)
 {
-	t_printf		*p;
-	int				ret;
+	int		i;
 
-	p = NULL;
-	ret = 0;
-	if (!format || !(p = init_t_printf(p)))
-		return (-1);
-	va_start(p->ap, format);
-	//ft_check();s
-	ft_printf_display(p, format);
-	va_end(p->ap);
-	ret = p->ret;
-	if (p->error == 1)
-		ret = -1;
-	reset_t_printf(p);
-	del_t_printf(p);
-	return (ret);
+	i = 0;
+	while (i < 9 && !p->error)
+		p = p->tab_ptr[i++](p);
+	return (p);
 }

@@ -6,10 +6,11 @@
 /*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 10:40:33 by anmauffr          #+#    #+#             */
-/*   Updated: 2019/01/18 15:02:03 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/01/23 11:55:55 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
@@ -129,23 +130,56 @@ int		printg(double nbr)
 	write(1, str, ft_strlen(str));
 	return (ft_strlen(str));
 }
+#include <stdio.h>
+#include <string.h>
+#include <limits.h>
+#include <math.h>
+#include <assert.h>
 
 int		main(void)
 {
-	/*double	nbr;
+	double	x;
 
-	nbr = 123456789012345678901234567890.123456;
+	x = 123456789012345678901234567890.123456;
 	//printf("%f\n", nbr);
-	printg(nbr);*/
+	//printg(nbr);
+    union {
+        double x;
+        char c[sizeof(double)];
+    } u;
+
+    assert(sizeof(char) == 1);
+
+    u.x = x;
+
+    for (unsigned ofs = 0; ofs < sizeof(double); ofs++) {
+        for(int i = 7; i >= 0; i--) {
+            printf(((1 << i) & u.c[ofs]) ? "1" : "0");
+        }
+        printf(" ");
+    }
+
+	char base_bin[]="0100010111111000111011101001000011111111011011000011011100111110";
+	double d2=0;
+	int size = (int)strlen((const char*)base_bin);
+ 
+	for(int pos=size; pos>0; pos--)
+	{
+		if(base_bin[pos-1] == '1')
+			d2+=pow(2,size-pos);
+	}
+ 
+	 printf("\nd2 : %f", d2);
+	return 0;
 
 	int				i;
 	unsigned int	a;
 	unsigned int	som=1;
 	unsigned int	resultat;
-	int				machaine[32];
+	char				machaine[33];
 	unsigned int	tableau[32];
+	float			f = 922337203685477123456789123456789.1234564565554545;
 	unsigned int	*ptr_tmp = (unsigned int *)(&f);
-	float			f = 9223372036854775808.123456;
 
 	a = *ptr_tmp;
 	i = 0;
@@ -159,14 +193,14 @@ int		main(void)
 	{
 		resultat = a & tableau[i];
 		if(resultat == tableau[i])
-			machaine[i++] = 1;
+			machaine[i++] = '1';
 		else
-			machaine[i++] = 0;
+			machaine[i++] = '0';
 	}
 	fprintf(stdout,"nombre float en binaire est :");
 	i = 31;
 	while(i >= 0)
-		fprintf(stdout,"%d",machaine[i--]);
+		fprintf(stdout,"%c",machaine[i--]);
 	fprintf(stdout,"\n");
 	fprintf(stdout,"nombre f : %f\n",f );
 	fprintf(stdout,"nombre e : %e\n",f );
@@ -187,3 +221,69 @@ int		main(void)
 ** llong : -9223372036854775808 / 9223372036854775807 19
 ** ullong : 0 / 18446744073709551615
 */
+
+/*
+#include	<stdio.h>
+float bintofloat(unsigned int x) {
+    union {
+        unsigned int  x;
+        float  f;
+    } temp;
+    temp.x = x;
+    return temp.f;
+}
+
+#include <stdio.h>
+ 
+int main()
+{
+	double	nbr;
+
+	nbr = 123456789012345678901234567890.123456;
+	printf("%f\n", nbr);
+	printg(nbr);
+
+	int				i;
+	unsigned int	b;
+	unsigned int	som=1;
+	unsigned int	resultat;
+	char 			machaine[33];
+	unsigned int	tableau[32];
+	double			f = 9223372036854.123456456;
+	unsigned int	*ptr_tmp = (unsigned int *)(&f);
+
+	b = *ptr_tmp;
+	i = 0;
+	while(i < 32)
+	{
+		tableau[i++]=som;
+		som=som*2;
+	}
+	i = 0;
+	while(i <= 32)
+	{
+		resultat = b & tableau[i];
+		if(resultat == tableau[i])
+			machaine[i++] = '1' ;
+		else
+			machaine[i++] = '0';
+	}
+	fprintf(stdout,"nombre float en binaire est :");
+	i = 31;
+	while(i >= 0)
+		fprintf(stdout,"%c",machaine[i--]);
+	fprintf(stdout,"\n");
+	ft_strrev(machaine);
+	char *a = machaine;
+	int num = 0;
+	do {
+		int b = *a=='1'?1:0;
+		num = (num<<1)|b;
+		a++;
+	} while (*a);
+	printf("%X\n", num);
+
+    float fe = bintofloat(num);
+    printf ("\nf = %f ", fe);  
+    return 0;
+}*/
