@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_f.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 12:04:45 by anmauffr          #+#    #+#             */
-/*   Updated: 2019/01/23 12:04:46 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/01/23 15:16:44 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,13 +111,50 @@ static t_printf		*ft_printf_f_flags(t_printf *p, long long tmp)
 	return (p);
 }
 
+char	*ft_binaire(double i)
+{
+	char *bin;
+	bin = NULL;
+	i = 0;
+	return (bin);
+}
+
+char	*ft_hexa()
+{
+	char a[65] = "0100000000110101000000000000000000000000000000000000000000000000";
+	char *hexa;
+	hexa = a;
+	int num = 0;
+	do{
+		int b = *hexa=='1'?1:0;
+		num = (num<<1)|b;
+		hexa++;
+	} while (*hexa);
+	printf("%X\n", num);
+
+	return (hexa);
+}
+
+char	*ft_hexatoa(char *hexa)
+{
+	char *str;
+
+	str = hexa;
+	return (str);
+}
+
 char	*ft_convert_float(double i)
 {
-	char	*str;
-
-	str = NULL;
+	//char	*str;
+	//char	*bin;
+	char	*hexa;
 	i = 0;
-	return (str);
+
+	//bin = ft_binaire(i);
+	hexa = ft_hexa();
+	printf("hexa : %s", hexa);
+	//str = ft_hexatoa(hexa);
+	return (hexa);
 }
 
 t_printf			*ft_printf_f(t_printf *p)

@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_conv.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 12:04:24 by anmauffr          #+#    #+#             */
-/*   Updated: 2019/01/23 12:04:25 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/01/23 15:11:28 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "ftprintf.h"
 
