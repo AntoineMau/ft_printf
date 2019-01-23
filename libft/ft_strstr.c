@@ -3,28 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapandel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/04 08:12:14 by mapandel          #+#    #+#             */
-/*   Updated: 2016/12/26 23:10:27 by mapandel         ###   ########.fr       */
+/*   Created: 2018/11/05 17:17:48 by judumay           #+#    #+#             */
+/*   Updated: 2019/01/23 12:37:13 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strstr(const char *big, const char *little)
+char	*ft_strstr(const char *haystack, const char *needle)
 {
-	size_t len;
+	size_t	i;
+	char	*str;
 
-	len = 0;
-	if (!*little)
-		return ((char*)(unsigned long)big);
-	len = ft_strlen(little);
-	while (*big)
+	if (*needle == '\0')
+		return ((char*)haystack);
+	i = ft_strlen(needle);
+	str = (char*)haystack;
+	while (*str)
 	{
-		if (*big == *little && !(ft_memcmp(big, little, len)))
-			return ((char*)(unsigned long)big);
-		++big;
+		if (ft_memcmp(str, needle, i) == 0)
+			return (str);
+		str++;
 	}
 	return (NULL);
 }

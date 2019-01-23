@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isblank.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapandel <mapandel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/06 16:38:10 by mapandel          #+#    #+#             */
-/*   Updated: 2016/12/26 13:13:05 by mapandel         ###   ########.fr       */
+/*   Created: 2018/11/15 17:45:52 by judumay           #+#    #+#             */
+/*   Updated: 2019/01/23 12:37:13 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		ft_isblank(int c)
 {
-	if (c == ' ' || c == 9)
+	if (c == ' ' || c == '\t')
 		return (1);
 	return (0);
 }

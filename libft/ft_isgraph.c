@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isgraph.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapandel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/06 16:58:52 by mapandel          #+#    #+#             */
-/*   Updated: 2016/12/26 14:18:13 by mapandel         ###   ########.fr       */
+/*   Created: 2018/11/15 18:03:13 by judumay           #+#    #+#             */
+/*   Updated: 2019/01/23 12:37:13 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		ft_isgraph(int c)
 {
-	if (ft_isprint(c) || c == ' ')
+	if (c >= '!' && c <= '~')
 		return (1);
 	return (0);
 }

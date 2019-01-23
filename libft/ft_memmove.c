@@ -3,40 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapandel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/04 05:40:58 by mapandel          #+#    #+#             */
-/*   Updated: 2016/11/15 16:17:04 by mapandel         ###   ########.fr       */
+/*   Created: 2018/11/05 17:33:42 by judumay           #+#    #+#             */
+/*   Updated: 2019/01/23 12:37:13 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dest, const void *src, size_t n)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	void	*result;
+	size_t	i;
+	char	*ptrd;
+	char	*ptrs;
 
-	result = dest;
-	if ((((char*)dest >= (char*)(unsigned long)src + n)) ||
-		(char*)dest <= (char*)(unsigned long)src)
+	ptrd = (char*)dst;
+	ptrs = (char*)src;
+	i = 0;
+	if (dst < src)
 	{
-		while (n--)
+		while (i < len)
 		{
-			*(char*)dest = *(char*)(unsigned long)src;
-			dest = (char*)dest + 1;
-			src = (char*)(unsigned long)src + 1;
+			ptrd[i] = ptrs[i];
+			i++;
 		}
 	}
 	else
-	{
-		dest = (char*)dest + n - 1;
-		src = (char*)(unsigned long)src + n - 1;
-		while (n--)
+		while (len--)
 		{
-			*(char*)dest = *(char*)(unsigned long)src;
-			dest = (char*)dest - 1;
-			src = (char*)(unsigned long)src - 1;
+			ptrd[len] = ptrs[len];
 		}
-	}
-	return (result);
+	return (dst);
 }

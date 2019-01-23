@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putwendl.c                                      :+:      :+:    :+:   */
+/*   ft_putendlerr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapandel <mapandel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/17 23:10:04 by mapandel          #+#    #+#             */
-/*   Updated: 2017/04/17 23:14:44 by mapandel         ###   ########.fr       */
+/*   Created: 2018/11/14 11:17:07 by judumay           #+#    #+#             */
+/*   Updated: 2019/01/23 12:37:13 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putwendl(wchar_t const *ws)
+void	ft_putendlerr(char *str)
 {
-	if (ws)
-		ft_putwstr(ws);
-	write(1, "\n", 1);
+	ft_putendl_fd(str, 2);
 }

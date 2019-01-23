@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_iscntrl.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapandel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/06 16:56:06 by mapandel          #+#    #+#             */
-/*   Updated: 2016/12/26 13:14:12 by mapandel         ###   ########.fr       */
+/*   Created: 2018/11/15 17:59:28 by judumay           #+#    #+#             */
+/*   Updated: 2019/01/23 12:37:13 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_iscntrl(int c)
+int	ft_iscntrl(int c)
 {
-	if (!ft_isprint(c))
+	if ((c >= 0 && c <= 31) || c == 127)
 		return (1);
 	return (0);
 }

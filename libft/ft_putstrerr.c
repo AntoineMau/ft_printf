@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_islessinf.c                                     :+:      :+:    :+:   */
+/*   ft_putstrerr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapandel <mapandel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/27 17:23:52 by mapandel          #+#    #+#             */
-/*   Updated: 2017/02/27 22:37:42 by mapandel         ###   ########.fr       */
+/*   Created: 2018/11/14 11:07:35 by judumay           #+#    #+#             */
+/*   Updated: 2019/01/23 12:37:13 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_islessinf(double f)
+void	ft_putstrerr(char *str)
 {
-	if (f >= -1 / 0.0 && f <= -1 / 0.0)
-		return (1);
-	return (0);
+	ft_putstr_fd(str, 2);
 }

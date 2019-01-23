@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ispunct.c                                       :+:      :+:    :+:   */
+/*   ft_putnbrerr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapandel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/06 17:05:23 by mapandel          #+#    #+#             */
-/*   Updated: 2016/12/26 14:21:12 by mapandel         ###   ########.fr       */
+/*   Created: 2018/11/14 11:07:43 by judumay           #+#    #+#             */
+/*   Updated: 2019/01/23 12:37:13 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_ispunct(int c)
+void	ft_putnbrerr(int nb)
 {
-	if (!ft_isalnum(c) && ft_isgraph(c))
-		return (1);
-	return (0);
+	ft_putnbr_fd(nb, 2);
 }

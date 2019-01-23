@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapandel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/04 08:05:39 by mapandel          #+#    #+#             */
-/*   Updated: 2016/11/09 18:26:00 by mapandel         ###   ########.fr       */
+/*   Created: 2018/11/05 17:17:20 by judumay           #+#    #+#             */
+/*   Updated: 2019/01/23 12:37:13 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,12 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	char	*scpy;
+	size_t	i;
 
-	scpy = (char*)(unsigned long)s;
-	while (*scpy)
-		++scpy;
-	while (scpy != s && *scpy != c)
-		--scpy;
-	if (*scpy == c)
-		return (scpy);
+	i = ft_strlen(s);
+	while ((s[i] != (char)c) && i)
+		i--;
+	if (s[i] == (char)c)
+		return ((char*)(s + i));
 	return (NULL);
 }

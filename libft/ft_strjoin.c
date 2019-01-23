@@ -3,29 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapandel <mapandel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/06 19:17:29 by mapandel          #+#    #+#             */
-/*   Updated: 2016/12/26 23:47:10 by mapandel         ###   ########.fr       */
+/*   Created: 2018/11/05 17:22:33 by judumay           #+#    #+#             */
+/*   Updated: 2019/01/23 12:37:13 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t		len;
-	char		*result;
+	int		i;
+	char	*str;
 
-	len = 0;
-	result = NULL;
 	if (!s1 || !s2)
 		return (NULL);
-	len = ft_strlen(s1);
-	len += ft_strlen(s2);
-	if (!(result = ft_strnew(len)))
+	if (!(str = (char*)malloc(sizeof(char) * (ft_strlen(s1) +
+						ft_strlen(s2) + 1))))
 		return (NULL);
-	result = ft_strcpy(result, s1);
-	result = ft_strcat(result, s2);
-	return (result);
+	i = -1;
+	while (*s1)
+		str[++i] = *s1++;
+	while (*s2)
+		str[++i] = *s2++;
+	str[++i] = '\0';
+	return (str);
 }

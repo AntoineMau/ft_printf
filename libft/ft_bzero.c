@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapandel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/04 04:10:09 by mapandel          #+#    #+#             */
-/*   Updated: 2016/12/26 13:10:13 by mapandel         ###   ########.fr       */
+/*   Created: 2018/11/05 17:05:32 by judumay           #+#    #+#             */
+/*   Updated: 2019/01/23 12:37:13 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,7 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	unsigned char	*bus;
-	size_t			i;
-
-	i = 0;
-	bus = s;
-	while (i < n)
-		bus[i++] = 0;
+	if (n == 0)
+		return ;
+	ft_memset(s, 0, n);
 }

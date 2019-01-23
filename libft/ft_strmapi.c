@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapandel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/06 18:31:15 by mapandel          #+#    #+#             */
-/*   Updated: 2016/12/27 00:03:30 by mapandel         ###   ########.fr       */
+/*   Created: 2018/11/05 17:20:35 by judumay           #+#    #+#             */
+/*   Updated: 2019/01/23 12:37:13 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,22 @@
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	unsigned int	i;
-	char			*scpy;
-	char			*result;
+	char			*snew;
+	size_t			i;
+	unsigned int	j;
 
-	i = 0;
-	scpy = NULL;
-	result = NULL;
-	if (!s || !f || !(scpy = ft_strdup(s))
-		|| !(result = ft_strnew(ft_strlen(scpy))))
+	if (!s)
 		return (NULL);
-	while (i < ft_strlen(scpy))
+	if (!(snew = (char*)malloc(sizeof(char) * (ft_strlen(s) + 1))))
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (s[i])
 	{
-		result[i] = f(i, scpy[i]);
+		snew[i] = f(j, s[i]);
 		i++;
+		j++;
 	}
-	return (result);
+	snew[i] = '\0';
+	return (snew);
 }

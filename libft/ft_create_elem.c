@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_wstrfill.c                                      :+:      :+:    :+:   */
+/*   ft_create_elem.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapandel <mapandel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/18 05:01:48 by mapandel          #+#    #+#             */
-/*   Updated: 2017/04/18 05:04:15 by mapandel         ###   ########.fr       */
+/*   Created: 2018/11/26 21:26:45 by judumay           #+#    #+#             */
+/*   Updated: 2019/01/23 12:37:13 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "libft.h"
 
-wchar_t			*ft_wstrfill(wchar_t *ws, wchar_t wc, size_t size)
+t_list	*ft_create_elem(void *data)
 {
-	size_t		i;
+	t_list	*elem;
 
-	i = 0;
-	while (ws && i < size)
-		ws[i++] = wc;
-	return (ws);
+	elem = malloc(sizeof(t_list));
+	if (elem)
+	{
+		elem->content = data;
+		elem->next = NULL;
+	}
+	return (elem);
 }

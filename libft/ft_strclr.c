@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strclr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapandel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/06 18:05:24 by mapandel          #+#    #+#             */
-/*   Updated: 2016/12/26 15:56:45 by mapandel         ###   ########.fr       */
+/*   Created: 2018/11/05 17:32:24 by judumay           #+#    #+#             */
+/*   Updated: 2019/01/23 12:37:13 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,6 @@
 
 void	ft_strclr(char *s)
 {
-	size_t i;
-
-	i = 0;
-	while (s && s[i])
-	{
-		s[i] = '\0';
-		++i;
-	}
+	if (s != NULL)
+		ft_bzero(s, ft_strlen(s));
 }

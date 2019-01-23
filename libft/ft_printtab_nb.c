@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strccat.c                                       :+:      :+:    :+:   */
+/*   ft_printtab_nb.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapandel <mapandel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/26 12:36:12 by mapandel          #+#    #+#             */
-/*   Updated: 2016/12/26 15:49:16 by mapandel         ###   ########.fr       */
+/*   Created: 2018/11/15 18:17:04 by judumay           #+#    #+#             */
+/*   Updated: 2019/01/23 12:37:13 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strccat(char *dest, const char *src, char c)
+void	ft_printtab_nb(int *tab, int len)
 {
-	size_t i;
-	size_t j;
+	int i;
 
 	i = 0;
-	j = 0;
-	while (dest[i])
-		++i;
-	while (src[j] && src[j] != c)
-		dest[i++] = src[j++];
-	dest[i] = '\0';
-	return (dest);
+	if (!tab)
+		return ;
+	while (i < len)
+	{
+		ft_putnbr(tab[i++]);
+		ft_putchar('\n');
+	}
 }

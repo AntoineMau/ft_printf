@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapandel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/06 21:44:41 by mapandel          #+#    #+#             */
-/*   Updated: 2016/11/15 17:03:00 by mapandel         ###   ########.fr       */
+/*   Created: 2018/11/05 17:33:26 by judumay           #+#    #+#             */
+/*   Updated: 2019/01/23 12:37:13 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	ft_putstr_fd(char const *s, int fd)
 {
-	if (s != NULL)
-		write(fd, s, ft_strlen(s));
+	if (!s || !fd)
+		return ;
+	write(fd, s, ft_strlen(s));
 }

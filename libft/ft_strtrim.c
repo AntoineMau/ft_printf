@@ -3,34 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapandel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/06 19:33:53 by mapandel          #+#    #+#             */
-/*   Updated: 2016/12/26 23:06:57 by mapandel         ###   ########.fr       */
+/*   Created: 2018/11/05 17:15:54 by judumay           #+#    #+#             */
+/*   Updated: 2019/01/23 12:37:13 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
-char	*ft_strtrim(const char *s)
+char	*ft_strtrim(char const *s)
 {
-	size_t		i;
-	char		*ret;
+	int		i;
+	int		len;
+	char	*str;
 
+	i = 0;
 	if (!s)
 		return (NULL);
-	while (*s && (*s == ' ' || *s == '\n' || *s == '\t'))
-		++s;
-	if (!(*s))
-		return (ft_strnew(0));
-	i = ft_strlen(s) - 1;
-	while (i && (s[i] == ' ' || s[i] == '\n' || s[i] == '\t'))
-		--i;
-	if (i == 0 && (s[i] == ' ' || s[i] == '\n' || s[i] == '\t'))
-		return (NULL);
-	++i;
-	if (!(ret = ft_strnew(i)))
-		return (NULL);
-	ft_strncpy(ret, s, i);
-	return (ret);
+	len = ft_strlen(s);
+	while (s[len - 1] == ' ' || s[len - 1] == '\n' || s[len - 1] == '\t')
+		len--;
+	while (s[i] == ' ' || s[i] == '\n' || s[i] == '\t')
+	{
+		i++;
+		len--;
+	}
+	if (len < 0)
+		len = 0;
+	str = ft_strsub(s, i, len);
+	return (str);
 }
