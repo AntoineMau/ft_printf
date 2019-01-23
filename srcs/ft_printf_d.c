@@ -12,25 +12,25 @@
 
 #include "ftprintf.h"
 
-static long long	ft_printf_d_get_arg(t_printf *p)
+static __int64_t	ft_printf_d_get_arg(t_printf *p)
 {
-	long long		ret;
+	__int64_t		ret;
 
 	ret = 0;
 	if (p->modifier == FT_PRINTF_NO_MODIFIERS)
-		ret = va_arg(p->ap, int);
+		ret = va_arg(p->ap, __int32_t);
 	else if (p->modifier == FT_PRINTF_H)
-		ret = (long long)(short)va_arg(p->ap, int);
+		ret = (__int64_t)(__int16_t)va_arg(p->ap, __int32_t);
 	else if (p->modifier == FT_PRINTF_HH)
-		ret = (long long)(signed char)va_arg(p->ap, int);
+		ret = (__int64_t)(__uint8_t)va_arg(p->ap, __int32_t);
 	else if (p->modifier == FT_PRINTF_L)
 		ret = va_arg(p->ap, long);
 	else if (p->modifier == FT_PRINTF_LL)
-		ret = va_arg(p->ap, long long);
+		ret = va_arg(p->ap, __int64_t);
 	return (ret);
 }
 
-static t_printf		*ft_printf_d_precision(t_printf *p, long long tmp)
+static t_printf		*ft_printf_d_precision(t_printf *p, __int64_t tmp)
 {
 	size_t		tmp2;
 	char		*str;
@@ -59,7 +59,7 @@ static t_printf		*ft_printf_d_precision(t_printf *p, long long tmp)
 	return (p);
 }
 
-static t_printf		*ft_printf_d_champ(t_printf *p, long long nbr)
+static t_printf		*ft_printf_d_champ(t_printf *p, __int64_t nbr)
 {
 	size_t		tmp;
 	char		*str;
@@ -88,7 +88,7 @@ static t_printf		*ft_printf_d_champ(t_printf *p, long long nbr)
 	return (p);
 }
 
-static t_printf		*ft_printf_d_flags(t_printf *p, long long tmp)
+static t_printf		*ft_printf_d_flags(t_printf *p, __int64_t tmp)
 {
 	char		*str;
 	char		*buf;
@@ -117,7 +117,7 @@ static t_printf		*ft_printf_d_flags(t_printf *p, long long tmp)
 
 t_printf			*ft_printf_d(t_printf *p)
 {
-	long long		tmp;
+	__int64_t		tmp;
 
 	if (!(p->conv == FT_PRINTF_D))
 		return (p);

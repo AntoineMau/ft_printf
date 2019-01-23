@@ -12,7 +12,7 @@
 
 #include "ftprintf.h"
 
-static long long	ft_printf_f_get_arg(t_printf *p)
+static __int64_t	ft_printf_f_get_arg(t_printf *p)
 {
 	double	ret;
 
@@ -26,7 +26,7 @@ static long long	ft_printf_f_get_arg(t_printf *p)
 	return (ret);
 }
 
-static t_printf		*ft_printf_f_precision(t_printf *p, long long tmp)
+static t_printf		*ft_printf_f_precision(t_printf *p, __int64_t tmp)
 {
 	size_t		tmp2;
 	char		*str;
@@ -55,7 +55,7 @@ static t_printf		*ft_printf_f_precision(t_printf *p, long long tmp)
 	return (p);
 }
 
-static t_printf		*ft_printf_f_champ(t_printf *p, long long nbr)
+static t_printf		*ft_printf_f_champ(t_printf *p, __int64_t nbr)
 {
 	size_t		tmp;
 	char		*str;
@@ -84,7 +84,7 @@ static t_printf		*ft_printf_f_champ(t_printf *p, long long nbr)
 	return (p);
 }
 
-static t_printf		*ft_printf_f_flags(t_printf *p, long long tmp)
+static t_printf		*ft_printf_f_flags(t_printf *p, __int64_t tmp)
 {
 	char		*str;
 	char		*buf;
@@ -159,7 +159,7 @@ char	*ft_convert_float(double i)
 
 t_printf			*ft_printf_f(t_printf *p)
 {
-	long long		tmp;
+	__int64_t	tmp;
 
 	if (!(p->conv == FT_PRINTF_F))
 		return (p);

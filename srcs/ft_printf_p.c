@@ -12,16 +12,15 @@
 
 #include "ftprintf.h"
 
-static unsigned long long	ft_printf_p_get_arg(t_printf *p)
+static __uint64_t	ft_printf_p_get_arg(t_printf *p)
 {
-	unsigned long long		ret;
+	__uint64_t		ret;
 
-	ret = (unsigned long long)va_arg(p->ap, void*);
+	ret = (__uint64_t)va_arg(p->ap, void*);
 	return (ret);
 }
 
-static t_printf				*ft_printf_p_precision(t_printf *p,
-	unsigned long long tmp)
+static t_printf		*ft_printf_p_precision(t_printf *p, __uint64_t tmp)
 {
 	size_t		tmp2;
 	char		*str;
@@ -50,7 +49,7 @@ static t_printf				*ft_printf_p_precision(t_printf *p,
 	return (p);
 }
 
-static t_printf				*ft_printf_p_champ(t_printf *p)
+static t_printf		*ft_printf_p_champ(t_printf *p)
 {
 	size_t		tmp;
 	char		*str;
@@ -79,7 +78,7 @@ static t_printf				*ft_printf_p_champ(t_printf *p)
 	return (p);
 }
 
-static t_printf				*ft_printf_p_flags(t_printf *p)
+static t_printf		*ft_printf_p_flags(t_printf *p)
 {
 	char		*str;
 	char		*buf;
@@ -98,9 +97,9 @@ static t_printf				*ft_printf_p_flags(t_printf *p)
 	return (p);
 }
 
-t_printf					*ft_printf_p(t_printf *p)
+t_printf			*ft_printf_p(t_printf *p)
 {
-	unsigned long long		tmp;
+	__uint64_t	tmp;
 
 	if (!(p->conv == FT_PRINTF_P))
 		return (p);

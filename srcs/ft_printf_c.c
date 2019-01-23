@@ -42,11 +42,11 @@ static t_printf		*ft_printf_c_champ(t_printf *p)
 
 t_printf			*ft_printf_c(t_printf *p)
 {
-	char	arg;
+	__int8_t	arg;
 
 	if (!(p->conv == FT_PRINTF_C && p->modifier != FT_PRINTF_L))
 		return (p);
-	arg = (char)va_arg(p->ap, int);
+	arg = (__int8_t)va_arg(p->ap, __int32_t);
 	if (!(p->conv_ret = ft_strnew(1))
 		&& (p->error = -1))
 		return (p);

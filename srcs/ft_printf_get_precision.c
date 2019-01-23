@@ -14,9 +14,9 @@
 
 void			ft_printf_get_precision(t_printf *p, const char *format)
 {
-	int		tmp;
-	char	tmp_intmax_buffer;
-	int		i;
+	__int32_t	i;
+	__int32_t	tmp;
+	__int8_t	tmp_intmax_buffer;
 
 	i = 0;
 	++p->index;
