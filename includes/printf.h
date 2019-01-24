@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ftprintf.h                                         :+:      :+:    :+:   */
+/*   printf.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/23 10:29:39 by anmauffr          #+#    #+#             */
-/*   Updated: 2019/01/23 13:16:19 by judumay          ###   ########.fr       */
+/*   Created: 2019/01/23 19:22:50 by anmauffr          #+#    #+#             */
+/*   Updated: 2019/01/23 19:22:50 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 # include <stdarg.h>
 # include <wchar.h>
 # include "../libft/libft.h"
+
+# define true 1
+# define false 0
 
 typedef enum	e_printf_modifier
 {
@@ -44,24 +47,24 @@ typedef enum	e_printf_conv
 
 typedef struct	s_printf_flags
 {
-	int		hash;
-	int		zero;
-	int		less;
-	int		space;
-	int		plus;
+	__int32_t	hash;
+	__int32_t	zero;
+	__int32_t	less;
+	__int32_t	space;
+	__int32_t	plus;
 }				t_printf_flags;
 
 typedef struct	s_printf
 {
 	va_list			ap;
-	int				error;
-	int				index;
-	int				ret;
-	char			tmpchar;
+	__int32_t		error;
+	__int32_t		index;
+	__int32_t		ret;
+	__int8_t		tmpchar;
 	char			pad_0[3];
 	char			*conv_ret;
-	int				champ;
-	int				precision;
+	__int32_t		champ;
+	__int32_t		precision;
 	t_printf_flags	*flags;
 	t_modifier		modifier;
 	t_conv			conv;

@@ -14,7 +14,7 @@
 
 t_printf		*ft_printf_conv(t_printf *p)
 {
-	int		i;
+	__int32_t	i;
 
 	i = 0;
 	while (i < 9 && !p->error)

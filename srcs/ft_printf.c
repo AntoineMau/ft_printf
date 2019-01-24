@@ -14,8 +14,8 @@
 
 int		ft_printf(char *format, ...)
 {
-	t_printf		*p;
-	int				ret;
+	__int32_t	ret;
+	t_printf	*p;
 
 	p = NULL;
 	ret = 0;
