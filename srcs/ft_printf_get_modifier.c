@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 15:10:50 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/23 15:10:51 by judumay          ###   ########.fr       */
+/*   Updated: 2019/01/24 10:50:18 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ void			ft_printf_get_modifier(t_printf *p, const char *format)
 		else if (p->modifier < FT_PRINTF_H)
 			p->modifier = FT_PRINTF_H;
 	}
-	else if (format[p->index] == 'l')
+	if (format[p->index] == 'l')
 	{
 		if (p->modifier == FT_PRINTF_L)
 			p->modifier = FT_PRINTF_LL;
 		else if (p->modifier < FT_PRINTF_L)
 			p->modifier = FT_PRINTF_L;
 	}
-	else if (format[p->index] == 'L')
+	if (format[p->index] == 'L')
 		p->modifier = FT_PRINTF_FL;
 	++p->index;
 }

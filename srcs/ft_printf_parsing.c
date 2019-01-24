@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_parsing.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 12:05:22 by anmauffr          #+#    #+#             */
-/*   Updated: 2019/01/23 12:05:22 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/01/24 10:49:56 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 t_printf		*ft_printf_parsing(t_printf *p, const char *format)
 {
 	while (format[p->index]
-		&& !(ft_strrchr("spdiouxXc%", format[p->index])))
+		&& !(ft_strrchr("spdiouxXcf%", format[p->index])))
 	{
-		if (ft_strrchr("hl", format[p->index]))
+		if (ft_strrchr("hlL", format[p->index]))
 			ft_printf_get_modifier(p, format);
 		else if (ft_strrchr("#0-+ ", format[p->index]))
 			ft_printf_get_flag(p, format);

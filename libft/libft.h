@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/05 17:51:13 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/23 12:39:13 by judumay          ###   ########.fr       */
+/*   Updated: 2019/01/24 09:56:03 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,5 +103,10 @@ char			*ft_strsub_leakless(char *s, unsigned int start, size_t len);
 char			*ft_strtoupper_leakless(char *s);
 char			*ft_stradd_leakless(char *s1, char c);
 char			*ft_strrev_leakless(char *s);
+char			*ft_dtoa(double n, int prec);
+char			*ft_ltoa(long n);
+int				ft_longlen(long n);
+int				ft_pow(int x, int y);
+int				ft_intlen(int n);
 
 #endif

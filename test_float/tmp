@@ -1,7 +1,0 @@
-#!/bin/bash
-
-gcc *.c
-#valgrind --leak-check=full ./a.out
-./a.out
-rm -f a.out
-#rm -rf a.out.dSYM

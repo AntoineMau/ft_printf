@@ -1,34 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/23 12:05:53 by anmauffr          #+#    #+#             */
-/*   Updated: 2019/01/24 09:30:11 by judumay          ###   ########.fr       */
+/*   Created: 2019/01/24 09:29:00 by judumay           #+#    #+#             */
+/*   Updated: 2019/01/24 10:47:57 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ftprintf.h"
+#include "includes/ftprintf.h"
+#include "libft/libft.h"
 
-int		ft_printf(char *format, ...)
+int     main()
 {
-	t_printf		*p;
-	int				ret;
-
-	p = NULL;
-	ret = 0;
-	if (!format || !(p = init_t_printf(p)))
-		return (-1);
-	va_start(p->ap, format);
-	//ft_check();
-	ft_printf_display(p, format);
-	va_end(p->ap);
-	ret = p->ret;
-	if (p->error == 1)
-		ret = -1;
-	reset_t_printf(p);
-	del_t_printf(p);
-	return (ret);
+    long double   f = 641564600.12;
+	printf(   "f:   %30.10Lf\n", f);
+	ft_printf("f:   %30.10Lf\n", f);
+    return 0;
 }

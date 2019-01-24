@@ -1,34 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_pow.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/23 12:05:53 by anmauffr          #+#    #+#             */
-/*   Updated: 2019/01/24 09:30:11 by judumay          ###   ########.fr       */
+/*   Created: 2019/01/24 09:54:13 by judumay           #+#    #+#             */
+/*   Updated: 2019/01/24 09:54:23 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ftprintf.h"
+#include "libft.h"
 
-int		ft_printf(char *format, ...)
+int		ft_pow(int x, int y)
 {
-	t_printf		*p;
-	int				ret;
+	int		ret;
+	int		neg;
 
-	p = NULL;
-	ret = 0;
-	if (!format || !(p = init_t_printf(p)))
-		return (-1);
-	va_start(p->ap, format);
-	//ft_check();
-	ft_printf_display(p, format);
-	va_end(p->ap);
-	ret = p->ret;
-	if (p->error == 1)
-		ret = -1;
-	reset_t_printf(p);
-	del_t_printf(p);
+	neg = y > 0 ? 0 : 1;
+	ret = 1;
+	if (x == 1 || y == 0)
+		return (1);
+	else if (x == 0)
+		return (0);
+	if (neg)
+		y = -y;
+	while (y)
+	{
+		ret = ret * x;
+		y--;
+	}
+	if (neg)
+		ret = 1 / ret;
 	return (ret);
 }

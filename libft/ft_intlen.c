@@ -1,34 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_intlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/23 12:05:53 by anmauffr          #+#    #+#             */
-/*   Updated: 2019/01/24 09:30:11 by judumay          ###   ########.fr       */
+/*   Created: 2019/01/24 09:55:40 by judumay           #+#    #+#             */
+/*   Updated: 2019/01/24 09:55:53 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ftprintf.h"
+#include "libft.h"
+#include <limits.h>
 
-int		ft_printf(char *format, ...)
+int		ft_intlen(int n)
 {
-	t_printf		*p;
-	int				ret;
+	int		len;
 
-	p = NULL;
-	ret = 0;
-	if (!format || !(p = init_t_printf(p)))
-		return (-1);
-	va_start(p->ap, format);
-	//ft_check();
-	ft_printf_display(p, format);
-	va_end(p->ap);
-	ret = p->ret;
-	if (p->error == 1)
-		ret = -1;
-	reset_t_printf(p);
-	del_t_printf(p);
-	return (ret);
+	if (n == INT_MIN)
+		return (11);
+	len = 0;
+	if (n == 0)
+		return (1);
+	if (n < 0)
+	{
+		n = -n;
+		len++;
+	}
+	while (n)
+	{
+		n /= 10;
+		len++;
+	}
+	return (len);
 }
