@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 12:04:45 by anmauffr          #+#    #+#             */
-/*   Updated: 2019/01/24 15:32:36 by judumay          ###   ########.fr       */
+/*   Updated: 2019/01/24 23:57:49 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ static t_printf		*ft_printf_f_champ(t_printf *p, long double nbr)
 		&& (tmp = (size_t)p->champ - ft_strlen(p->conv_ret)))
 	{
 		if (((nbr < 0 && p->flags->zero) || (((p->flags->plus && nbr >= 0)
-			|| p->flags->space) && p->flags->zero)) && p->precision == -1
-			&& !p->flags->less)
+			|| p->flags->space) && p->flags->zero)) && !p->flags->less)
 			--tmp;
 		nbr = 0;
 		str = ft_strnew(tmp);
@@ -60,13 +59,16 @@ static t_printf		*ft_printf_f_flags(t_printf *p, long double tmp)
 {
 	char		*str;
 	char		*buf;
+	int			i;
 
+	i = 0;
 	buf = NULL;
 	str = ft_strnew(1);
 	if ((p->flags->plus && tmp >= 0))
 	{
 		str[0] = '+';
-		if (p->conv_ret[0] == '0')
+		if (p->conv_ret[0] == '0' && tmp != 0 &&
+		(ft_strlen(p->conv_ret) == (size_t)p->champ))
 		{
 			p->conv_ret[0] = '+';
 			buf = ft_strdup(p->conv_ret);
@@ -78,12 +80,19 @@ static t_printf		*ft_printf_f_flags(t_printf *p, long double tmp)
 		ft_strdel(&p->conv_ret);
 		p->conv_ret = buf;
 	}
-	else if (p->flags->space && tmp > 0)
+	else if (p->flags->space && tmp >= 0)
 	{
 		str[0] = ' ';
 		buf = ft_strjoin(str, p->conv_ret);
 		ft_strdel(&p->conv_ret);
 		p->conv_ret = buf;
+	}
+	if (p->flags->hash && p->conv_ret[0] == '0' && tmp < 0)
+	{
+		while (p->conv_ret[i] != '-')
+			i++;
+		p->conv_ret[i] = '0';
+		p->conv_ret[0] = '-';
 	}
 	ft_strdel(&str);
 	return (p);
@@ -97,12 +106,12 @@ t_printf			*ft_printf_f(t_printf *p)
 	tmp = ft_printf_f_get_arg(p);
 	if (p->precision == -1)
 	{
-		if ((!(p->conv_ret = ft_dtoa_printf(tmp, 6))
+		if ((!(p->conv_ret = ft_dtoa_printf(tmp, 6, p->flags->hash))
 		&& (p->error = -1)))
 			return (p);
 	}
 	else
-		if ((!(p->conv_ret = ft_dtoa_printf(tmp, p->precision))
+		if ((!(p->conv_ret = ft_dtoa_printf(tmp, p->precision, p->flags->hash))
 		&& (p->error = -1)))
 			return (p);
 	if (p->error)

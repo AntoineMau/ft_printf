@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_x.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 12:05:46 by anmauffr          #+#    #+#             */
-/*   Updated: 2019/01/23 12:05:47 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/01/24 23:57:27 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static t_printf		*ft_printf_x_precision(t_printf *p, __uint64_t tmp)
 
 static t_printf		*ft_printf_x_champ(t_printf *p)
 {
-	size_t		tmp;
+	int		tmp;
 	char		*str;
 	char		*buf;
 
@@ -70,7 +70,12 @@ static t_printf		*ft_printf_x_champ(t_printf *p)
 	{
 		if (p->flags->zero && p->precision == -1 && !p->flags->less
 			&& p->flags->hash)
-			tmp -= 2;
+		{
+			if (tmp < 2)
+				tmp = 0;
+			else
+				tmp -= 2;
+		}
 		str = ft_strnew(tmp);
 		if (p->flags->zero && p->precision == -1 && !p->flags->less)
 			str = ft_strfill(str, '0', tmp);

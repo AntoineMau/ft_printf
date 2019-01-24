@@ -6,11 +6,12 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 14:39:33 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/24 16:50:30 by judumay          ###   ########.fr       */
+/*   Updated: 2019/01/24 23:27:26 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "../includes/ftprintf.h"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -31,27 +32,13 @@ static int		handle_no_number_after_decimal(int prec, char **s)
 	return (0);
 }
 
-// SE SOUVENIR DU MOINS
-
 static int		precision_smaller_than_10(double n, int prec, char **s)
 {
 	char		*s_tmp;
 	int			prec_tmp;
 	int			i;
-	long		nb;
-	double		d;
 
 	i = 0;
-	nb = n;
-	if (prec == 0)
-	{
-		d = n - (long)n;
-		nb = d * ft_pow(10, 1);
-		if (nb > 4)
-			n += 1;
-		*s = ft_strcat(*s, ft_ltoa(n));
-		return (0);
-	}
 	n = n * ft_pow(10, prec);
 	prec_tmp = prec - ft_longlen(n);
 	if (!(s_tmp = (char *)malloc(sizeof(char) * (prec_tmp + 1))))
@@ -72,9 +59,7 @@ static int		handle_precision(double n, int prec, char **s)
 {
 	char		*s_tmp;
 
-	if (prec == 0)
-		precision_smaller_than_10(n, prec, s);
-	else if ((n = n - (long)n))
+	if ((n = n - (long)n))
 	{
 		if (prec < 10)
 			precision_smaller_than_10(n, prec, s);
@@ -97,12 +82,17 @@ static int		handle_precision(double n, int prec, char **s)
 	return (0);
 }
 
-char			*ft_dtoa_printf(double n, int prec)
+char			*ft_dtoa_printf(double n, int prec, int t)
 {
 	char		*s;
 	char		*s_tmp;
 	size_t		len;
-
+	double		d;
+	long		nb; 
+	
+	
+	nb = 0;
+	d = n;
 	if (prec < 0)
 		prec = -1;
 	len = ft_longlen(n) + prec + 1;
@@ -115,10 +105,27 @@ char			*ft_dtoa_printf(double n, int prec)
 		s[0] = '-';
 		s[1] = '\0';
 	}
-	ft_strcat(s, s_tmp = ft_ltoa(n));
-	ft_strdel(&s_tmp);
+	if (prec == 0)
+	{
+		d = n - (long)n;
+		nb = d * ft_pow(10, 1);
+		if (nb > 4)
+			n += 1;
+		s = ft_strcat(s, ft_ltoa(n));
+	}
+	else
+	{
+		ft_strcat(s, s_tmp = ft_ltoa(n));
+		ft_strdel(&s_tmp);
+	}
 	if (prec > -1)
 	{
+		if (prec == 0)
+		{
+			if (t)
+				ft_strcat(s, ".");
+			return (s);
+		}
 		ft_strcat(s, ".");
 		if (handle_precision(n, prec, &s))
 			return (NULL);
