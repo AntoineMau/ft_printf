@@ -81,6 +81,7 @@ SRC = libft/ft_atoi.c \
 	 libft/ft_strrev_leakless.c \
 	 libft/ft_stradd_leakless.c \
 	 libft/ft_dtoa.c \
+	 libft/ft_dtoa_printf.c \
 	 libft/ft_ltoa.c \
 	 libft/ft_longlen.c \
 	 libft/ft_pow.c \

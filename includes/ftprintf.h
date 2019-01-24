@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.h                                           :+:      :+:    :+:   */
+/*   ftprintf.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 19:22:50 by anmauffr          #+#    #+#             */
-/*   Updated: 2019/01/24 10:54:53 by judumay          ###   ########.fr       */
+/*   Updated: 2019/01/24 15:30:34 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ typedef struct	s_printf
 	__int8_t		tmpchar;
 	char			pad_0[3];
 	char			*conv_ret;
+	int				precision;
 	__int32_t		champ;
-	__int32_t		precision;
 	t_printf_flags	*flags;
 	t_modifier		modifier;
 	t_conv			conv;

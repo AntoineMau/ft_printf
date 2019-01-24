@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 12:04:45 by anmauffr          #+#    #+#             */
-/*   Updated: 2019/01/24 11:35:15 by judumay          ###   ########.fr       */
+/*   Updated: 2019/01/24 15:32:36 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ static t_printf		*ft_printf_f_champ(t_printf *p, long double nbr)
 			|| p->flags->space) && p->flags->zero)) && p->precision == -1
 			&& !p->flags->less)
 			--tmp;
+		nbr = 0;
 		str = ft_strnew(tmp);
 		if (p->flags->zero && !p->flags->less)
 			str = ft_strfill(str, '0', tmp);
@@ -62,22 +63,22 @@ static t_printf		*ft_printf_f_flags(t_printf *p, long double tmp)
 
 	buf = NULL;
 	str = ft_strnew(1);
-	if (tmp < 0 || (p->flags->plus && tmp >= 0))
+	if ((p->flags->plus && tmp >= 0))
 	{
 		str[0] = '+';
-		if (tmp < 0)
-			str[0] = '-';
 		if (p->conv_ret[0] == '0')
 		{
 			p->conv_ret[0] = '+';
 			buf = ft_strdup(p->conv_ret);
 		}
 		else
+		{
 			buf = ft_strjoin(str, p->conv_ret);
+		}
 		ft_strdel(&p->conv_ret);
 		p->conv_ret = buf;
 	}
-	else if (p->flags->space)
+	else if (p->flags->space && tmp > 0)
 	{
 		str[0] = ' ';
 		buf = ft_strjoin(str, p->conv_ret);
@@ -91,22 +92,19 @@ static t_printf		*ft_printf_f_flags(t_printf *p, long double tmp)
 t_printf			*ft_printf_f(t_printf *p)
 {
 	long double		tmp;
-
 	if (!(p->conv == FT_PRINTF_F))
 		return (p);
 	tmp = ft_printf_f_get_arg(p);
 	if (p->precision == -1)
 	{
-		if ((!(p->conv_ret = ft_dtoa(tmp, 6))
+		if ((!(p->conv_ret = ft_dtoa_printf(tmp, 6))
 		&& (p->error = -1)))
 			return (p);
 	}
 	else
-	{
-		if ((!(p->conv_ret = ft_dtoa(tmp, p->precision))
+		if ((!(p->conv_ret = ft_dtoa_printf(tmp, p->precision))
 		&& (p->error = -1)))
 			return (p);
-	}
 	if (p->error)
 		return (p);
 	if (!(p->flags->zero && !p->flags->less))
