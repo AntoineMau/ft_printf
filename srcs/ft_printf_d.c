@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/23 12:04:31 by anmauffr          #+#    #+#             */
-/*   Updated: 2019/01/25 11:15:41 by judumay          ###   ########.fr       */
+/*   Created: 2019/01/25 12:34:31 by judumay           #+#    #+#             */
+/*   Updated: 2019/01/25 12:43:09 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ static __int64_t	ft_printf_d_get_arg(t_printf *p)
 	if (p->modifier == FT_PRINTF_NO_MODIFIERS)
 		ret = va_arg(p->ap, __int32_t);
 	else if (p->modifier == FT_PRINTF_H)
-		ret = (__int16_t)(__int16_t)va_arg(p->ap, __int32_t);
+		ret = (__int16_t)va_arg(p->ap, __int32_t);
 	else if (p->modifier == FT_PRINTF_HH)
-		ret = (__int8_t)(__uint8_t)va_arg(p->ap, __int32_t);
+		ret = (__int8_t)va_arg(p->ap, __int32_t);
 	else if (p->modifier == FT_PRINTF_L)
 		ret = va_arg(p->ap, long);
 	else if (p->modifier == FT_PRINTF_LL)

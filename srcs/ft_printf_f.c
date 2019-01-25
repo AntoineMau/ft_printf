@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 12:04:45 by anmauffr          #+#    #+#             */
-/*   Updated: 2019/01/25 12:10:51 by judumay          ###   ########.fr       */
+/*   Updated: 2019/01/25 12:32:48 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ static t_printf		*ft_printf_f_champ(t_printf *p, long double nbr)
 	if (p->champ != -1 && (size_t)p->champ > ft_strlen(p->conv_ret)
 		&& (tmp = (size_t)p->champ - ft_strlen(p->conv_ret) + 1))
 	{
-		if (((nbr < 0 && p->flags->zero) || (((p->flags->plus && nbr >= 0)
-			|| p->flags->space) && p->flags->zero)) && !p->flags->less)
+		if ((((nbr < 0 && p->flags->zero) || (((p->flags->plus && nbr >= 0)
+			|| p->flags->space) && p->flags->zero)) && !p->flags->less) ||
+			p->conv_ret[0] == '-')
 			--tmp;
-		nbr = 0;
 		str = ft_strnew(tmp);
 		if (p->flags->zero && !p->flags->less)
 			str = ft_strfill(str, '0', tmp);
