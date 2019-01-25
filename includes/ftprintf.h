@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 19:22:50 by anmauffr          #+#    #+#             */
-/*   Updated: 2019/01/24 15:30:34 by judumay          ###   ########.fr       */
+/*   Updated: 2019/01/25 09:15:08 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@
 # include <stdarg.h>
 # include <wchar.h>
 # include "../libft/libft.h"
-
-# define true 1
-# define false 0
 
 typedef enum	e_printf_modifier
 {

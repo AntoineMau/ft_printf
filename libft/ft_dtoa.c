@@ -6,13 +6,12 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 09:48:43 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/24 09:49:08 by judumay          ###   ########.fr       */
+/*   Updated: 2019/01/25 09:16:04 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
-
 
 static int		handle_no_number_after_decimal(int prec, char **s)
 {

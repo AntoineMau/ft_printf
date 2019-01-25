@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 12:04:45 by anmauffr          #+#    #+#             */
-/*   Updated: 2019/01/24 23:57:49 by judumay          ###   ########.fr       */
+/*   Updated: 2019/01/25 10:32:16 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,38 +55,41 @@ static t_printf		*ft_printf_f_champ(t_printf *p, long double nbr)
 	return (p);
 }
 
-static t_printf		*ft_printf_f_flags(t_printf *p, long double tmp)
+static t_printf		*ft_printf_f_flags2(t_printf *p, long double tmp)
 {
 	char		*str;
 	char		*buf;
-	int			i;
 
-	i = 0;
 	buf = NULL;
-	str = ft_strnew(1);
-	if ((p->flags->plus && tmp >= 0))
+	if ((str = ft_strnew(1)) && p->flags->plus && tmp >= 0)
 	{
-		str[0] = '+';
-		if (p->conv_ret[0] == '0' && tmp != 0 &&
-		(ft_strlen(p->conv_ret) == (size_t)p->champ))
+		if ((str[0] = '+') && (p->conv_ret[0] == '0' && tmp != 0 &&
+		(ft_strlen(p->conv_ret) == (size_t)p->champ)))
 		{
 			p->conv_ret[0] = '+';
 			buf = ft_strdup(p->conv_ret);
 		}
 		else
-		{
 			buf = ft_strjoin(str, p->conv_ret);
-		}
 		ft_strdel(&p->conv_ret);
 		p->conv_ret = buf;
 	}
-	else if (p->flags->space && tmp >= 0)
+	else if (p->flags->space && tmp >= 0 && (str[0] = ' '))
 	{
-		str[0] = ' ';
 		buf = ft_strjoin(str, p->conv_ret);
 		ft_strdel(&p->conv_ret);
 		p->conv_ret = buf;
 	}
+	ft_strdel(&str);
+	return (p);
+}
+
+static t_printf		*ft_printf_f_flags(t_printf *p, long double tmp)
+{
+	int		i;
+
+	i = 0;
+	p = ft_printf_f_flags2(p, tmp);
 	if (p->flags->hash && p->conv_ret[0] == '0' && tmp < 0)
 	{
 		while (p->conv_ret[i] != '-')
@@ -94,26 +97,20 @@ static t_printf		*ft_printf_f_flags(t_printf *p, long double tmp)
 		p->conv_ret[i] = '0';
 		p->conv_ret[0] = '-';
 	}
-	ft_strdel(&str);
 	return (p);
 }
 
 t_printf			*ft_printf_f(t_printf *p)
 {
 	long double		tmp;
+
 	if (!(p->conv == FT_PRINTF_F))
 		return (p);
 	tmp = ft_printf_f_get_arg(p);
-	if (p->precision == -1)
-	{
-		if ((!(p->conv_ret = ft_dtoa_printf(tmp, 6, p->flags->hash))
-		&& (p->error = -1)))
-			return (p);
-	}
-	else
-		if ((!(p->conv_ret = ft_dtoa_printf(tmp, p->precision, p->flags->hash))
-		&& (p->error = -1)))
-			return (p);
+	if (!(p->conv_ret = p->precision == -1 ?
+	ft_dtoa_printf(tmp, 6, p->flags->hash) :
+	ft_dtoa_printf(tmp, p->precision, p->flags->hash)) && (p->error = -1))
+		return (p);
 	if (p->error)
 		return (p);
 	if (!(p->flags->zero && !p->flags->less))

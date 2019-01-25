@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 12:05:53 by anmauffr          #+#    #+#             */
-/*   Updated: 2019/01/24 09:30:11 by judumay          ###   ########.fr       */
+/*   Updated: 2019/01/25 10:00:15 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int		ft_printf(char *format, ...)
 	if (!format || !(p = init_t_printf(p)))
 		return (-1);
 	va_start(p->ap, format);
-	//ft_check();
 	ft_printf_display(p, format);
 	va_end(p->ap);
 	ret = p->ret;
