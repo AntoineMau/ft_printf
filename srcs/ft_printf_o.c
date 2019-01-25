@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_o.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 12:05:15 by anmauffr          #+#    #+#             */
-/*   Updated: 2019/01/23 12:05:15 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/01/25 11:17:01 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ static __uint64_t	ft_printf_o_get_arg(t_printf *p)
 	if (p->modifier == FT_PRINTF_NO_MODIFIERS)
 		ret = va_arg(p->ap, __uint32_t);
 	else if (p->modifier == FT_PRINTF_H)
-		ret = (__uint64_t)(__uint16_t)va_arg(p->ap, __uint32_t);
+		ret = (__uint16_t)(__uint16_t)va_arg(p->ap, __uint32_t);
 	else if (p->modifier == FT_PRINTF_HH)
-		ret = (__uint64_t)(__uint8_t)va_arg(p->ap, __uint32_t);
+		ret = (__uint8_t)(__uint8_t)va_arg(p->ap, __uint32_t);
 	else if (p->modifier == FT_PRINTF_L)
 		ret = va_arg(p->ap, unsigned long);
 	else if (p->modifier == FT_PRINTF_LL)

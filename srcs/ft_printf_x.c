@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 12:05:46 by anmauffr          #+#    #+#             */
-/*   Updated: 2019/01/25 09:14:01 by judumay          ###   ########.fr       */
+/*   Updated: 2019/01/25 11:21:28 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ static __uint64_t	ft_printf_x_get_arg(t_printf *p)
 	if (p->modifier == FT_PRINTF_NO_MODIFIERS)
 		ret = va_arg(p->ap, __uint32_t);
 	else if (p->modifier == FT_PRINTF_H)
-		ret = (__uint64_t)(__uint16_t)va_arg(p->ap, __uint32_t);
+		ret = (__uint16_t)(__uint16_t)va_arg(p->ap, __uint32_t);
 	else if (p->modifier == FT_PRINTF_HH)
-		ret = (__uint64_t)(__uint8_t)va_arg(p->ap, __uint32_t);
+		ret = (__uint8_t)(__uint8_t)va_arg(p->ap, __uint32_t);
 	else if (p->modifier == FT_PRINTF_L)
 		ret = va_arg(p->ap, unsigned long);
 	else if (p->modifier == FT_PRINTF_LL)
@@ -69,7 +69,7 @@ static t_printf		*ft_printf_x_champ(t_printf *p)
 		&& (tmp = (size_t)p->champ - ft_strlen(p->conv_ret)))
 	{
 		if (p->flags->zero && p->precision == -1 && !p->flags->less
-			&& p->flags->hash)
+			&& p->flags->hash && p->conv_ret[0] != '0')
 			tmp = tmp < 2 ? 0 : tmp - 2;
 		str = ft_strnew(tmp);
 		if (p->flags->zero && p->precision == -1 && !p->flags->less)
