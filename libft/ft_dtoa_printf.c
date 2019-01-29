@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 14:39:33 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/29 18:26:16 by judumay          ###   ########.fr       */
+/*   Updated: 2019/01/29 18:33:25 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,6 @@ static int		handle_precision(double n, int prec, char **s)
 			while (prec--)
 			{
 				n *= 10;
-				dprintf(1, "\nn : %s\n", ft_ltoa((long long)nb));
-				nb = n;
-				dprintf(1, "\nnb : %lld\n", nb);
 				if (!prec && (long long)((n - (long long)n) * 10) > 4
 							&& (long long)((n - (long long)n) * 10) != 9)
 					n += 1;
