@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 12:04:45 by anmauffr          #+#    #+#             */
-/*   Updated: 2019/01/28 18:54:13 by judumay          ###   ########.fr       */
+/*   Updated: 2019/01/29 16:22:38 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,13 @@ static t_printf		*ft_printf_f_champ(t_printf *p, long double nbr)
 			|| p->flags->space) && p->flags->zero)) && !p->flags->less) ||
 			p->conv_ret[0] == '-')
 			--tmp;
+		if (nbr > 0)
+			tmp--;
 		str = ft_strnew(tmp);
 		if (p->flags->zero && !p->flags->less)
-			str = ft_strfill(str, '0', tmp - 1);
+			str = ft_strfill(str, '0', tmp);
 		else
-			str = ft_strfill(str, ' ', tmp - 1);
+			str = ft_strfill(str, ' ', tmp);
 		if (p->flags->less)
 			buf = ft_strjoin(p->conv_ret, str);
 		else

@@ -12,8 +12,8 @@ int main()
 	//long double n;
 
 
-	n = 10.19;
-
+	n = 255.255;
+/*
 	dprintf(1, "\n\n-----------------------------------------------\n\n");
 	dprintf(1, "NORMAL\n\n\n");
 
@@ -47,11 +47,11 @@ int main()
 
 	dprintf(1, " %d\n", ft_printf("  %10.10f\t", n));
 	dprintf(1, " %d\n\n", dprintf(1, "  %10.10f\t", n));
-
-	dprintf(1, " %d\n", ft_printf("  %20.10f\t", n));
-	dprintf(1, " %d\n\n", dprintf(1, "  %20.10f\t", n));
+*/
+	dprintf(1, " %d\n", ft_printf("  %30.10f\t", n));
+	dprintf(1, " %d\n\n", dprintf(1, "  %30.10f\t", n));
 	dprintf(1, "-----------------------------------------------\n\n");
-	
+/*	
 	dprintf(1, "PLUS\n\n\n");
 
 	dprintf(1, "-----------------------------------------------\n\n");
@@ -643,4 +643,6 @@ int main()
 	dprintf(1, " %d\n", ft_printf("  %#- 20.10f\t", n));
 	dprintf(1, " %d\n\n", dprintf(1, "  %#- 20.10f\t", n));
 	dprintf(1, "-----------------------------------------------\n\n");
+
+	*/
 }

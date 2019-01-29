@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 09:50:57 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/29 09:00:37 by judumay          ###   ########.fr       */
+/*   Updated: 2019/01/29 16:43:13 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,26 @@
 #include <limits.h>
 #include <stdlib.h>
 
-char			*ft_ltoa(long n)
+char	*ft_strrev(char *str)
+{
+	int		i;
+	int		length;
+	char	buff;
+
+	i = 0;
+	length = ft_strlen(str);
+	while (length - 1 > i)
+	{
+		buff = str[i];
+		str[i] = str[length - 1];
+		str[length - 1] = buff;
+		length--;
+		i++;
+	}
+	return (str);
+}
+
+char			*ft_ltoa(long long n)
 {
 	char	*s;
 	size_t	len;

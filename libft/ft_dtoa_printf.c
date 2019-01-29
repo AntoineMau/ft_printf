@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 14:39:33 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/29 09:00:00 by judumay          ###   ########.fr       */
+/*   Updated: 2019/01/29 18:26:16 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static int		handle_precision(double n, int prec, char **s)
 {
 	char		*s_tmp;
 
-	if ((n = n - (long)n))
+	if ((n = n - (long long)n))
 	{
 		if (prec < 10)
 			precision_smaller_than_10(n, prec, s);
@@ -66,12 +66,15 @@ static int		handle_precision(double n, int prec, char **s)
 			while (prec--)
 			{
 				n *= 10;
-				if (!prec && (long)((n - (long)n) * 10) > 4
-							&& (long)((n - (long)n) * 10) != 9)
+				dprintf(1, "\nn : %s\n", ft_ltoa((long long)nb));
+				nb = n;
+				dprintf(1, "\nnb : %lld\n", nb);
+				if (!prec && (long long)((n - (long long)n) * 10) > 4
+							&& (long long)((n - (long long)n) * 10) != 9)
 					n += 1;
 				ft_strcat(*s, s_tmp = ft_ltoa(n));
 				ft_strdel(&s_tmp);
-				n -= (long)n;
+				n -= (long long)n;
 			}
 		}
 	}
@@ -109,7 +112,7 @@ char			*ft_dtoa_printf(double n, int prec, int t)
 	if (!(s = (char *)malloc(sizeof(char) * (len + 1))))
 		return (NULL);
 	s[0] = '\0';
-	if (n < 0 ? 1 : 0)
+	if (n < 0)
 	{
 		n = -n;
 		s[0] = '-';
