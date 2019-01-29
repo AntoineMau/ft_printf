@@ -6,14 +6,13 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 14:39:33 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/25 09:56:12 by judumay          ###   ########.fr       */
+/*   Updated: 2019/01/29 09:00:00 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "../includes/ftprintf.h"
 #include <stdlib.h>
-#include <stdio.h>
 
 static int		handle_no_number_after_decimal(int prec, char **s)
 {

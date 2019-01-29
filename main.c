@@ -1,13 +1,27 @@
 #include "includes/ftprintf.h"
+#include <stdlib.h>
 
 int main()
 {
-	long double n = 20000000000.124589;
+	
+	//char n;
+	//unsigned char n;
+	//char	*n;
+	//short int n;
+	//int n;
+	//long n;
+	//long long n;
+	//double n;
+	long double n;
+
+	//n = strdup("");
+	n = 0;
+
 
 	dprintf(1, "NORMAL\n\n\n");
-
-	dprintf(1, "ret : %d\n", ft_printf("t : %Lf\t", n));
-	dprintf(1, "ret : %d\n\n", dprintf(1, "t : %Lf\t", n));
+/*
+	dprintf(1, "ret : %d\n", ft_printf("t : %lf\t", n));
+	dprintf(1, "ret : %d\n\n", dprintf(1, "t : %lf\t", n));
 
 	dprintf(1, "ret : %d\n", ft_printf("t : %1Lf\t", n));
 	dprintf(1, "ret : %d\n\n", dprintf(1, "t : %1Lf\t", n));
@@ -38,7 +52,7 @@ int main()
 
 	dprintf(1, "ret : %d\n", ft_printf("t : %20.10Lf\t", n));
 	dprintf(1, "ret : %d\n\n", dprintf(1, "t : %20.10Lf\t", n));
-
+*/
 	dprintf(1, "PLUS\n\n\n");
 /*
 	dprintf(1, "ret : %d\n", ft_printf("t : %+Lf\t", n));
@@ -250,8 +264,8 @@ int main()
 	dprintf(1, "ret : %d\n\n", dprintf(1, "t : %+020.10Lf\t", n));
 */
 	dprintf(1, "HASH + ZERO\n\n\n");
-
-	/*dprintf(1, "ret : %d\n", ft_printf("t : %#0Lf\t", n));
+/*
+	dprintf(1, "ret : %d\n", ft_printf("t : %#0Lf\t", n));
 	dprintf(1, "ret : %d\n\n", dprintf(1, "t : %#0Lf\t", n));
 
 	dprintf(1, "ret : %d\n", ft_printf("t : %#01Lf\t", n));

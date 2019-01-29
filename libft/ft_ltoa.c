@@ -6,14 +6,13 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 09:50:57 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/25 09:59:19 by judumay          ###   ########.fr       */
+/*   Updated: 2019/01/29 09:00:37 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <limits.h>
 #include <stdlib.h>
-#include <stdio.h>
 
 char			*ft_ltoa(long n)
 {
