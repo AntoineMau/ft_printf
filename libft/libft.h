@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/05 17:51:13 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/29 15:19:47 by judumay          ###   ########.fr       */
+/*   Updated: 2019/01/31 12:01:12 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ char			*ft_strrev_leakless(char *s);
 char			*ft_dtoa(double n, int prec);
 char			*ft_ltoa(long long n);
 int				ft_longlen(long n);
-int				ft_pow(int x, int y);
+double			ft_pow(double n, int pow);
 int				ft_intlen(int n);
 char			*ft_dtoa_printf(double n, int prec, int t);
 

@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 12:04:45 by anmauffr          #+#    #+#             */
-/*   Updated: 2019/01/29 16:22:38 by judumay          ###   ########.fr       */
+/*   Updated: 2019/01/31 17:02:47 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static long double	ft_printf_f_get_arg(t_printf *p)
 {
-	long double	ret;
+	double	ret;
 
 	ret = 0;
 	if (p->modifier == FT_PRINTF_NO_MODIFIERS)
@@ -76,12 +76,6 @@ static t_printf		*ft_printf_f_flags2(t_printf *p, long double tmp)
 		ft_strdel(&p->conv_ret);
 		p->conv_ret = buf;
 	}
-	else if (p->flags->space && tmp >= 0 && (str[0] = ' '))
-	{
-		buf = ft_strjoin(str, p->conv_ret);
-		ft_strdel(&p->conv_ret);
-		p->conv_ret = buf;
-	}
 	ft_strdel(&str);
 	return (p);
 }
@@ -92,33 +86,104 @@ static t_printf		*ft_printf_f_flags(t_printf *p, long double tmp)
 
 	i = 0;
 	p = ft_printf_f_flags2(p, tmp);
-	if (p->flags->hash && p->conv_ret[0] == '0' && tmp < 0)
+	if (p->flags->zero && tmp < 0)
 	{
 		while (p->conv_ret[i] != '-')
 			i++;
 		p->conv_ret[i] = '0';
 		p->conv_ret[0] = '-';
 	}
+	if (p->flags->zero && p->flags->plus && tmp > 0)
+		p->conv_ret[0] = '+';
+	(p->flags->space && p->flags->zero) ? p->conv_ret = ft_strjoin(" ", p->conv_ret) : 0;
 	return (p);
+}
+
+static double	ft_dabs(double n)
+{
+	return (n < 0 ? -n : n);
+}
+
+#include <stdio.h>
+
+static int		ldtoa_fill(double n, t_printf *p, long long value, int pe)
+{
+	long long		len;
+	char			*s;
+	int				i;
+
+	i = p->precision;
+	len = pe - 1 - p->precision;
+	s = (char*)malloc(sizeof(char) * p->precision + len + 1);
+	s[len + p->precision + 1] = '\0';
+	while (p->precision--)
+	{
+		s[len + p->precision + 1] = value % 10 + ((value % 10 < 10) ? '0' : 0);
+		value /= 10;
+	}
+	s[len] = '.';
+	value = (long long)(n < 0 ? -n : n);
+	while (++p->precision < len)
+	{
+		s[len - p->precision - 1] =
+		value % 10 + ((value % 10 < 10) ? '0' : 102);
+		value /= 10;
+	}
+	(n < 0) ? s[0] = '-' : 0;
+	if (n > 0)
+		(p->flags->space && !p->flags->zero) ? s = ft_strjoin(" ", s) : 0;
+	//(p->flags->plus && n >= 0) ? s = ft_strjoin("+", s) : 0;
+	p->conv_ret = ft_strdup(s);
+	return (i);
+}
+
+int				ft_putdouble(double n, t_printf *p)
+{
+	long long	tmp;
+	long long	len;
+	double		decimal;
+	long long	value;
+	long long	pe;
+
+	if (p->precision == -1)
+		p->precision = 6;
+	len = 1;
+	tmp = (long long)(n < 0 ? -n : n);
+	while (tmp && ++len)
+		tmp /= 10;
+	pe = p->precision + len + ((n < 0) ? 1 : 0);
+	decimal = ft_dabs(n);
+	decimal = (decimal - (long long)(ft_dabs(n))) * ft_pow(10, p->precision + 1);
+	decimal = ((long long)decimal % 10 > 4) ? decimal / 10 + 1 : decimal / 10;
+	value = (long long)decimal;
+	pe = ldtoa_fill(n, p, value, pe);
+	return (pe);
 }
 
 t_printf			*ft_printf_f(t_printf *p)
 {
-	long double		tmp;
+	double		tmp;
+	int			i;
 
 	if (!(p->conv == FT_PRINTF_F))
 		return (p);
 	tmp = ft_printf_f_get_arg(p);
-	if (!(p->conv_ret = p->precision == -1 ?
-	ft_dtoa_printf(tmp, 6, p->flags->hash) :
-	ft_dtoa_printf(tmp, p->precision, p->flags->hash)) && (p->error = -1))
-		return (p);
+	i = ft_putdouble(tmp, p);
 	if (p->error)
 		return (p);
 	if (!(p->flags->zero && !p->flags->less))
 		p = ft_printf_f_flags(p, tmp);
 	if (p->error)
 		return (p);
+	if (i == 0 && !p->flags->hash)
+	{
+		while (p->conv_ret[i] )
+		{
+			if (p->conv_ret[i] == '.')
+				p->conv_ret[i] = '\0';
+			i++;
+		}
+	}
 	p = ft_printf_f_champ(p, tmp);
 	if (p->error)
 		return (p);
