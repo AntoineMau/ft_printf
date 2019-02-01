@@ -6,12 +6,12 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 14:39:33 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/29 18:33:25 by judumay          ###   ########.fr       */
+/*   Updated: 2019/02/01 15:26:57 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "../includes/ftprintf.h"
+#include "../libft/libft.h"
 #include <stdlib.h>
 
 static int		handle_no_number_after_decimal(int prec, char **s)
@@ -99,13 +99,19 @@ static int		preci(double n, int t, char **s)
 	return (1);
 }
 
-char			*ft_dtoa_printf(double n, int prec, int t)
+char			*ft_dtoa_printf(double n, t_printf *p, int t)
 {
 	char		*s;
 	char		*s_tmp;
 	size_t		len;
 
-	len = ft_longlen(n) + prec + 1;
+	if (p->precision > 16)
+	{
+		if (handle_precision(n, p->precision, &p->conv_ret))
+			return (NULL);
+		return (p->conv_ret);
+	}
+	len = ft_longlen(n) + p->precision + 1;
 	if (!(s = (char *)malloc(sizeof(char) * (len + 1))))
 		return (NULL);
 	s[0] = '\0';
@@ -115,14 +121,14 @@ char			*ft_dtoa_printf(double n, int prec, int t)
 		s[0] = '-';
 		s[1] = '\0';
 	}
-	if (prec == 0 && (preci(n, t, &s)))
+	if (p->precision == 0 && (preci(n, t, &s)))
 		return (s);
 	ft_strcat(s, s_tmp = ft_ltoa(n));
 	ft_strdel(&s_tmp);
-	if (prec > -1)
+	if (p->precision > -1)
 	{
 		ft_strcat(s, ".");
-		if (handle_precision(n, prec, &s))
+		if (handle_precision(n, p->precision, &s))
 			return (NULL);
 	}
 	return (s);

@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 19:22:50 by anmauffr          #+#    #+#             */
-/*   Updated: 2019/01/25 09:15:08 by judumay          ###   ########.fr       */
+/*   Updated: 2019/02/01 15:22:57 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct	s_printf
 }				t_printf;
 
 int				ft_printf(char *format, ...);
+char				*ft_dtoa_printf(double n, t_printf *p, int t);
 void			reset_t_printf(t_printf *p);
 void			del_t_printf(t_printf *p);
 void			ft_printf_display(t_printf *p, const char *format);
