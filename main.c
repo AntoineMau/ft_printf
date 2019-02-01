@@ -11,9 +11,10 @@ int main()
 	double n;
 	//long double n;
 
-	// 0
+	// 0 preci 17 seg
+	//espace 0 en mois et champ en plus
 	// manque l'arrondis inter '.' 19999.9 preci de 0 => 20000.0
-	n = 0.00;
+	n = 0.0;
 
 	dprintf(1, "\n\n-----------------------------------------------\n\n");
 	dprintf(1, "NORMAL\n\n\n");
