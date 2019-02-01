@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 12:04:45 by anmauffr          #+#    #+#             */
-/*   Updated: 2019/01/31 17:02:47 by judumay          ###   ########.fr       */
+/*   Updated: 2019/02/01 12:24:27 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,8 @@ static t_printf		*ft_printf_f_flags(t_printf *p, long double tmp)
 	}
 	if (p->flags->zero && p->flags->plus && tmp > 0)
 		p->conv_ret[0] = '+';
-	(p->flags->space && p->flags->zero) ? p->conv_ret = ft_strjoin(" ", p->conv_ret) : 0;
+	//(p->flags->space && p->flags->zero) ? p->conv_ret = ft_strjoin(" ", p->conv_ret) : 0;
+	(tmp > 0 && p->flags->space && !p->flags->plus) ? p->conv_ret = ft_strjoin(" ", p->conv_ret) : 0;
 	return (p);
 }
 
@@ -111,7 +112,9 @@ static int		ldtoa_fill(double n, t_printf *p, long long value, int pe)
 	long long		len;
 	char			*s;
 	int				i;
+	int				j;
 
+	j = 0;
 	i = p->precision;
 	len = pe - 1 - p->precision;
 	s = (char*)malloc(sizeof(char) * p->precision + len + 1);
@@ -121,6 +124,7 @@ static int		ldtoa_fill(double n, t_printf *p, long long value, int pe)
 		s[len + p->precision + 1] = value % 10 + ((value % 10 < 10) ? '0' : 0);
 		value /= 10;
 	}
+	//dprintf(1, "s : %s\n", s);
 	s[len] = '.';
 	value = (long long)(n < 0 ? -n : n);
 	while (++p->precision < len)
@@ -130,10 +134,17 @@ static int		ldtoa_fill(double n, t_printf *p, long long value, int pe)
 		value /= 10;
 	}
 	(n < 0) ? s[0] = '-' : 0;
-	if (n > 0)
-		(p->flags->space && !p->flags->zero) ? s = ft_strjoin(" ", s) : 0;
+	//((n > 0) && p->flags->space && !p->flags->zero) ? s = ft_strjoin(" ", s) : 0;
 	//(p->flags->plus && n >= 0) ? s = ft_strjoin("+", s) : 0;
 	p->conv_ret = ft_strdup(s);
+	p->precision = 0;
+	while (p->conv_ret[p->precision] != '.' && p->conv_ret[p->precision])
+		p->precision++;
+	j += p->precision;
+	while (p->precision <= i && p->conv_ret[p->precision])
+		p->precision++;
+	if (p->precision == j + 1)
+		p->conv_ret[p->precision] = '\0';
 	return (i);
 }
 
