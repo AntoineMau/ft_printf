@@ -17,6 +17,8 @@ int main()
 	dprintf(1, "\n\n-----------------------------------------------\n\n");
 	dprintf(1, "NORMAL\n\n\n");
 
+	
+
 	dprintf(1, "-----------------------------------------------\n\n");
 	dprintf(1, " %d\n", ft_printf("  %f\t", n));
 	dprintf(1, " %d\n\n", dprintf(1, "  %f\t", n));
@@ -42,14 +44,14 @@ int main()
 	dprintf(1, " %d\n", ft_printf("  %10.1f\t", n));
 	dprintf(1, " %d\n\n", dprintf(1, "  %10.1f\t", n));
 
-	dprintf(1, " %d\n", ft_printf("  %10.16f\t", n));
-	dprintf(1, " %d\n\n", dprintf(1, "  %10.16f\t", n));
+	dprintf(1, " %d\n", ft_printf("  %10.12f\t", n));
+	dprintf(1, " %d\n\n", dprintf(1, "  %10.12f\t", n));
 
 	dprintf(1, " %d\n", ft_printf("  %10.10f\t", n));
 	dprintf(1, " %d\n\n", dprintf(1, "  %10.10f\t", n));
 
-	dprintf(1, " %d\n", ft_printf("  %30.17f\t", n));
-	dprintf(1, " %d\n\n", dprintf(1, "  %30.17f\t", n));
+	dprintf(1, " %d\n", ft_printf("  %30.12f\t", n));
+	dprintf(1, " %d\n\n", dprintf(1, "  %30.12f\t", n));
 	dprintf(1, "-----------------------------------------------\n\n");
 
 	dprintf(1, "PLUS\n\n\n");
@@ -79,8 +81,8 @@ int main()
 	dprintf(1, " %d\n", ft_printf("  %+10.1f\t", n));
 	dprintf(1, " %d\n\n", dprintf(1, "  %+10.1f\t", n));
 
-	dprintf(1, " %d\n", ft_printf("  %+10.16f\t", n));
-	dprintf(1, " %d\n\n", dprintf(1, "  %+10.16f\t", n));
+	dprintf(1, " %d\n", ft_printf("  %+10.12f\t", n));
+	dprintf(1, " %d\n\n", dprintf(1, "  %+10.12f\t", n));
 
 	dprintf(1, " %d\n", ft_printf("  %+10.10f\t", n));
 	dprintf(1, " %d\n\n", dprintf(1, "  %+10.10f\t", n));
@@ -116,8 +118,8 @@ int main()
 	dprintf(1, " %d\n", ft_printf("  %-10.1f\t", n));
 	dprintf(1, " %d\n\n", dprintf(1, "  %-10.1f\t", n));
 
-	dprintf(1, " %d\n", ft_printf("  %-10.16f\t", n));
-	dprintf(1, " %d\n\n", dprintf(1, "  %-10.16f\t", n));
+	dprintf(1, " %d\n", ft_printf("  %-10.12f\t", n));
+	dprintf(1, " %d\n\n", dprintf(1, "  %-10.12f\t", n));
 
 	dprintf(1, " %d\n", ft_printf("  %-10.10f\t", n));
 	dprintf(1, " %d\n\n", dprintf(1, "  %-10.10f\t", n));
@@ -153,8 +155,8 @@ int main()
 	dprintf(1, " %d\n", ft_printf("  %010.1f\t", n));
 	dprintf(1, " %d\n\n", dprintf(1, "  %010.1f\t", n));
 
-	dprintf(1, " %d\n", ft_printf("  %010.16f\t", n));
-	dprintf(1, " %d\n\n", dprintf(1, "  %010.16f\t", n));
+	dprintf(1, " %d\n", ft_printf("  %010.12f\t", n));
+	dprintf(1, " %d\n\n", dprintf(1, "  %010.12f\t", n));
 
 	dprintf(1, " %d\n", ft_printf("  %010.10f\t", n));
 	dprintf(1, " %d\n\n", dprintf(1, "  %010.10f\t", n));
@@ -190,8 +192,8 @@ int main()
 	dprintf(1, " %d\n", ft_printf("  %#010.1f\t", n));
 	dprintf(1, " %d\n\n", dprintf(1, "  %#010.1f\t", n));
 
-	dprintf(1, " %d\n", ft_printf("  %#010.16f\t", n));
-	dprintf(1, " %d\n\n", dprintf(1, "  %#010.16f\t", n));
+	dprintf(1, " %d\n", ft_printf("  %#010.12f\t", n));
+	dprintf(1, " %d\n\n", dprintf(1, "  %#010.12f\t", n));
 
 	dprintf(1, " %d\n", ft_printf("  %#010.10f\t", n));
 	dprintf(1, " %d\n\n", dprintf(1, "  %#010.10f\t", n));
@@ -227,8 +229,8 @@ int main()
 	dprintf(1, " %d\n", ft_printf("  %   10.1f\t", n));
 	dprintf(1, " %d\n\n", dprintf(1, "  %   10.1f\t", n));
 
-	dprintf(1, " %d\n", ft_printf("  %   10.16f\t", n));
-	dprintf(1, " %d\n\n", dprintf(1, "  %   10.16f\t", n));
+	dprintf(1, " %d\n", ft_printf("  %   10.12f\t", n));
+	dprintf(1, " %d\n\n", dprintf(1, "  %   10.12f\t", n));
 
 	dprintf(1, " %d\n", ft_printf("  %   10.10f\t", n));
 	dprintf(1, " %d\n\n", dprintf(1, "  %   10.10f\t", n));
@@ -264,8 +266,8 @@ int main()
 	dprintf(1, " %d\n", ft_printf("  %+010.1f\t", n));
 	dprintf(1, " %d\n\n", dprintf(1, "  %+010.1f\t", n));
 
-	dprintf(1, " %d\n", ft_printf("  %+010.16f\t", n));
-	dprintf(1, " %d\n\n", dprintf(1, "  %+010.16f\t", n));
+	dprintf(1, " %d\n", ft_printf("  %+010.12f\t", n));
+	dprintf(1, " %d\n\n", dprintf(1, "  %+010.12f\t", n));
 
 	dprintf(1, " %d\n", ft_printf("  %+010.10f\t", n));
 	dprintf(1, " %d\n\n", dprintf(1, "  %+010.10f\t", n));
@@ -301,8 +303,8 @@ int main()
 	dprintf(1, " %d\n", ft_printf("  %#010.1f\t", n));
 	dprintf(1, " %d\n\n", dprintf(1, "  %#010.1f\t", n));
 
-	dprintf(1, " %d\n", ft_printf("  %#010.16f\t", n));
-	dprintf(1, " %d\n\n", dprintf(1, "  %#010.16f\t", n));
+	dprintf(1, " %d\n", ft_printf("  %#010.12f\t", n));
+	dprintf(1, " %d\n\n", dprintf(1, "  %#010.12f\t", n));
 
 	dprintf(1, " %d\n", ft_printf("  %#010.10f\t", n));
 	dprintf(1, " %d\n\n", dprintf(1, "  %#010.10f\t", n));
@@ -338,8 +340,8 @@ int main()
 	dprintf(1, " %d\n", ft_printf("  % 010.1f\t", n));
 	dprintf(1, " %d\n\n", dprintf(1, "  % 010.1f\t", n));
 
-	dprintf(1, " %d\n", ft_printf("  % 10.16f\t", n));
-	dprintf(1, " %d\n\n", dprintf(1, "  % 10.16f\t", n));
+	dprintf(1, " %d\n", ft_printf("  % 10.12f\t", n));
+	dprintf(1, " %d\n\n", dprintf(1, "  % 10.12f\t", n));
 
 	dprintf(1, " %d\n", ft_printf("  % 10.10f\t", n));
 	dprintf(1, " %d\n\n", dprintf(1, "  % 10.10f\t", n));
@@ -375,8 +377,8 @@ int main()
 	dprintf(1, " %d\n", ft_printf("  %+#010.1f\t", n));
 	dprintf(1, " %d\n\n", dprintf(1, "  %+#010.1f\t", n));
 
-	dprintf(1, " %d\n", ft_printf("  %+#010.16f\t", n));
-	dprintf(1, " %d\n\n", dprintf(1, "  %+#010.16f\t", n));
+	dprintf(1, " %d\n", ft_printf("  %+#010.12f\t", n));
+	dprintf(1, " %d\n\n", dprintf(1, "  %+#010.12f\t", n));
 
 	dprintf(1, " %d\n", ft_printf("  %+#010.10f\t", n));
 	dprintf(1, " %d\n\n", dprintf(1, "  %+#010.10f\t", n));
@@ -412,8 +414,8 @@ int main()
 	dprintf(1, " %d\n", ft_printf("  % #010.1f\t", n));
 	dprintf(1, " %d\n\n", dprintf(1, "  % #010.1f\t", n));
 
-	dprintf(1, " %d\n", ft_printf("  % #010.16f\t", n));
-	dprintf(1, " %d\n\n", dprintf(1, "  % #010.16f\t", n));
+	dprintf(1, " %d\n", ft_printf("  % #010.12f\t", n));
+	dprintf(1, " %d\n\n", dprintf(1, "  % #010.12f\t", n));
 
 	dprintf(1, " %d\n", ft_printf("  % #010.10f\t", n));
 	dprintf(1, " %d\n\n", dprintf(1, "  % #010.10f\t", n));
@@ -449,8 +451,8 @@ int main()
 	dprintf(1, " %d\n", ft_printf("  %-+10.1f\t", n));
 	dprintf(1, " %d\n\n", dprintf(1, "  %-+10.1f\t", n));
 
-	dprintf(1, " %d\n", ft_printf("  %-+10.16f\t", n));
-	dprintf(1, " %d\n\n", dprintf(1, "  %-+10.16f\t", n));
+	dprintf(1, " %d\n", ft_printf("  %-+10.12f\t", n));
+	dprintf(1, " %d\n\n", dprintf(1, "  %-+10.12f\t", n));
 
 	dprintf(1, " %d\n", ft_printf("  %-+10.10f\t", n));
 	dprintf(1, " %d\n\n", dprintf(1, "  %-+10.10f\t", n));
@@ -486,8 +488,8 @@ int main()
 	dprintf(1, " %d\n", ft_printf("  % -10.1f\t", n));
 	dprintf(1, " %d\n\n", dprintf(1, "  % -10.1f\t", n));
 
-	dprintf(1, " %d\n", ft_printf("  % -10.16f\t", n));
-	dprintf(1, " %d\n\n", dprintf(1, "  % -10.16f\t", n));
+	dprintf(1, " %d\n", ft_printf("  % -10.12f\t", n));
+	dprintf(1, " %d\n\n", dprintf(1, "  % -10.12f\t", n));
 
 	dprintf(1, " %d\n", ft_printf("  % -10.10f\t", n));
 	dprintf(1, " %d\n\n", dprintf(1, "  % -10.10f\t", n));
@@ -523,8 +525,8 @@ int main()
 	dprintf(1, " %d\n", ft_printf("  %#+10.1f\t", n));
 	dprintf(1, " %d\n\n", dprintf(1, "  %#+10.1f\t", n));
 
-	dprintf(1, " %d\n", ft_printf("  %#+10.16f\t", n));
-	dprintf(1, " %d\n\n", dprintf(1, "  %#+10.16f\t", n));
+	dprintf(1, " %d\n", ft_printf("  %#+10.12f\t", n));
+	dprintf(1, " %d\n\n", dprintf(1, "  %#+10.12f\t", n));
 
 	dprintf(1, " %d\n", ft_printf("  %#+10.10f\t", n));
 	dprintf(1, " %d\n\n", dprintf(1, "  %#+10.10f\t", n));
@@ -560,8 +562,8 @@ int main()
 	dprintf(1, " %d\n", ft_printf("  %# 10.1f\t", n));
 	dprintf(1, " %d\n\n", dprintf(1, "  %# 10.1f\t", n));
 
-	dprintf(1, " %d\n", ft_printf("  %# 10.16f\t", n));
-	dprintf(1, " %d\n\n", dprintf(1, "  %# 10.16f\t", n));
+	dprintf(1, " %d\n", ft_printf("  %# 10.12f\t", n));
+	dprintf(1, " %d\n\n", dprintf(1, "  %# 10.12f\t", n));
 
 	dprintf(1, " %d\n", ft_printf("  %# 10.10f\t", n));
 	dprintf(1, " %d\n\n", dprintf(1, "  %# 10.10f\t", n));
@@ -597,8 +599,8 @@ int main()
 	dprintf(1, " %d\n", ft_printf("  %#-10.1f\t", n));
 	dprintf(1, " %d\n\n", dprintf(1, "  %#-10.1f\t", n));
 
-	dprintf(1, " %d\n", ft_printf("  %#-10.16f\t", n));
-	dprintf(1, " %d\n\n", dprintf(1, "  %#-10.16f\t", n));
+	dprintf(1, " %d\n", ft_printf("  %#-10.12f\t", n));
+	dprintf(1, " %d\n\n", dprintf(1, "  %#-10.12f\t", n));
 
 	dprintf(1, " %d\n", ft_printf("  %#-10.10f\t", n));
 	dprintf(1, " %d\n\n", dprintf(1, "  %#-10.10f\t", n));
@@ -634,8 +636,8 @@ int main()
 	dprintf(1, " %d\n", ft_printf("  %#- 10.1f\t", n));
 	dprintf(1, " %d\n\n", dprintf(1, "  %#- 10.1f\t", n));
 
-	dprintf(1, " %d\n", ft_printf("  %#- 10.16f\t", n));
-	dprintf(1, " %d\n\n", dprintf(1, "  %#- 10.16f\t", n));
+	dprintf(1, " %d\n", ft_printf("  %#- 10.12f\t", n));
+	dprintf(1, " %d\n\n", dprintf(1, "  %#- 10.12f\t", n));
 
 	dprintf(1, " %d\n", ft_printf("  %#- 10.10f\t", n));
 	dprintf(1, " %d\n\n", dprintf(1, "  %#- 10.10f\t", n));

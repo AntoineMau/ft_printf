@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 12:04:45 by anmauffr          #+#    #+#             */
-/*   Updated: 2019/02/04 17:18:45 by judumay          ###   ########.fr       */
+/*   Updated: 2019/02/04 18:39:32 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ static t_printf		*ft_printf_f_flags(t_printf *p, long double tmp)
 	p = ft_printf_f_flags2(p, tmp);
 	if (p->flags->zero && tmp < 0)
 	{
-		while (p->conv_ret[i] != '-')
+		while (p->conv_ret[i] && p->conv_ret[i] != '-')
 			i++;
 		p->conv_ret[i] = '0';
 		p->conv_ret[0] = '-';
@@ -109,8 +109,6 @@ static double	ft_dabs(double n)
 {
 	return (n < 0 ? -n : n);
 }
-
-#include <stdio.h>
 
 static int		ldtoa_fill(double n, t_printf *p, long long value, int pe)
 {
@@ -141,18 +139,18 @@ static int		ldtoa_fill(double n, t_printf *p, long long value, int pe)
 	ft_strdel(&p->conv_ret);
 	p->conv_ret = s;
 	p->precision = 0;
-	while (p->conv_ret[p->precision] != '.' && p->conv_ret[p->precision])
+	while (p->conv_ret[p->precision] && p->conv_ret[p->precision] != '.')
 		p->precision++;
 	j += p->precision;
 	p->precision = 0;
-	while (p->precision <= i && p->conv_ret[p->precision])
+	while (p->conv_ret[p->precision] && p->precision <= i)
 		p->precision++;
 	if (p->precision == i)
 		p->conv_ret[p->precision] = '\0';
 	if (i > 16)
 	{
 		j = -1;
-		while (p->conv_ret[++j] != '.')
+		while (p->conv_ret[++j] && p->conv_ret[j] != '.')
 			;
 		j++;
 		while (p->conv_ret[j])
