@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 12:04:45 by anmauffr          #+#    #+#             */
-/*   Updated: 2019/02/01 15:49:35 by judumay          ###   ########.fr       */
+/*   Updated: 2019/02/04 17:05:22 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ static t_printf		*ft_printf_f_champ(t_printf *p, long double nbr)
 			|| p->flags->space) && p->flags->zero)) && !p->flags->less) ||
 			p->conv_ret[0] == '-')
 			--tmp;
-		if (nbr > 0)
+		if (nbr >= 0)
 			tmp--;
 		str = ft_strnew(tmp);
 		if (p->flags->zero && !p->flags->less)
-			str = ft_strfill(str, '0', tmp);
+			ft_strfill(str, '0', tmp);
 		else
-			str = ft_strfill(str, ' ', tmp);
+			ft_strfill(str, ' ', tmp);
 		if (p->flags->less)
 			buf = ft_strjoin(p->conv_ret, str);
 		else
@@ -83,6 +83,7 @@ static t_printf		*ft_printf_f_flags2(t_printf *p, long double tmp)
 static t_printf		*ft_printf_f_flags(t_printf *p, long double tmp)
 {
 	int		i;
+	char	*tmpe = NULL;
 
 	i = 0;
 	p = ft_printf_f_flags2(p, tmp);
@@ -95,7 +96,12 @@ static t_printf		*ft_printf_f_flags(t_printf *p, long double tmp)
 	}
 	if (p->flags->zero && p->flags->plus && tmp > 0)
 		p->conv_ret[0] = '+';
-	(tmp > 0 && p->flags->space && !p->flags->plus) ? p->conv_ret = ft_strjoin(" ", p->conv_ret) : 0;
+	if (tmp >= 0 && p->flags->space && !p->flags->plus)
+	{
+		tmpe = ft_strjoin(" ", p->conv_ret);
+		ft_strdel(&p->conv_ret);
+		p->conv_ret = tmpe;
+	}
 	return (p);
 }
 
@@ -184,7 +190,9 @@ t_printf			*ft_printf_f(t_printf *p)
 {
 	double		tmp;
 	int			i;
+	char		*tmpe;
 
+	i = 1;
 	if (!(p->conv == FT_PRINTF_F))
 		return (p);
 	tmp = ft_printf_f_get_arg(p);
@@ -196,6 +204,12 @@ t_printf			*ft_printf_f(t_printf *p)
 			p->conv_ret = ft_dtoa_printf(tmp, p, p->flags->hash);
 		else
 			p->conv_ret = ft_dtoa_printf(tmp, p, p->flags->hash);
+	}
+	if ((long long)tmp == 0 && p->conv_ret[0] == '.')
+	{
+		tmpe = ft_strjoin("0", p->conv_ret);
+		ft_strdel(&p->conv_ret);
+		p->conv_ret = tmpe;
 	}
 	if (p->error)
 		return (p);
