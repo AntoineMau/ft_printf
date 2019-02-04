@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 12:04:45 by anmauffr          #+#    #+#             */
-/*   Updated: 2019/02/04 17:09:20 by judumay          ###   ########.fr       */
+/*   Updated: 2019/02/04 17:18:45 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,11 +134,11 @@ static int		ldtoa_fill(double n, t_printf *p, long long value, int pe)
 	while (++p->precision < len)
 	{
 		s[len - p->precision - 1] =
-		value % 10 + ((value % 10 < 10) ? '0' : 102);
+		value % 10 + ((value % 10 < 10) ? '0' : 0);
 		value /= 10;
 	}
 	(n < 0) ? s[0] = '-' : 0;
-	free(p->conv_ret);
+	ft_strdel(&p->conv_ret);
 	p->conv_ret = s;
 	p->precision = 0;
 	while (p->conv_ret[p->precision] != '.' && p->conv_ret[p->precision])
@@ -159,6 +159,7 @@ static int		ldtoa_fill(double n, t_printf *p, long long value, int pe)
 			p->conv_ret[j++] = '\0';
 		p->precision--;
 		ft_dtoa_printf(n, p, p->flags->hash);
+		ft_strdel(&s);
 	}
 	return (i);
 }
