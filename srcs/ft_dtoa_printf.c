@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 14:39:33 by judumay           #+#    #+#             */
-/*   Updated: 2019/02/01 15:26:57 by judumay          ###   ########.fr       */
+/*   Updated: 2019/02/04 17:10:16 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,10 @@ char			*ft_dtoa_printf(double n, t_printf *p, int t)
 
 	if (p->precision > 16)
 	{
-		if (handle_precision(n, p->precision, &p->conv_ret))
+		s = ft_strdup("0.");
+		if (handle_precision(n, p->precision, &s))
 			return (NULL);
+		p->conv_ret = s;
 		return (p->conv_ret);
 	}
 	len = ft_longlen(n) + p->precision + 1;
