@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_f_suite.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 10:47:40 by anmauffr          #+#    #+#             */
+<<<<<<< HEAD
+/*   Updated: 2019/02/05 14:25:42 by judumay          ###   ########.fr       */
+=======
 /*   Updated: 2019/02/05 12:34:19 by anmauffr         ###   ########.fr       */
+>>>>>>> 100a75fc2036c1288bb4dd303c35aa66fc97bda2
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,12 +94,37 @@ t_printf			*ft_printf_f_champ(t_printf *p, long double nbr)
 	return (p);
 }
 
+int					ldtoa_fill_suite(double n, t_printf *p, int i, char *s)
+{
+	int		j;
+
+	j = -1;
+	(n < 0) ? s[0] = '-' : 0;
+	ft_strdel(&p->conv_ret);
+	p->conv_ret = s;
+	p->precision = 0;
+	while (p->conv_ret[p->precision] && p->precision <= i)
+		p->precision++;
+	if (p->precision == i)
+		p->conv_ret[p->precision] = '\0';
+	if (i > 16)
+	{
+		while (p->conv_ret[++j] && p->conv_ret[j] != '.')
+			;
+		while (p->conv_ret[++j])
+			p->conv_ret[j] = '\0';
+		p->precision--;
+		ft_dtoa_printf(n, p, p->flags->hash);
+		return (1);
+	}
+	return (0);
+}
+
 int					ldtoa_fill(double n, t_printf *p, long long value, int pe)
 {
 	long long		len;
 	char			*s;
 	int				i;
-	int				j;
 
 	i = p->precision;
 	len = pe - 1 - p->precision;
@@ -113,23 +142,7 @@ int					ldtoa_fill(double n, t_printf *p, long long value, int pe)
 		s[len - p->precision - 1] = value % 10 + ((value % 10 < 10) ? '0' : 0);
 		value /= 10;
 	}
-	(n < 0) ? s[0] = '-' : 0;
-	ft_strdel(&p->conv_ret);
-	p->conv_ret = s;
-	p->precision = 0;
-	while (p->conv_ret[p->precision] && p->precision <= i)
-		p->precision++;
-	if (p->precision == i)
-		p->conv_ret[p->precision] = '\0';
-	if (i > 16 && (j = -1))
-	{
-		while (p->conv_ret[++j] && p->conv_ret[j] != '.')
-			;
-		while (p->conv_ret[++j])
-			p->conv_ret[j] = '\0';
-		p->precision--;
-		ft_dtoa_printf(n, p, p->flags->hash);
+	if (ldtoa_fill_suite(n, p, i, s) == 1)
 		ft_strdel(&s);
-	}
 	return (i);
 }

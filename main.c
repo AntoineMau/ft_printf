@@ -12,8 +12,8 @@ int main()
 	//long double n;
 
 	// manque l'arrondis inter '.' 19999.9 preci de 0 => 20000.0
-	n = -10.15;
 
+	n = 0.00;
 	dprintf(1, "\n\n-----------------------------------------------\n\n");
 	dprintf(1, "NORMAL\n\n\n");
 
@@ -68,9 +68,6 @@ int main()
 
 	dprintf(1, " %d\n", ft_printf("  %+.0f\t", n));
 	dprintf(1, " %d\n\n", dprintf(1, "  %+.0f\t", n));
-	
-	dprintf(1, " %d\n", ft_printf("  notre%+.1f\t", n));
-	dprintf(1, " %d\n\n", dprintf(1, "  vrai%+.1f\t", n));
 
 	dprintf(1, " %d\n", ft_printf("  %+.10f\t", n));
 	dprintf(1, " %d\n\n", dprintf(1, "  %+.10f\t", n));

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_f.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 12:04:45 by anmauffr          #+#    #+#             */
-/*   Updated: 2019/02/05 12:33:29 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/02/05 14:33:05 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,27 @@ static long double	ft_printf_f_get_arg(t_printf *p)
 	return (ret);
 }
 
+t_printf			*ft_printf_f_suite(t_printf *p, double tmp, int i)
+{
+	if (p->error)
+		return (p);
+	if (!(p->flags->zero && !p->flags->less))
+		if ((p = ft_printf_f_flags(p, tmp)) && p->error)
+			return (p);
+	if (i == 0 && !p->flags->hash)
+	{
+		while (p->conv_ret[i])
+			p->conv_ret[i++] == '.' ? p->conv_ret[i - 1] = '\0' : 0;
+		i = 0;
+	}
+	if ((p = ft_printf_f_champ(p, tmp)) && p->error)
+		return (p);
+	if (p->flags->zero && !p->flags->less)
+		if ((p = ft_printf_f_flags(p, tmp)) && p->error)
+			return (p);
+	return (p);
+}
+
 t_printf			*ft_printf_f(t_printf *p)
 {
 	double		tmp;
@@ -75,22 +96,9 @@ t_printf			*ft_printf_f(t_printf *p)
 		ft_strdel(&p->conv_ret);
 		p->conv_ret = tmpe;
 	}
+	p = ft_printf_f_suite(p, tmp, i);
 	if (p->error)
 		return (p);
-	if (!(p->flags->zero && !p->flags->less))
-		if ((p = ft_printf_f_flags(p, tmp)) && p->error)
-			return (p);
-	if (i == 0 && !p->flags->hash)
-	{
-		while (p->conv_ret[i])
-			p->conv_ret[i++] == '.' ? p->conv_ret[i - 1] = '\0' : 0;
-		i = 0;
-	}
-	if ((p = ft_printf_f_champ(p, tmp)) && p->error)
-		return (p);
-	if (p->flags->zero && !p->flags->less)
-		if ((p = ft_printf_f_flags(p, tmp)) && p->error)
-			return (p);
 	ft_putstr(p->conv_ret);
 	p->ret += ft_strlen(p->conv_ret);
 	dprintf(1, "p-conv: |%s|\n", p->conv_ret);
