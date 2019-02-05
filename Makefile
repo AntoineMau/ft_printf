@@ -105,7 +105,8 @@ SRC = libft/ft_atoi.c \
 	  srcs/ft_printf_s.c \
 	  srcs/ft_printf_u.c \
 	  srcs/ft_printf_x.c \
-	  srcs/ft_dtoa_printf.c
+	  srcs/ft_dtoa_printf.c \
+	  srcs/ft_printf_f_suite.c
 
 OBJ = $(SRC:.c=.o)
 

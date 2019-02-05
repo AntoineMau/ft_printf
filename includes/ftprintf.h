@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ftprintf.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 19:22:50 by anmauffr          #+#    #+#             */
-/*   Updated: 2019/02/01 15:22:57 by judumay          ###   ########.fr       */
+/*   Updated: 2019/02/05 10:56:57 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,9 @@ typedef struct	s_printf
 }				t_printf;
 
 int				ft_printf(char *format, ...);
-char				*ft_dtoa_printf(double n, t_printf *p, int t);
+int				ft_putdouble(double n, t_printf *p);
+int				ldtoa_fill(double n, t_printf *p, long long value, int pe);
+char			*ft_dtoa_printf(double n, t_printf *p, int t);
 void			reset_t_printf(t_printf *p);
 void			del_t_printf(t_printf *p);
 void			ft_printf_display(t_printf *p, const char *format);
@@ -91,5 +93,7 @@ t_printf		*ft_printf_c(t_printf *p);
 t_printf		*ft_printf_percent(t_printf *p);
 t_printf		*ft_printf_no_conv(t_printf *p);
 t_printf		*ft_printf_f(t_printf *p);
+t_printf		*ft_printf_f_champ(t_printf *p, long double nbr);
+t_printf		*ft_printf_f_flags(t_printf *p, long double tmp);
 
 #endif

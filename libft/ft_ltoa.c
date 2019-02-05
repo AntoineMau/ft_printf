@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ltoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 09:50:57 by judumay           #+#    #+#             */
-/*   Updated: 2019/01/29 16:43:13 by judumay          ###   ########.fr       */
+/*   Updated: 2019/02/05 10:40:59 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*ft_strrev(char *str)
 	return (str);
 }
 
-char			*ft_ltoa(long long n)
+char	*ft_ltoa(long long n)
 {
 	char	*s;
 	size_t	len;
