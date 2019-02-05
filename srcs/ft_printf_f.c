@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 12:04:45 by anmauffr          #+#    #+#             */
-/*   Updated: 2019/02/05 14:33:05 by judumay          ###   ########.fr       */
+/*   Updated: 2019/02/05 14:34:44 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,5 @@ t_printf			*ft_printf_f(t_printf *p)
 		return (p);
 	ft_putstr(p->conv_ret);
 	p->ret += ft_strlen(p->conv_ret);
-	dprintf(1, "p-conv: |%s|\n", p->conv_ret);
 	return (p);
 }
