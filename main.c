@@ -13,7 +13,7 @@ int main()
 
 	// manque l'arrondis inter '.' 19999.9 preci de 0 => 20000.0
 
-	n = 0.00;
+	n = -125545450.45450;
 	dprintf(1, "\n\n-----------------------------------------------\n\n");
 	dprintf(1, "NORMAL\n\n\n");
 

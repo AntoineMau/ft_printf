@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_dtoa_printf.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 14:39:33 by judumay           #+#    #+#             */
-/*   Updated: 2019/02/05 11:24:08 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/02/05 15:33:12 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,21 +108,21 @@ char			*ft_dtoa_printf(double n, t_printf *p, int t)
 	if (p->precision > 16 && (s = (long long)n == 0 ? ft_strdup("0.") :
 	ft_strjoin(p->conv_ret, "\0")))
 	{
-		return (handle_precision(n, p->precision, &s) ? NULL :
-		(p->conv_ret = ft_strjoin(s, "")));
+		if (handle_precision(n, p->precision, &s))
+			return (NULL);
+		p->conv_ret = ft_strjoin(s, "");
+		ft_strdel(&s);
+		return (p->conv_ret);
 	}
 	len = ft_longlen(n) + p->precision + 1;
 	if (!(s = (char *)malloc(sizeof(char) * (len + 1))))
 		return (NULL);
 	s[0] = '\0';
-	if (n < 0 && (n = -n))
-		ft_strcpy(s, "-");
+	(n < 0 && (n = -n)) ? ft_strcpy(s, "-") : 0;
 	if (p->precision == 0 && (preci(n, t, &s)))
 		return (s);
 	ft_strcat(s, s_tmp = ft_ltoa(n));
 	ft_strdel(&s_tmp);
-	if (p->precision > -1 && (ft_strcat(s, ".")))
-		if (handle_precision(n, p->precision, &s))
-			return (NULL);
-	return (s);
+	return (p->precision > -1 && (ft_strcat(s, ".")) &&
+	(handle_precision(n, p->precision, &s)) ? NULL : s);
 }
