@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 10:47:40 by anmauffr          #+#    #+#             */
-/*   Updated: 2019/02/05 14:34:03 by judumay          ###   ########.fr       */
+/*   Updated: 2019/02/05 14:37:43 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,8 @@ int					ldtoa_fill(double n, t_printf *p, long long value, int pe)
 
 	i = p->precision;
 	len = pe - 1 - p->precision;
-	s = (char*)malloc(sizeof(char) * p->precision + len + 1);
+	if (!(s = (char*)malloc(sizeof(char) * p->precision + len + 1)))
+		return (0);
 	s[len + p->precision + 1] = '\0';
 	while (p->precision--)
 	{
