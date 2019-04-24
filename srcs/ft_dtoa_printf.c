@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_dtoa_printf.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 14:39:33 by judumay           #+#    #+#             */
-/*   Updated: 2019/02/05 15:33:12 by judumay          ###   ########.fr       */
+/*   Updated: 2019/04/24 17:30:51 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static int		handle_precision(double n, int prec, char **s)
 			{
 				n *= 10;
 				if (!prec && (long long)((n - (long long)n) * 10) > 4
-							&& (long long)((n - (long long)n) * 10) != 9)
+					&& (long long)((n - (long long)n) * 10) != 9)
 					n += 1;
 				ft_strcat(*s, s_tmp = ft_ltoa(n));
 				ft_strdel(&s_tmp);
@@ -105,8 +105,8 @@ char			*ft_dtoa_printf(double n, t_printf *p, int t)
 	char		*s_tmp;
 	size_t		len;
 
-	if (p->precision > 16 && (s = (long long)n == 0 ? ft_strdup("0.") :
-	ft_strjoin(p->conv_ret, "\0")))
+	if (p->precision > 16 && (s = (long long)n == 0 ? ft_strdup("0.")
+		: ft_strjoin(p->conv_ret, "\0")))
 	{
 		if (handle_precision(n, p->precision, &s))
 			return (NULL);
@@ -123,6 +123,6 @@ char			*ft_dtoa_printf(double n, t_printf *p, int t)
 		return (s);
 	ft_strcat(s, s_tmp = ft_ltoa(n));
 	ft_strdel(&s_tmp);
-	return (p->precision > -1 && (ft_strcat(s, ".")) &&
-	(handle_precision(n, p->precision, &s)) ? NULL : s);
+	return (p->precision > -1 && (ft_strcat(s, "."))
+		&& (handle_precision(n, p->precision, &s)) ? NULL : s);
 }

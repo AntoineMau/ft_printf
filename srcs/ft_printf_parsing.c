@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_parsing.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 12:05:22 by anmauffr          #+#    #+#             */
-/*   Updated: 2019/01/25 09:14:22 by judumay          ###   ########.fr       */
+/*   Updated: 2019/04/24 17:31:10 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ t_printf		*ft_printf_parsing(t_printf *p, const char *format)
 			ft_printf_get_flag(p, format);
 		else if (format[p->index] == '.')
 			ft_printf_get_precision(p, format);
-		else if ((format[p->index] != '0' &&
-		ft_isdigit((__int32_t)format[p->index])))
+		else if ((format[p->index] != '0'
+			&& ft_isdigit((__int32_t)format[p->index])))
 			ft_printf_get_champ(p, format);
 		else
 			break ;
